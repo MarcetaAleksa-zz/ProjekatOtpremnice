@@ -83,16 +83,22 @@
     <Compile Include="dodajArtikal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="prijava.Designer.vb">
+      <DependentUpon>prijava.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="prijava.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formaDruga.Designer.vb">
-      <DependentUpon>formaDruga.vb</DependentUpon>
+    <Compile Include="prodajaRobe.Designer.vb">
+      <DependentUpon>prodajaRobe.vb</DependentUpon>
     </Compile>
-    <Compile Include="formaDruga.vb">
+    <Compile Include="prodajaRobe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="istorijaProdaje.Designer.vb">
+      <DependentUpon>istorijaProdaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="istorijaProdaje.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formaPrva.vb">
@@ -106,6 +112,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -122,11 +129,14 @@
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="prijava.resx">
+      <DependentUpon>prijava.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formaDruga.resx">
-      <DependentUpon>formaDruga.vb</DependentUpon>
+    <EmbeddedResource Include="prodajaRobe.resx">
+      <DependentUpon>prodajaRobe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="istorijaProdaje.resx">
+      <DependentUpon>istorijaProdaje.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formaPrva.resx">
       <DependentUpon>formaPrva.vb</DependentUpon>
