@@ -1,0 +1,36 @@
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.exe
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.deps.json
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.runtimeconfig.json
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.runtimeconfig.dev.json
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.dll
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.pdb
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.otpremniceMeni.resources
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.dll
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.pdb
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.genruntimeconfig.cache
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.pocetnaForma.resources
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.generisanjeOtpremnica.resources
+C:\Users\Administrator\Desktop\Softverski inzenjering\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.Properties.Resources.resources
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.dll
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.pdb
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.exe
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.deps.json
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.runtimeconfig.json
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.runtimeconfig.dev.json
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.dll
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\bin\Debug\netcoreapp3.1\projekatOtpremnice.pdb
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csproj.AssemblyReference.cache
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.generisanjeOtpremnica.resources
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.otpremniceMeni.resources
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.pocetnaForma.resources
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.Properties.Resources.resources
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csproj.GenerateResource.cache
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.AssemblyInfoInputs.cache
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.AssemblyInfo.cs
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.csproj.CoreCompileInputs.cache
+C:\Users\Panzo\Desktop\projekatOtpremnice\projekatOtpremnice\obj\Debug\netcoreapp3.1\projekatOtpremnice.genruntimeconfig.cache
