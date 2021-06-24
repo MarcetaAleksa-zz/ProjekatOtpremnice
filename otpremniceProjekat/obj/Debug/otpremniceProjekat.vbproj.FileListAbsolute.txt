@@ -26,3 +26,4 @@ C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremnice
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.exe
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.xml
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pdb
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Form1.resources

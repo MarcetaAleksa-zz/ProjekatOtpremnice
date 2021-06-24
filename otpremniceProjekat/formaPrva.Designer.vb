@@ -26,6 +26,7 @@ Partial Class formaPrva
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.SuspendLayout()
         '
         'Button1
@@ -43,7 +44,7 @@ Partial Class formaPrva
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(248, 38)
         Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Dodaj novi artikal"
+        Me.Button2.Text = "Menadzment artikala"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
@@ -63,6 +64,9 @@ Partial Class formaPrva
         Me.Button4.TabIndex = 3
         Me.Button4.Text = "Button4"
         Me.Button4.UseVisualStyleBackColor = True
+        '
+        'BackgroundWorker1
+        '
         '
         'formaPrva
         '
@@ -84,4 +88,5 @@ Partial Class formaPrva
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

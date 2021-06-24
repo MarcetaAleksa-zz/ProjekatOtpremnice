@@ -76,10 +76,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="baza.vb" />
     <Compile Include="dodajArtikal.Designer.vb">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </Compile>
     <Compile Include="dodajArtikal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formaDruga.Designer.vb">
@@ -114,6 +121,9 @@
   <ItemGroup>
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formaDruga.resx">
       <DependentUpon>formaDruga.vb</DependentUpon>
