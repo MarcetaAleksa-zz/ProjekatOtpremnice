@@ -58,3 +58,4 @@ C:\Users\Aleksa\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\bin\Debug
 C:\Users\Aleksa\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\de\PdfSharp.Charting.resources.dll
 C:\Users\Aleksa\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources
 C:\Users\Aleksa\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.CopyComplete
+C:\Users\Aleksa\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Form2.resources

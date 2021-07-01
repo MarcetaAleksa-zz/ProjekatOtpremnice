@@ -22,7 +22,7 @@ Partial Class test
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -33,14 +33,14 @@ Partial Class test
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
-        'Button1
+        'Button
         '
-        Me.Button1.Location = New System.Drawing.Point(44, 41)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 0
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button.Location = New System.Drawing.Point(44, 41)
+        Me.Button.Name = "Button"
+        Me.Button.Size = New System.Drawing.Size(75, 23)
+        Me.Button.TabIndex = 0
+        Me.Button.Text = "Button1"
+        Me.Button.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
@@ -119,7 +119,7 @@ Partial Class test
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.Button)
         Me.Name = "test"
         Me.Text = "test"
         Me.ResumeLayout(False)
@@ -127,7 +127,7 @@ Partial Class test
 
     End Sub
 
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Button As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
