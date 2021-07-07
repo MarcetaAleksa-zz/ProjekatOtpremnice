@@ -8,7 +8,7 @@ Imports System.IO
 
 
 Public Class test
-    Private Sub Button_Click(sender As Object, e As EventArgs) Handles Button.Click
+    Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
         Dim komanda As New SqlCommand("SELECT ID FROM Osnovne", baza.konekcija)
         Dim adapter As New SqlDataAdapter(komanda)
         Dim tabela As New DataTable
@@ -20,91 +20,80 @@ Public Class test
 
             If sfd.ShowDialog = 1 Then
 
-                Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo parametre naseg .pdf dokumenta
+                Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
                 Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
-                Dim pKolona As New Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.BOLD, BaseColor.BLACK) 'defomisanje kolona
-                Dim pRed As New Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.NORMAL, BaseColor.BLACK) ' definisanje redova
-                pdfWriter.PageEvent = New HeaderFooter
-                Dim ptabela As New PdfPTable(8) ' generisanje tabele (8) kolona
-                ptabela.TotalWidth = 550.0F '
-                ptabela.LockedWidth = True ' 
-                ptabela.HorizontalAlignment = Element.ALIGN_CENTER
-                ptabela.HeaderRows = 1
+                Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+                Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
 
-                Dim widths As Single() = New Single() {0.4F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F, 1.0F} '
-                ptabela.SetWidths(widths)
-                Dim ppolja As PdfPCell = Nothing
 
                 pdfDoc.Open()
-                pdfDoc.Add(New Paragraph(" "))
-                ' u bloku koda ispod definisemo izgled tabele i njenih kolona/redova
-                ppolja = New PdfPCell(New Paragraph("Red. broj", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("NAZIV ROBE / USLUGE", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("Jed. mjere", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("Kolicina", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("Cijena", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("Iznos", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
-
-                ppolja = New PdfPCell(New Paragraph("Rabat", pKolona))
-                ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                ppolja.MinimumHeight = 18
-                ppolja.PaddingLeft = 5.0F
-                ppolja.BackgroundColor = BaseColor.LIGHT_GRAY
-                ptabela.AddCell(ppolja)
 
 
 
+                Dim ptabela As New PdfPTable(7) ' generisanje tabele (8) kolona
+                ptabela.WidthPercentage = 100 '
+                ptabela.SpacingAfter = 10
 
-                Dim dt As DataTable = GetDataTable()
+                ptabela.HorizontalAlignment = Element.ALIGN_CENTER
+                Dim sgltblhdwidth(6) As Single
+                sgltblhdwidth(0) = 30
+                sgltblhdwidth(1) = 100
+                sgltblhdwidth(2) = 30
+                sgltblhdwidth(3) = 50
+                sgltblhdwidth(4) = 75
+                sgltblhdwidth(5) = 75
+                sgltblhdwidth(6) = 50
+                ptabela.SetWidths(sgltblhdwidth)
 
-                For i = 0 To dt.Rows.Count - 1
-                    For j = 0 To dt.Columns.Count - 1
-                        ppolja = New PdfPCell(New Paragraph(dt.Rows(i)(j).ToString, pRed))
-                        ppolja.MinimumHeight = 18
-                        ppolja.PaddingLeft = 5.0F
-                        ppolja.HorizontalAlignment = Element.ALIGN_LEFT
-                        ptabela.AddCell(ppolja)
-                    Next
-                Next
+                Dim CellOneHdr As New PdfPCell(New Phrase("Red. broj", fntTableFontHdr))
+                ptabela.AddCell(CellOneHdr)
+                Dim celltwohdr As New PdfPCell(New Phrase("NAZIV ROBE/ USLUGE", fntTableFontHdr))
+                ptabela.AddCell(celltwohdr)
+                Dim cellthreehdr As New PdfPCell(New Phrase("Jed. mjere", fntTableFontHdr))
+                ptabela.AddCell(cellthreehdr)
+                Dim cellfourhdr As New PdfPCell(New Phrase("Kolicina", fntTableFontHdr))
+                ptabela.AddCell(cellfourhdr)
+                Dim cellfivehdr As New PdfPCell(New Phrase("Cijena", fntTableFontHdr))
+                ptabela.AddCell(cellfivehdr)
+                Dim cellsixhdr As New PdfPCell(New Phrase("Iznos", fntTableFontHdr))
+                ptabela.AddCell(cellsixhdr)
+                Dim cellsevenhdr As New PdfPCell(New Phrase("Rabat", fntTableFontHdr))
+                ptabela.AddCell(cellsevenhdr)
+
+
+                Dim cellone As New PdfPCell(New Phrase("001", fntTableFont))
+                ptabela.AddCell(cellone)
+                Dim celltwo As New PdfPCell(New Phrase("RAM", fntTableFont))
+                ptabela.AddCell(celltwo)
+                Dim cellthree As New PdfPCell(New Phrase("k", fntTableFont))
+                ptabela.AddCell(cellthree)
+                Dim cellfour As New PdfPCell(New Phrase("1", fntTableFont))
+                ptabela.AddCell(cellfour)
+                Dim cellfive As New PdfPCell(New Phrase("10", fntTableFont))
+                ptabela.AddCell(cellfive)
+                Dim cellsix As New PdfPCell(New Phrase("12", fntTableFont))
+                ptabela.AddCell(cellsix)
+                Dim cellseven As New PdfPCell(New Phrase("0", fntTableFont))
+                ptabela.AddCell(cellseven)
+
+                'Dim celloner2 As New PdfPCell(New Phrase("002", fntTableFont))
+                'ptabela.AddCell(celloner2)
+                'Dim celltwor2 As New PdfPCell(New Phrase("Ubacivanje RAM-a", fntTableFont))
+                'ptabela.AddCell(celltwor2)
+                'Dim cellthreer2 As New PdfPCell(New Phrase("h", fntTableFont))
+                'ptabela.AddCell(cellthreer2)
+
+
+
+
                 pdfDoc.Add(ptabela)
                 pdfDoc.Close()
-                MsgBox("PDF je eksportovan na: " & sfd.FileName, vbInformation)
-                Process.Start(sfd.FileName)
+
+
+
+
+                ' u bloku koda ispod definisemo izgled tabele i njenih kolona/redova
+
             End If
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
@@ -113,51 +102,42 @@ Public Class test
 
 
     End Sub
-    Private Function GetDataTable()
-        Dim datatable As New DataTable("dt")
-        Dim dc1 As New DataColumn(Form2.DataGridView1.Columns(0).HeaderText.ToString, GetType(String))
-        Dim dc2 As New DataColumn(Form2.DataGridView1.Columns(1).HeaderText.ToString, GetType(String))
-        Dim dc3 As New DataColumn(Form2.DataGridView1.Columns(2).HeaderText.ToString, GetType(String))
-        Dim dc4 As New DataColumn(Form2.DataGridView1.Columns(3).HeaderText.ToString, GetType(String))
-        Dim dc5 As New DataColumn(Form2.DataGridView1.Columns(4).HeaderText.ToString, GetType(String))
-        Dim dc6 As New DataColumn(Form2.DataGridView1.Columns(5).HeaderText.ToString, GetType(String))
-        Dim dc7 As New DataColumn(Form2.DataGridView1.Columns(6).HeaderText.ToString, GetType(String))
-        datatable.Columns.Add(dc1)
-        datatable.Columns.Add(dc2)
-        datatable.Columns.Add(dc3)
-        datatable.Columns.Add(dc4)
-        datatable.Columns.Add(dc5)
-        datatable.Columns.Add(dc6)
-        datatable.Columns.Add(dc7)
-        Dim row As DataRow
-        For i = 0 To Form2.DataGridView1.Rows.Count - 1
-            row = datatable.NewRow
-            row(dc1) = Form2.DataGridView1.Rows(i).Cells(0).Value.ToString
-            row(dc2) = Form2.DataGridView1.Rows(i).Cells(1).Value.ToString
-            row(dc3) = Form2.DataGridView1.Rows(i).Cells(2).Value.ToString
-            row(dc4) = Form2.DataGridView1.Rows(i).Cells(3).Value.ToString
-            row(dc5) = Form2.DataGridView1.Rows(i).Cells(4).Value.ToString
-            row(dc6) = Form2.DataGridView1.Rows(i).Cells(5).Value.ToString
-            row(dc7) = Form2.DataGridView1.Rows(i).Cells(6).Value.ToString
-            datatable.Rows.Add(row)
-        Next
-        datatable.AcceptChanges()
-        Return datatable
+
+    Private Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
+        Dim adapter As New SqlDataAdapter(command)
+        Dim tabela As New DataTable()
+        Dim ds As New DataSet()
+        adapter.Fill(ds)
+        Dim brojac As Integer
+        ComboBox1.DataSource = ds.Tables(0)
+        ComboBox1.ValueMember = "name"
+        ComboBox1.DisplayMember = "name"
+        Dim datum As Date
+        datum = DateTime.Now.ToString("yyyy/MM/dd")
+        datumtb.Text = datum
+        If brojac = 22 Then
+            command.CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog) 
+        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.Text & "', '" & adresaTB.Text & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & ib2tb.Text & "','" & vozilotb.Text & "')"
+            MsgBox("Molimo popunite sva polja")
+        End If
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'If  Then
+        '    MsgBox("meh")
+        'Else
+        '    MessageBox.Show("shew")
+        'End If
+    End Sub
+    Private Function id_lica() As Integer
+        Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
+        command.CommandText = "select zaposleni.id from zaposleni where zaposleni.ime + ' ' + zaposleni.prezime  = '" & ComboBox1.SelectedValue & "'"
+        Dim adapter As New SqlDataAdapter(command)
+        Dim table As New DataTable()
+        adapter.Fill(table)
+        id_lica = table.Rows(0)(0)
+        Return id_lica
     End Function
-    Class HeaderFooter
-        Inherits PdfPageEventHelper
-        Public Overrides Sub OnEndPage(writer As PdfWriter, document As Document)
-            Dim headerfont As New Font(iTextSharp.text.Font.FontFamily.HELVETICA, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
-            Dim font1 As New Font(iTextSharp.text.Font.FontFamily.HELVETICA, 9, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
-            Dim pdfcell As PdfPCell = Nothing
-            Dim pHeader As New PdfPTable(1)
-            pHeader.TotalWidth = document.PageSize.Width
-            pHeader.DefaultCell.Border = 0
-            pdfcell = New PdfPCell(New Paragraph("OTPREMNICE", headerfont))
-            pdfcell.HorizontalAlignment = Element.ALIGN_CENTER
-            'pdfcell.Border = 0
-            pHeader.AddCell(pdfcell)
-            pHeader.WriteSelectedRows(0, -1, document.LeftMargin, document.GetTop(document.TopMargin) + 100, writer.DirectContent)
-        End Sub
-    End Class
 End Class
