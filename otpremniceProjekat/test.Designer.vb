@@ -22,6 +22,7 @@ Partial Class test
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.snimi = New System.Windows.Forms.Button()
         Me.nazivPravnogLica = New System.Windows.Forms.Label()
         Me.adresaProdavca = New System.Windows.Forms.Label()
@@ -29,7 +30,6 @@ Partial Class test
         Me.otpremiNaNaslov = New System.Windows.Forms.Label()
         Me.adresaTB = New System.Windows.Forms.TextBox()
         Me.ibTB = New System.Windows.Forms.TextBox()
-        Me.NaslovTB = New System.Windows.Forms.TextBox()
         Me.adresaPrimalac = New System.Windows.Forms.Label()
         Me.nacinOtpreme = New System.Windows.Forms.Label()
         Me.reklamacije = New System.Windows.Forms.Label()
@@ -40,15 +40,11 @@ Partial Class test
         Me.izdavaoc = New System.Windows.Forms.Label()
         Me.primalac = New System.Windows.Forms.Label()
         Me.licna = New System.Windows.Forms.Label()
-        Me.Adresa2Tb = New System.Windows.Forms.TextBox()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
-        Me.ib2tb = New System.Windows.Forms.TextBox()
-        Me.vozilotb = New System.Windows.Forms.TextBox()
         Me.otpremnicatb = New System.Windows.Forms.TextBox()
         Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.datumtb = New System.Windows.Forms.TextBox()
-        Me.ListBox4 = New System.Windows.Forms.ListBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.OtpremaTB = New System.Windows.Forms.ComboBox()
         Me.reklamacijatb = New System.Windows.Forms.ComboBox()
@@ -60,15 +56,21 @@ Partial Class test
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.ComboBox5 = New System.Windows.Forms.ComboBox()
         Me.ComboBox6 = New System.Windows.Forms.ComboBox()
         Me.ComboBox7 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox8 = New System.Windows.Forms.ComboBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.redniBrojTB = New System.Windows.Forms.TextBox()
+        Me.NaslovTB = New System.Windows.Forms.ComboBox()
+        Me.ib2tb = New System.Windows.Forms.ComboBox()
+        Me.vozilotb = New System.Windows.Forms.ComboBox()
+        Me.kupacaddrcb = New System.Windows.Forms.ComboBox()
+        Me.ComboBox10 = New System.Windows.Forms.ComboBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'snimi
@@ -136,13 +138,6 @@ Partial Class test
         Me.ibTB.Size = New System.Drawing.Size(372, 20)
         Me.ibTB.TabIndex = 7
         Me.ibTB.Text = "4428006942051"
-        '
-        'NaslovTB
-        '
-        Me.NaslovTB.Location = New System.Drawing.Point(116, 93)
-        Me.NaslovTB.Name = "NaslovTB"
-        Me.NaslovTB.Size = New System.Drawing.Size(637, 20)
-        Me.NaslovTB.TabIndex = 8
         '
         'adresaPrimalac
         '
@@ -234,33 +229,12 @@ Partial Class test
         Me.licna.TabIndex = 19
         Me.licna.Text = "LK br."
         '
-        'Adresa2Tb
-        '
-        Me.Adresa2Tb.Location = New System.Drawing.Point(61, 126)
-        Me.Adresa2Tb.Name = "Adresa2Tb"
-        Me.Adresa2Tb.Size = New System.Drawing.Size(349, 20)
-        Me.Adresa2Tb.TabIndex = 20
-        '
         'TextBox9
         '
         Me.TextBox9.Location = New System.Drawing.Point(51, 412)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(162, 20)
         Me.TextBox9.TabIndex = 24
-        '
-        'ib2tb
-        '
-        Me.ib2tb.Location = New System.Drawing.Point(454, 124)
-        Me.ib2tb.Name = "ib2tb"
-        Me.ib2tb.Size = New System.Drawing.Size(299, 20)
-        Me.ib2tb.TabIndex = 25
-        '
-        'vozilotb
-        '
-        Me.vozilotb.Location = New System.Drawing.Point(515, 153)
-        Me.vozilotb.Name = "vozilotb"
-        Me.vozilotb.Size = New System.Drawing.Size(238, 20)
-        Me.vozilotb.TabIndex = 26
         '
         'otpremnicatb
         '
@@ -290,15 +264,6 @@ Partial Class test
         Me.datumtb.ReadOnly = True
         Me.datumtb.Size = New System.Drawing.Size(178, 20)
         Me.datumtb.TabIndex = 30
-        '
-        'ListBox4
-        '
-        Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.Items.AddRange(New Object() {"", "DA", "NE"})
-        Me.ListBox4.Location = New System.Drawing.Point(113, 382)
-        Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(121, 17)
-        Me.ListBox4.TabIndex = 34
         '
         'ComboBox1
         '
@@ -401,16 +366,9 @@ Partial Class test
         Me.Label8.TabIndex = 45
         Me.Label8.Text = "Rabat"
         '
-        'ComboBox4
-        '
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(12, 237)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(43, 21)
-        Me.ComboBox4.TabIndex = 46
-        '
         'ComboBox5
         '
+        Me.ComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox5.FormattingEnabled = True
         Me.ComboBox5.Location = New System.Drawing.Point(77, 237)
         Me.ComboBox5.Name = "ComboBox5"
@@ -432,14 +390,6 @@ Partial Class test
         Me.ComboBox7.Name = "ComboBox7"
         Me.ComboBox7.Size = New System.Drawing.Size(48, 21)
         Me.ComboBox7.TabIndex = 49
-        '
-        'ComboBox8
-        '
-        Me.ComboBox8.FormattingEnabled = True
-        Me.ComboBox8.Location = New System.Drawing.Point(311, 239)
-        Me.ComboBox8.Name = "ComboBox8"
-        Me.ComboBox8.Size = New System.Drawing.Size(52, 21)
-        Me.ComboBox8.TabIndex = 50
         '
         'TextBox1
         '
@@ -473,20 +423,88 @@ Partial Class test
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'redniBrojTB
+        '
+        Me.redniBrojTB.Location = New System.Drawing.Point(15, 237)
+        Me.redniBrojTB.Name = "redniBrojTB"
+        Me.redniBrojTB.ReadOnly = True
+        Me.redniBrojTB.Size = New System.Drawing.Size(40, 20)
+        Me.redniBrojTB.TabIndex = 55
+        '
+        'NaslovTB
+        '
+        Me.NaslovTB.FormattingEnabled = True
+        Me.NaslovTB.Location = New System.Drawing.Point(116, 88)
+        Me.NaslovTB.Name = "NaslovTB"
+        Me.NaslovTB.Size = New System.Drawing.Size(294, 21)
+        Me.NaslovTB.TabIndex = 56
+        '
+        'ib2tb
+        '
+        Me.ib2tb.FormattingEnabled = True
+        Me.ib2tb.Location = New System.Drawing.Point(454, 124)
+        Me.ib2tb.Name = "ib2tb"
+        Me.ib2tb.Size = New System.Drawing.Size(299, 21)
+        Me.ib2tb.TabIndex = 57
+        '
+        'vozilotb
+        '
+        Me.vozilotb.FormattingEnabled = True
+        Me.vozilotb.Location = New System.Drawing.Point(515, 154)
+        Me.vozilotb.Name = "vozilotb"
+        Me.vozilotb.Size = New System.Drawing.Size(238, 21)
+        Me.vozilotb.TabIndex = 58
+        '
+        'kupacaddrcb
+        '
+        Me.kupacaddrcb.FormattingEnabled = True
+        Me.kupacaddrcb.Location = New System.Drawing.Point(61, 120)
+        Me.kupacaddrcb.Name = "kupacaddrcb"
+        Me.kupacaddrcb.Size = New System.Drawing.Size(349, 21)
+        Me.kupacaddrcb.TabIndex = 59
+        '
+        'ComboBox10
+        '
+        Me.ComboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox10.FormattingEnabled = True
+        Me.ComboBox10.Items.AddRange(New Object() {"Da", "Ne"})
+        Me.ComboBox10.Location = New System.Drawing.Point(113, 382)
+        Me.ComboBox10.Name = "ComboBox10"
+        Me.ComboBox10.Size = New System.Drawing.Size(100, 21)
+        Me.ComboBox10.TabIndex = 60
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(311, 239)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(54, 20)
+        Me.TextBox2.TabIndex = 61
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.ComboBox10)
+        Me.Controls.Add(Me.kupacaddrcb)
+        Me.Controls.Add(Me.vozilotb)
+        Me.Controls.Add(Me.ib2tb)
+        Me.Controls.Add(Me.NaslovTB)
+        Me.Controls.Add(Me.redniBrojTB)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.TextBox1)
-        Me.Controls.Add(Me.ComboBox8)
         Me.Controls.Add(Me.ComboBox7)
         Me.Controls.Add(Me.ComboBox6)
         Me.Controls.Add(Me.ComboBox5)
-        Me.Controls.Add(Me.ComboBox4)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
@@ -498,15 +516,11 @@ Partial Class test
         Me.Controls.Add(Me.reklamacijatb)
         Me.Controls.Add(Me.OtpremaTB)
         Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.ListBox4)
         Me.Controls.Add(Me.datumtb)
         Me.Controls.Add(Me.TextBox14)
         Me.Controls.Add(Me.TextBox13)
         Me.Controls.Add(Me.otpremnicatb)
-        Me.Controls.Add(Me.vozilotb)
-        Me.Controls.Add(Me.ib2tb)
         Me.Controls.Add(Me.TextBox9)
-        Me.Controls.Add(Me.Adresa2Tb)
         Me.Controls.Add(Me.licna)
         Me.Controls.Add(Me.primalac)
         Me.Controls.Add(Me.izdavaoc)
@@ -517,7 +531,6 @@ Partial Class test
         Me.Controls.Add(Me.reklamacije)
         Me.Controls.Add(Me.nacinOtpreme)
         Me.Controls.Add(Me.adresaPrimalac)
-        Me.Controls.Add(Me.NaslovTB)
         Me.Controls.Add(Me.ibTB)
         Me.Controls.Add(Me.adresaTB)
         Me.Controls.Add(Me.otpremiNaNaslov)
@@ -539,7 +552,6 @@ Partial Class test
     Friend WithEvents otpremiNaNaslov As Label
     Friend WithEvents adresaTB As TextBox
     Friend WithEvents ibTB As TextBox
-    Friend WithEvents NaslovTB As TextBox
     Friend WithEvents adresaPrimalac As Label
     Friend WithEvents nacinOtpreme As Label
     Friend WithEvents reklamacije As Label
@@ -550,15 +562,11 @@ Partial Class test
     Friend WithEvents izdavaoc As Label
     Friend WithEvents primalac As Label
     Friend WithEvents licna As Label
-    Friend WithEvents Adresa2Tb As TextBox
     Friend WithEvents TextBox9 As TextBox
-    Friend WithEvents ib2tb As TextBox
-    Friend WithEvents vozilotb As TextBox
     Friend WithEvents otpremnicatb As TextBox
     Friend WithEvents TextBox13 As TextBox
     Friend WithEvents TextBox14 As TextBox
     Friend WithEvents datumtb As TextBox
-    Friend WithEvents ListBox4 As ListBox
 
     Friend WithEvents ZaposleniBindingSource1 As BindingSource
     Friend WithEvents ComboBox1 As ComboBox
@@ -572,13 +580,19 @@ Partial Class test
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ComboBox4 As ComboBox
     Friend WithEvents ComboBox5 As ComboBox
     Friend WithEvents ComboBox6 As ComboBox
     Friend WithEvents ComboBox7 As ComboBox
-    Friend WithEvents ComboBox8 As ComboBox
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox6 As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Button1 As Button
+    Friend WithEvents redniBrojTB As TextBox
+    Friend WithEvents NaslovTB As ComboBox
+    Friend WithEvents ib2tb As ComboBox
+    Friend WithEvents vozilotb As ComboBox
+    Friend WithEvents kupacaddrcb As ComboBox
+    Friend WithEvents ComboBox10 As ComboBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Timer1 As Timer
 End Class
