@@ -67,10 +67,11 @@ Partial Class test
         Me.NaslovTB = New System.Windows.Forms.ComboBox()
         Me.ib2tb = New System.Windows.Forms.ComboBox()
         Me.vozilotb = New System.Windows.Forms.ComboBox()
-        Me.kupacaddrcb = New System.Windows.Forms.ComboBox()
+        Me.kupacAdresaComboBox = New System.Windows.Forms.ComboBox()
         Me.ComboBox10 = New System.Windows.Forms.ComboBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.SuspendLayout()
         '
         'snimi
@@ -455,13 +456,13 @@ Partial Class test
         Me.vozilotb.Size = New System.Drawing.Size(238, 21)
         Me.vozilotb.TabIndex = 58
         '
-        'kupacaddrcb
+        'kupacAdresaComboBox
         '
-        Me.kupacaddrcb.FormattingEnabled = True
-        Me.kupacaddrcb.Location = New System.Drawing.Point(61, 120)
-        Me.kupacaddrcb.Name = "kupacaddrcb"
-        Me.kupacaddrcb.Size = New System.Drawing.Size(349, 21)
-        Me.kupacaddrcb.TabIndex = 59
+        Me.kupacAdresaComboBox.FormattingEnabled = True
+        Me.kupacAdresaComboBox.Location = New System.Drawing.Point(61, 120)
+        Me.kupacAdresaComboBox.Name = "kupacAdresaComboBox"
+        Me.kupacAdresaComboBox.Size = New System.Drawing.Size(349, 21)
+        Me.kupacAdresaComboBox.TabIndex = 59
         '
         'ComboBox10
         '
@@ -493,7 +494,7 @@ Partial Class test
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.ComboBox10)
-        Me.Controls.Add(Me.kupacaddrcb)
+        Me.Controls.Add(Me.kupacAdresaComboBox)
         Me.Controls.Add(Me.vozilotb)
         Me.Controls.Add(Me.ib2tb)
         Me.Controls.Add(Me.NaslovTB)
@@ -591,8 +592,9 @@ Partial Class test
     Friend WithEvents NaslovTB As ComboBox
     Friend WithEvents ib2tb As ComboBox
     Friend WithEvents vozilotb As ComboBox
-    Friend WithEvents kupacaddrcb As ComboBox
+    Friend WithEvents kupacAdresaComboBox As ComboBox
     Friend WithEvents ComboBox10 As ComboBox
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
 End Class

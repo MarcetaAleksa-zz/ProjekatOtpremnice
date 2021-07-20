@@ -124,6 +124,8 @@ Public Class test
         ComboBox5.DataSource = Rds.Tables(0)
         ComboBox5.ValueMember = "naziv_robe"
         ComboBox5.DisplayMember = "naziv_robe"
+
+
         Dim oCommand As New SqlCommand("Select DISTINCT otpremi_na_naslov from Osnovne", baza.konekcija)
         Dim oAdatper As New SqlDataAdapter(oCommand)
         Dim oDS As New DataSet()
@@ -139,15 +141,23 @@ begin
 print @int
 set @int = @int - 1;
 end;", baza.konekcija)
+
+
+
+
+
+
+
+
         Dim kolAdapter As New SqlDataAdapter(kolCommand)
         Dim kolDS As New DataSet()
         kolAdapter.Fill(kolDS)
-        ComboBox7.DataSource = kolDS.Tables(0)
-        ComboBox7.ValueMember = "@int"
-        ComboBox7.DisplayMember = "@int"
+        'ComboBox7.DataSource = kolDS.Tables(0)
+        'ComboBox7.ValueMember = "@int"
+        'ComboBox7.DisplayMember = "@int"
         If brojac = 22 Then
             command.CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
-        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacaddrcb.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & ib2tb.SelectedValue & "','" & vozilotb.SelectedValue & "');
+        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & ib2tb.SelectedValue & "','" & vozilotb.SelectedValue & "');
 INSERT INTO Usluge (redni_broj, naziv_robe, kolicina, cijena, rabat, pdv, otpremnica_br, iznos)
 VALUES (" & redni_broj() & ", " & roba() & ", "
             MsgBox("Molimo popunite sva polja")
@@ -215,5 +225,28 @@ select @x", baza.konekcija)
 
     End Sub
 
+    Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
 
+
+        'izvlacimo prethodne adrese izabranog kupca kao prijedlog
+
+        Try
+
+            Dim kaCommand As New SqlCommand("Select DISTINCT adresa_kupac from Osnovne WHERE otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
+            Dim kaadapter As New SqlDataAdapter(kaCommand)
+            Dim kads As New DataSet()
+
+            kaadapter.Fill(kads)
+            With kupacAdresaComboBox
+                .DataSource = kads.Tables(0)
+                .ValueMember = "adresa_kupac"
+                .DisplayMember = "adresa_kupac"
+                .SelectedIndex = -1
+                .DropDownStyle = ComboBoxStyle.DropDown
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+            End With
+        Catch
+        End Try
+    End Sub
 End Class
