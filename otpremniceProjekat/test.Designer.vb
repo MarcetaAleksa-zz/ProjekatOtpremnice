@@ -65,7 +65,7 @@ Partial Class test
         Me.Button1 = New System.Windows.Forms.Button()
         Me.redniBrojTB = New System.Windows.Forms.TextBox()
         Me.NaslovTB = New System.Windows.Forms.ComboBox()
-        Me.ib2tb = New System.Windows.Forms.ComboBox()
+        Me.iBKupcaComboBox = New System.Windows.Forms.ComboBox()
         Me.vozilotb = New System.Windows.Forms.ComboBox()
         Me.kupacAdresaComboBox = New System.Windows.Forms.ComboBox()
         Me.ComboBox10 = New System.Windows.Forms.ComboBox()
@@ -440,13 +440,13 @@ Partial Class test
         Me.NaslovTB.Size = New System.Drawing.Size(294, 21)
         Me.NaslovTB.TabIndex = 56
         '
-        'ib2tb
+        'iBKupcaComboBox
         '
-        Me.ib2tb.FormattingEnabled = True
-        Me.ib2tb.Location = New System.Drawing.Point(454, 124)
-        Me.ib2tb.Name = "ib2tb"
-        Me.ib2tb.Size = New System.Drawing.Size(299, 21)
-        Me.ib2tb.TabIndex = 57
+        Me.iBKupcaComboBox.FormattingEnabled = True
+        Me.iBKupcaComboBox.Location = New System.Drawing.Point(454, 124)
+        Me.iBKupcaComboBox.Name = "iBKupcaComboBox"
+        Me.iBKupcaComboBox.Size = New System.Drawing.Size(299, 21)
+        Me.iBKupcaComboBox.TabIndex = 57
         '
         'vozilotb
         '
@@ -496,7 +496,7 @@ Partial Class test
         Me.Controls.Add(Me.ComboBox10)
         Me.Controls.Add(Me.kupacAdresaComboBox)
         Me.Controls.Add(Me.vozilotb)
-        Me.Controls.Add(Me.ib2tb)
+        Me.Controls.Add(Me.iBKupcaComboBox)
         Me.Controls.Add(Me.NaslovTB)
         Me.Controls.Add(Me.redniBrojTB)
         Me.Controls.Add(Me.Button1)
@@ -590,7 +590,7 @@ Partial Class test
     Friend WithEvents Button1 As Button
     Friend WithEvents redniBrojTB As TextBox
     Friend WithEvents NaslovTB As ComboBox
-    Friend WithEvents ib2tb As ComboBox
+    Friend WithEvents iBKupcaComboBox As ComboBox
     Friend WithEvents vozilotb As ComboBox
     Friend WithEvents kupacAdresaComboBox As ComboBox
     Friend WithEvents ComboBox10 As ComboBox

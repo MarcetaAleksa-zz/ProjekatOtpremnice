@@ -157,7 +157,7 @@ end;", baza.konekcija)
         'ComboBox7.DisplayMember = "@int"
         If brojac = 22 Then
             command.CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
-        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & ib2tb.SelectedValue & "','" & vozilotb.SelectedValue & "');
+        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.SelectedValue & "','" & vozilotb.SelectedValue & "');
 INSERT INTO Usluge (redni_broj, naziv_robe, kolicina, cijena, rabat, pdv, otpremnica_br, iznos)
 VALUES (" & redni_broj() & ", " & roba() & ", "
             MsgBox("Molimo popunite sva polja")
@@ -226,12 +226,9 @@ select @x", baza.konekcija)
     End Sub
 
     Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
-
-
         'izvlacimo prethodne adrese izabranog kupca kao prijedlog
 
         Try
-
             Dim kaCommand As New SqlCommand("Select DISTINCT adresa_kupac from Osnovne WHERE otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
             Dim kaadapter As New SqlDataAdapter(kaCommand)
             Dim kads As New DataSet()
@@ -248,5 +245,41 @@ select @x", baza.konekcija)
             End With
         Catch
         End Try
+
+
+        Try
+            Dim kaaCommand As New SqlCommand("Select DISTINCT IB_kupac from Osnovne WHERE otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
+            Dim kaaadapter As New SqlDataAdapter(kaaCommand)
+            Dim kaads As New DataSet()
+
+
+            kaaadapter.Fill(kaads)
+            If kaads.Tables(0).Rows.Count > 0 Then
+                With iBKupcaComboBox
+                    .DataSource = kaads.Tables(0)
+                    .ValueMember = "IB_kupac"
+                    .DisplayMember = "IB_kupac"
+                    .SelectedIndex = -1
+                    .DropDownStyle = ComboBoxStyle.DropDown
+                    .AutoCompleteMode = AutoCompleteMode.Suggest
+                    .AutoCompleteSource = AutoCompleteSource.ListItems
+                End With
+
+            Else
+                With iBKupcaComboBox
+                    .Text = ""
+                    .DataSource = Nothing
+                    .ValueMember = ""
+                    .DisplayMember = ""
+                    .SelectedIndex = -1
+                    .DropDownStyle = ComboBoxStyle.DropDown
+                    .AutoCompleteMode = AutoCompleteMode.Suggest
+                    .AutoCompleteSource = AutoCompleteSource.ListItems
+                End With
+            End If
+
+        Catch
+        End Try
+
     End Sub
 End Class
