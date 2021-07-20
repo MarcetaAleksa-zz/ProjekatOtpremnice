@@ -8,6 +8,7 @@ Imports System.IO
 
 
 Public Class test
+    Dim novoI As Integer = 0
     Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
         Dim komanda As New SqlCommand("SELECT ID FROM Osnovne", baza.konekcija)
         Dim adapter As New SqlDataAdapter(komanda)
@@ -103,7 +104,12 @@ Public Class test
 
     End Sub
 
-    Private Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        '
+        'TableLayoutPanel1.Padding.Right = "20px"
+        '  TableLayoutPanel1.HorizontalScroll.Enabled = True
+
         Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
         Dim adapter As New SqlDataAdapter(command)
         Dim tabela As New DataTable()
@@ -145,7 +151,7 @@ end;", baza.konekcija)
 
 
 
-
+        dodavanjeReda()
 
 
 
@@ -165,7 +171,58 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub dodavanjeReda()
+
+        Dim redniBroj As TextBox = New TextBox
+        With redniBroj
+            .Text = (novoI + 1).ToString
+            .ReadOnly = True
+            .TextAlign = ContentAlignment.TopCenter
+            .Dock = DockStyle.Fill
+            TableLayoutPanel1.Controls.Add(redniBroj, 0, novoI)
+        End With
+
+        Dim nazivRobe As ComboBox = New ComboBox
+        With nazivRobe
+            .DataSource = ComboBox5.DataSource  'Rds.Tables(0)
+            .ValueMember = "naziv_robe"
+            .DisplayMember = "naziv_robe"
+            .Name = "nazivRobe" + (novoI + 1).ToString
+            .Dock = DockStyle.Fill
+
+            .SelectedIndex = -1
+            TableLayoutPanel1.Controls.Add(nazivRobe, 1, novoI)
+        End With
+        MsgBox(nazivRobe.Name)
+        'Dim L2 As Label = New Label
+        'With L2
+        '    .Text = pica_tabel.Rows(i)(2)
+        '    .TextAlign = ContentAlignment.MiddleCenter 'cijena izvucena u label
+        '    .Visible = True
+        '    .BackColor = Color.Transparent
+        '    .Font = New Font("Microsoft Sans Serif", 14)
+        '    .Dock = DockStyle.Fill
+        '    table.Controls.Add(L2, 2, i)
+        'End With
+
+        'Dim b As Button = New Button
+        'With b
+
+        '    .Text = "OTVORI"
+        '    .Name = "b" + i.ToString
+        '    .Visible = True
+        '    .Size = New Size(100, 40)
+
+        '    AddHandler b.Click, AddressOf btnCreate_Click
+        '    table.Controls.Add(b, 3, i)
+        'End With
+
+        'table.HorizontalScroll.Enabled = False
+
+    End Sub
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
         'If  Then
         '    MsgBox("meh")
         'Else
@@ -247,6 +304,8 @@ select @x", baza.konekcija)
         End Try
 
 
+        'IB kupca povucen na osnovu njegovog imena
+
         Try
             Dim kaaCommand As New SqlCommand("Select DISTINCT IB_kupac from Osnovne WHERE otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
             Dim kaaadapter As New SqlDataAdapter(kaaCommand)
@@ -259,8 +318,8 @@ select @x", baza.konekcija)
                     .DataSource = kaads.Tables(0)
                     .ValueMember = "IB_kupac"
                     .DisplayMember = "IB_kupac"
-                    .SelectedIndex = -1
-                    .DropDownStyle = ComboBoxStyle.DropDown
+
+                    .DropDownStyle = ComboBoxStyle.DropDownList
                     .AutoCompleteMode = AutoCompleteMode.Suggest
                     .AutoCompleteSource = AutoCompleteSource.ListItems
                 End With
@@ -281,5 +340,23 @@ select @x", baza.konekcija)
         Catch
         End Try
 
+    End Sub
+
+    Private Sub iBKupcaComboBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles iBKupcaComboBox.KeyPress
+
+        'IB kupca prima samo brojeve
+
+        Dim KeyAscii As Integer = Asc(e.KeyChar)
+        Select Case KeyAscii
+            Case 8, 27, 48 To 57, 9
+            Case Else
+                KeyAscii = 0
+        End Select
+
+        If KeyAscii = 0 Then
+            e.Handled = True
+        Else
+            e.Handled = False
+        End If
     End Sub
 End Class
