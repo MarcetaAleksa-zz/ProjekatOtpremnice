@@ -72,6 +72,7 @@ Partial Class test
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.dodajRedButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'snimi
@@ -307,7 +308,7 @@ Partial Class test
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(5, 220)
+        Me.Label2.Location = New System.Drawing.Point(5, 258)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(56, 13)
         Me.Label2.TabIndex = 39
@@ -316,7 +317,7 @@ Partial Class test
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(93, 217)
+        Me.Label3.Location = New System.Drawing.Point(93, 255)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(127, 13)
         Me.Label3.TabIndex = 40
@@ -325,7 +326,7 @@ Partial Class test
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(375, 219)
+        Me.Label4.Location = New System.Drawing.Point(375, 257)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(44, 13)
         Me.Label4.TabIndex = 41
@@ -334,7 +335,7 @@ Partial Class test
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(428, 218)
+        Me.Label5.Location = New System.Drawing.Point(428, 256)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(36, 13)
         Me.Label5.TabIndex = 42
@@ -343,7 +344,7 @@ Partial Class test
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(512, 217)
+        Me.Label6.Location = New System.Drawing.Point(512, 255)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 13)
         Me.Label6.TabIndex = 43
@@ -352,7 +353,7 @@ Partial Class test
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(308, 219)
+        Me.Label7.Location = New System.Drawing.Point(308, 257)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(55, 13)
         Me.Label7.TabIndex = 44
@@ -361,7 +362,7 @@ Partial Class test
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(648, 220)
+        Me.Label8.Location = New System.Drawing.Point(648, 258)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(36, 13)
         Me.Label8.TabIndex = 45
@@ -371,7 +372,7 @@ Partial Class test
         '
         Me.ComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox5.FormattingEnabled = True
-        Me.ComboBox5.Location = New System.Drawing.Point(77, 237)
+        Me.ComboBox5.Location = New System.Drawing.Point(77, 225)
         Me.ComboBox5.Name = "ComboBox5"
         Me.ComboBox5.Size = New System.Drawing.Size(224, 21)
         Me.ComboBox5.TabIndex = 47
@@ -379,7 +380,7 @@ Partial Class test
         'ComboBox6
         '
         Me.ComboBox6.FormattingEnabled = True
-        Me.ComboBox6.Location = New System.Drawing.Point(431, 238)
+        Me.ComboBox6.Location = New System.Drawing.Point(431, 226)
         Me.ComboBox6.Name = "ComboBox6"
         Me.ComboBox6.Size = New System.Drawing.Size(45, 21)
         Me.ComboBox6.TabIndex = 48
@@ -387,21 +388,21 @@ Partial Class test
         'ComboBox7
         '
         Me.ComboBox7.FormattingEnabled = True
-        Me.ComboBox7.Location = New System.Drawing.Point(371, 239)
+        Me.ComboBox7.Location = New System.Drawing.Point(371, 227)
         Me.ComboBox7.Name = "ComboBox7"
         Me.ComboBox7.Size = New System.Drawing.Size(48, 21)
         Me.ComboBox7.TabIndex = 49
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(653, 240)
+        Me.TextBox1.Location = New System.Drawing.Point(653, 228)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(31, 20)
         Me.TextBox1.TabIndex = 51
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(515, 238)
+        Me.TextBox6.Location = New System.Drawing.Point(515, 226)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 20)
         Me.TextBox6.TabIndex = 52
@@ -409,7 +410,7 @@ Partial Class test
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(691, 244)
+        Me.Label9.Location = New System.Drawing.Point(691, 232)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(15, 13)
         Me.Label9.TabIndex = 53
@@ -417,7 +418,7 @@ Partial Class test
         '
         'redniBrojTB
         '
-        Me.redniBrojTB.Location = New System.Drawing.Point(15, 237)
+        Me.redniBrojTB.Location = New System.Drawing.Point(15, 225)
         Me.redniBrojTB.Name = "redniBrojTB"
         Me.redniBrojTB.ReadOnly = True
         Me.redniBrojTB.Size = New System.Drawing.Size(40, 20)
@@ -467,7 +468,7 @@ Partial Class test
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(311, 239)
+        Me.TextBox2.Location = New System.Drawing.Point(311, 227)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.ReadOnly = True
         Me.TextBox2.Size = New System.Drawing.Size(54, 20)
@@ -481,14 +482,15 @@ Partial Class test
         'TableLayoutPanel1
         '
         Me.TableLayoutPanel1.AutoScroll = True
+        Me.TableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.TableLayoutPanel1.ColumnCount = 7
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 247.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(8, 273)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 0, 20, 0)
@@ -511,11 +513,22 @@ Partial Class test
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(745, 385)
         Me.TableLayoutPanel1.TabIndex = 62
         '
+        'dodajRedButton
+        '
+        Me.dodajRedButton.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dodajRedButton.Location = New System.Drawing.Point(712, 219)
+        Me.dodajRedButton.Name = "dodajRedButton"
+        Me.dodajRedButton.Size = New System.Drawing.Size(50, 39)
+        Me.dodajRedButton.TabIndex = 63
+        Me.dodajRedButton.Text = "+"
+        Me.dodajRedButton.UseVisualStyleBackColor = True
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(771, 755)
+        Me.Controls.Add(Me.dodajRedButton)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.ComboBox10)
@@ -621,4 +634,5 @@ Partial Class test
     Friend WithEvents Timer1 As Timer
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents dodajRedButton As Button
 End Class

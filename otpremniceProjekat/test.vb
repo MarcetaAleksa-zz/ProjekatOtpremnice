@@ -105,7 +105,7 @@ Public Class test
     End Sub
 
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Focus()
         '
         'TableLayoutPanel1.Padding.Right = "20px"
         '  TableLayoutPanel1.HorizontalScroll.Enabled = True
@@ -119,6 +119,7 @@ Public Class test
         ComboBox1.DataSource = ds.Tables(0)
         ComboBox1.ValueMember = "name"
         ComboBox1.DisplayMember = "name"
+        ComboBox1.SelectedIndex = -1
         Dim datum As Date
         datum = DateTime.Now.ToString("yyyy/MM/dd")
         datumtb.Text = datum
@@ -130,6 +131,7 @@ Public Class test
         ComboBox5.DataSource = Rds.Tables(0)
         ComboBox5.ValueMember = "naziv_robe"
         ComboBox5.DisplayMember = "naziv_robe"
+        ComboBox5.SelectedIndex = -1
 
 
         Dim oCommand As New SqlCommand("Select DISTINCT otpremi_na_naslov from Osnovne", baza.konekcija)
@@ -139,6 +141,7 @@ Public Class test
         NaslovTB.DataSource = oDS.Tables(0)
         NaslovTB.ValueMember = "otpremi_na_naslov"
         NaslovTB.DisplayMember = "otpremi_na_naslov"
+        NaslovTB.SelectedIndex = -1
         Dim kolCommand As New SqlCommand("DECLARE @int as Integer	
 set @int = (SELECT kolicina from Inventar where id_robe = 15)
 
@@ -173,27 +176,44 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
 
     Private Sub dodavanjeReda()
 
+
+
         Dim redniBroj As TextBox = New TextBox
         With redniBroj
             .Text = (novoI + 1).ToString
             .ReadOnly = True
+            .Name = "redniBroj" + (novoI + 1).ToString
             .TextAlign = ContentAlignment.TopCenter
             .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .BorderStyle = BorderStyle.Fixed3D
             TableLayoutPanel1.Controls.Add(redniBroj, 0, novoI)
         End With
 
         Dim nazivRobe As ComboBox = New ComboBox
         With nazivRobe
+            .Name = "nazivRobe" + (novoI + 1).ToString
             .DataSource = ComboBox5.DataSource  'Rds.Tables(0)
             .ValueMember = "naziv_robe"
             .DisplayMember = "naziv_robe"
-            .Name = "nazivRobe" + (novoI + 1).ToString
             .Dock = DockStyle.Fill
-
-            .SelectedIndex = -1
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
             TableLayoutPanel1.Controls.Add(nazivRobe, 1, novoI)
+            .SelectedIndex = -1
         End With
-        MsgBox(nazivRobe.Name)
+        Dim jedMjere As ComboBox = New ComboBox
+        With jedMjere
+            .Name = "jedMjere" + (novoI + 1).ToString
+            '.DataSource = ComboBox5.DataSource  'Rds.Tables(0)
+            '.ValueMember = "naziv_robe"
+            '.DisplayMember = "naziv_robe"
+            .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
+            TableLayoutPanel1.Controls.Add(jedMjere, 2, novoI)
+            .SelectedIndex = -1
+        End With
         'Dim L2 As Label = New Label
         'With L2
         '    .Text = pica_tabel.Rows(i)(2)
@@ -261,6 +281,39 @@ select @new", baza.konekcija)
         Return x
     End Function
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim miniBrojac As Integer = 0   'brojac koji provjerava da li je sve popunjeno kako bi dodalo novo dugme za novi red
+
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("nazivRobe" + (novoI + 1).ToString) And ctrl.Text <> "") Then              'provjerava da li je naziv robe izabran o i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+        Catch
+        End Try
+
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("jedMjere" + (novoI + 1).ToString) And ctrl.Text <> "") Then               'provjerava da li je jedinica mjere izabrana i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+
+        Catch
+        End Try
+
+        If miniBrojac = 2 Then              'dugme za dodavanje novog reda kada se popuni prethodni
+            ' Button1.Visible = True
+            novoI += 1
+            dodavanjeReda()
+
+        Else
+            'Button1.Visible = False
+        End If
+
+
 
         Dim jCommand As New SqlCommand("declare @jed as bit	
 declare @x as char(1)
@@ -358,5 +411,11 @@ select @x", baza.konekcija)
         Else
             e.Handled = False
         End If
+    End Sub
+
+    Private Sub dodajRedButton_Click(sender As Object, e As EventArgs) Handles dodajRedButton.Click
+        novoI += 1
+        dodavanjeReda()  'dugme za dodavanje novog reda, van funkcije je jer je visible = false jer smo automatski stavili da dodaje novi red kad se prethodni popuni
+
     End Sub
 End Class
