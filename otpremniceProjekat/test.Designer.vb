@@ -73,6 +73,7 @@ Partial Class test
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.dodajRedButton = New System.Windows.Forms.Button()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'snimi
@@ -171,7 +172,7 @@ Partial Class test
         'idOtpremnice
         '
         Me.idOtpremnice.AutoSize = True
-        Me.idOtpremnice.Location = New System.Drawing.Point(571, 53)
+        Me.idOtpremnice.Location = New System.Drawing.Point(618, 56)
         Me.idOtpremnice.Name = "idOtpremnice"
         Me.idOtpremnice.Size = New System.Drawing.Size(76, 13)
         Me.idOtpremnice.TabIndex = 12
@@ -189,7 +190,7 @@ Partial Class test
         'vozilo
         '
         Me.vozilo.AutoSize = True
-        Me.vozilo.Location = New System.Drawing.Point(428, 157)
+        Me.vozilo.Location = New System.Drawing.Point(475, 160)
         Me.vozilo.Name = "vozilo"
         Me.vozilo.Size = New System.Drawing.Size(81, 13)
         Me.vozilo.TabIndex = 14
@@ -240,7 +241,7 @@ Partial Class test
         '
         'otpremnicatb
         '
-        Me.otpremnicatb.Location = New System.Drawing.Point(653, 50)
+        Me.otpremnicatb.Location = New System.Drawing.Point(700, 53)
         Me.otpremnicatb.Name = "otpremnicatb"
         Me.otpremnicatb.Size = New System.Drawing.Size(100, 20)
         Me.otpremnicatb.TabIndex = 27
@@ -261,10 +262,10 @@ Partial Class test
         '
         'datumtb
         '
-        Me.datumtb.Location = New System.Drawing.Point(575, 12)
+        Me.datumtb.Location = New System.Drawing.Point(732, 15)
         Me.datumtb.Name = "datumtb"
         Me.datumtb.ReadOnly = True
-        Me.datumtb.Size = New System.Drawing.Size(178, 20)
+        Me.datumtb.Size = New System.Drawing.Size(68, 20)
         Me.datumtb.TabIndex = 30
         '
         'ComboBox1
@@ -317,7 +318,7 @@ Partial Class test
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(93, 255)
+        Me.Label3.Location = New System.Drawing.Point(119, 257)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(127, 13)
         Me.Label3.TabIndex = 40
@@ -326,7 +327,7 @@ Partial Class test
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(375, 257)
+        Me.Label4.Location = New System.Drawing.Point(379, 257)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(44, 13)
         Me.Label4.TabIndex = 41
@@ -335,7 +336,7 @@ Partial Class test
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(428, 256)
+        Me.Label5.Location = New System.Drawing.Point(445, 256)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(36, 13)
         Me.Label5.TabIndex = 42
@@ -344,7 +345,7 @@ Partial Class test
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(512, 255)
+        Me.Label6.Location = New System.Drawing.Point(568, 256)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(32, 13)
         Me.Label6.TabIndex = 43
@@ -353,7 +354,7 @@ Partial Class test
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(308, 257)
+        Me.Label7.Location = New System.Drawing.Point(310, 257)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(55, 13)
         Me.Label7.TabIndex = 44
@@ -362,7 +363,7 @@ Partial Class test
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(648, 258)
+        Me.Label8.Location = New System.Drawing.Point(682, 257)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(36, 13)
         Me.Label8.TabIndex = 45
@@ -395,14 +396,14 @@ Partial Class test
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(653, 228)
+        Me.TextBox1.Location = New System.Drawing.Point(588, 228)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(31, 20)
         Me.TextBox1.TabIndex = 51
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(515, 226)
+        Me.TextBox6.Location = New System.Drawing.Point(482, 228)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 20)
         Me.TextBox6.TabIndex = 52
@@ -410,7 +411,7 @@ Partial Class test
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(691, 232)
+        Me.Label9.Location = New System.Drawing.Point(715, 257)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(15, 13)
         Me.Label9.TabIndex = 53
@@ -435,7 +436,7 @@ Partial Class test
         'iBKupcaComboBox
         '
         Me.iBKupcaComboBox.FormattingEnabled = True
-        Me.iBKupcaComboBox.Location = New System.Drawing.Point(454, 124)
+        Me.iBKupcaComboBox.Location = New System.Drawing.Point(501, 127)
         Me.iBKupcaComboBox.Name = "iBKupcaComboBox"
         Me.iBKupcaComboBox.Size = New System.Drawing.Size(299, 21)
         Me.iBKupcaComboBox.TabIndex = 57
@@ -443,7 +444,7 @@ Partial Class test
         'vozilotb
         '
         Me.vozilotb.FormattingEnabled = True
-        Me.vozilotb.Location = New System.Drawing.Point(515, 154)
+        Me.vozilotb.Location = New System.Drawing.Point(562, 157)
         Me.vozilotb.Name = "vozilotb"
         Me.vozilotb.Size = New System.Drawing.Size(238, 21)
         Me.vozilotb.TabIndex = 58
@@ -483,14 +484,15 @@ Partial Class test
         '
         Me.TableLayoutPanel1.AutoScroll = True
         Me.TableLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.TableLayoutPanel1.ColumnCount = 7
+        Me.TableLayoutPanel1.ColumnCount = 8
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 251.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133.0!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115.0!))
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(8, 273)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.Padding = New System.Windows.Forms.Padding(0, 0, 20, 0)
@@ -510,24 +512,29 @@ Partial Class test
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(745, 385)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(812, 385)
         Me.TableLayoutPanel1.TabIndex = 62
         '
         'dodajRedButton
         '
         Me.dodajRedButton.Font = New System.Drawing.Font("Microsoft YaHei", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dodajRedButton.Location = New System.Drawing.Point(712, 219)
+        Me.dodajRedButton.Location = New System.Drawing.Point(749, 223)
         Me.dodajRedButton.Name = "dodajRedButton"
-        Me.dodajRedButton.Size = New System.Drawing.Size(50, 39)
+        Me.dodajRedButton.Size = New System.Drawing.Size(51, 44)
         Me.dodajRedButton.TabIndex = 63
         Me.dodajRedButton.Text = "+"
         Me.dodajRedButton.UseVisualStyleBackColor = True
+        '
+        'Timer2
+        '
+        Me.Timer2.Enabled = True
+        Me.Timer2.Interval = 1
         '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(771, 755)
+        Me.ClientSize = New System.Drawing.Size(837, 755)
         Me.Controls.Add(Me.dodajRedButton)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.TextBox2)
@@ -577,6 +584,7 @@ Partial Class test
         Me.Controls.Add(Me.nazivPravnogLica)
         Me.Controls.Add(Me.snimi)
         Me.Name = "test"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "test"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -635,4 +643,5 @@ Partial Class test
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents dodajRedButton As Button
+    Friend WithEvents Timer2 As Timer
 End Class

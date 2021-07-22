@@ -105,43 +105,47 @@ Public Class test
     End Sub
 
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+
         Focus()
-        '
-        'TableLayoutPanel1.Padding.Right = "20px"
-        '  TableLayoutPanel1.HorizontalScroll.Enabled = True
+        TableLayoutPanel1.HorizontalScroll.Enabled = True
 
         Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
         Dim adapter As New SqlDataAdapter(command)
         Dim tabela As New DataTable()
         Dim ds As New DataSet()
         adapter.Fill(ds)
+
         Dim brojac As Integer
+
         ComboBox1.DataSource = ds.Tables(0)
         ComboBox1.ValueMember = "name"
         ComboBox1.DisplayMember = "name"
         ComboBox1.SelectedIndex = -1
+
+
+
         Dim datum As Date
         datum = DateTime.Now.ToString("yyyy/MM/dd")
         datumtb.Text = datum
-        redniBrojTB.Text = redni_broj()
-        Dim RCommand As New SqlCommand("Select naziv_robe from Inventar", baza.konekcija)
-        Dim Radapter As New SqlDataAdapter(RCommand)
-        Dim Rds As New DataSet()
-        Radapter.Fill(Rds)
-        ComboBox5.DataSource = Rds.Tables(0)
-        ComboBox5.ValueMember = "naziv_robe"
-        ComboBox5.DisplayMember = "naziv_robe"
-        ComboBox5.SelectedIndex = -1
+
+
 
 
         Dim oCommand As New SqlCommand("Select DISTINCT otpremi_na_naslov from Osnovne", baza.konekcija)
         Dim oAdatper As New SqlDataAdapter(oCommand)
         Dim oDS As New DataSet()
+
         oAdatper.Fill(oDS)
+
         NaslovTB.DataSource = oDS.Tables(0)
         NaslovTB.ValueMember = "otpremi_na_naslov"
         NaslovTB.DisplayMember = "otpremi_na_naslov"
         NaslovTB.SelectedIndex = -1
+
+
+
+
         Dim kolCommand As New SqlCommand("DECLARE @int as Integer	
 set @int = (SELECT kolicina from Inventar where id_robe = 15)
 
@@ -153,8 +157,9 @@ end;", baza.konekcija)
 
 
 
-
-        dodavanjeReda()
+        For i = 0 To 11
+            dodavanjeReda()
+        Next
 
 
 
@@ -182,65 +187,193 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
         With redniBroj
             .Text = (novoI + 1).ToString
             .ReadOnly = True
-            .Name = "redniBroj" + (novoI + 1).ToString
+            .Name = "redniBroj" + (novoI + 1).ToString '------------------------------------- REDNI BROJ
             .TextAlign = ContentAlignment.TopCenter
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .BorderStyle = BorderStyle.Fixed3D
+            .Tag = 404
             TableLayoutPanel1.Controls.Add(redniBroj, 0, novoI)
         End With
 
+
+        '----------------------------------------------------------------------------- dataSet za artikle
         Dim nazivRobe As ComboBox = New ComboBox
+        Dim RCommand As New SqlCommand("Select naziv_robe from Inventar", baza.konekcija)
+        Dim Radapter As New SqlDataAdapter(RCommand)
+        Dim Rds As New DataSet()
+        Radapter.Fill(Rds)
+
+        '----------------------------------------------------------------------------- dataSet za artikle
+
         With nazivRobe
-            .Name = "nazivRobe" + (novoI + 1).ToString
-            .DataSource = ComboBox5.DataSource  'Rds.Tables(0)
+                .Name = "nazivRobe" + (novoI + 1).ToString
+            .BindingContext = New BindingContext()
             .ValueMember = "naziv_robe"
-            .DisplayMember = "naziv_robe"
-            .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+                .DisplayMember = "naziv_robe" ' ------------------------------------------------- NAZIV ROBE
+                .Dock = DockStyle.Fill
+                .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
-            TableLayoutPanel1.Controls.Add(nazivRobe, 1, novoI)
             .SelectedIndex = -1
+            .Tag = novoI
+
         End With
+        TableLayoutPanel1.Controls.Add(nazivRobe, 1, novoI)
         Dim jedMjere As ComboBox = New ComboBox
         With jedMjere
             .Name = "jedMjere" + (novoI + 1).ToString
-            '.DataSource = ComboBox5.DataSource  'Rds.Tables(0)
-            '.ValueMember = "naziv_robe"
-            '.DisplayMember = "naziv_robe"
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
             TableLayoutPanel1.Controls.Add(jedMjere, 2, novoI)
             .SelectedIndex = -1
+            .Tag = novoI
         End With
-        'Dim L2 As Label = New Label
-        'With L2
-        '    .Text = pica_tabel.Rows(i)(2)
-        '    .TextAlign = ContentAlignment.MiddleCenter 'cijena izvucena u label
-        '    .Visible = True
-        '    .BackColor = Color.Transparent
-        '    .Font = New Font("Microsoft Sans Serif", 14)
-        '    .Dock = DockStyle.Fill
-        '    table.Controls.Add(L2, 2, i)
-        'End With
 
-        'Dim b As Button = New Button
-        'With b
+        Dim kolicinaCombo As ComboBox = New ComboBox
+        With kolicinaCombo
+            .Name = "kolicinaCombo" + (novoI + 1).ToString
+            '.DataSource = ComboBox5.DataSource ' ---------------------------------------- KOLICINA
+            '.ValueMember = "naziv_robe"
+            '.DisplayMember = "naziv_robe"
+            .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
+            TableLayoutPanel1.Controls.Add(kolicinaCombo, 3, novoI)
+            .SelectedIndex = -1
+            .Tag = novoI
+        End With
 
-        '    .Text = "OTVORI"
-        '    .Name = "b" + i.ToString
-        '    .Visible = True
-        '    .Size = New Size(100, 40)
+        Dim cijenaCombo As ComboBox = New ComboBox
+        With cijenaCombo
+            .Name = "cijenaCombo" + (novoI + 1).ToString
+            '.DataSource = ComboBox5.DataSource ' ----------------------------------------- CIJENA
+            '.ValueMember = "naziv_robe"
+            '.DisplayMember = "naziv_robe"
+            .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
+            TableLayoutPanel1.Controls.Add(cijenaCombo, 4, novoI)
+            .SelectedIndex = -1
+            .Tag = novoI
+        End With
 
-        '    AddHandler b.Click, AddressOf btnCreate_Click
-        '    table.Controls.Add(b, 3, i)
-        'End With
+        Dim iznosCombo As ComboBox = New ComboBox
+        With iznosCombo
+            .Name = "iznosCombo" + (novoI + 1).ToString
+            '.DataSource = ComboBox5.DataSource ' ----------------------------------------- IZNOS
+            '.ValueMember = "naziv_robe"
+            '.DisplayMember = "naziv_robe"
+            .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
+            TableLayoutPanel1.Controls.Add(iznosCombo, 5, novoI)
+            .SelectedIndex = -1
+            .Tag = novoI
+        End With
 
-        'table.HorizontalScroll.Enabled = False
+        Dim rabatCombo As ComboBox = New ComboBox
+        With rabatCombo
+            .Name = "rabatCombo" + (novoI + 1).ToString
+            '.DataSource = ComboBox5.DataSource  ' ---------------------------------------- RABAT
+            '.ValueMember = "naziv_robe"
+            '.DisplayMember = "naziv_robe"
+            .Dock = DockStyle.Fill
+            .BackColor = SystemColors.ActiveBorder
+            .FlatStyle = FlatStyle.Flat
+            TableLayoutPanel1.Controls.Add(rabatCombo, 6, novoI)
+            .SelectedIndex = -1
+            .Tag = novoI
+        End With
+
+        Dim dodajButton As Button = New Button
+        With dodajButton
+
+            .Text = "IZBRISI"
+            .Name = "dodajButton" + (novoI + 1).ToString
+            .Visible = True
+            .Size = New Size(80, 40)
+            .Tag = novoI
+
+            AddHandler dodajButton.Click, AddressOf btnCreate_Click
+            TableLayoutPanel1.Controls.Add(dodajButton, 7, novoI)
+        End With
+
+        '-------------------------------------------------------------------------------------------------------------------------------------
+        '-------------------------------------------------------------------------------------------------------------------------------------
+        '           POPUNJAVANJE COMBOBOXOVA OVDE RADITI POSLE INICIJALIZACIJE KAKO BI SE IZBJEGLO POPUNJAVANJE-PRIKAZIVANJE-PRIKRIVANJE  ----
+        nazivRobe.DataSource = Rds.Tables(0)
+        nazivRobe.SelectedIndex = -1 '                                                                                                    ----
+        '                                                                                                                                 ----
+        '-------------------------------------------------------------------------------------------------------------------------------------
+        '-------------------------------------------------------------------------------------------------------------------------------------
+
+        novoI += 1
+
 
     End Sub
 
+    Public Sub btnCreate_Click(ByVal sender As Object, ByVal e As EventArgs)
+
+        Dim dugme As Button = DirectCast(sender, Button)
+
+
+        For Each ComboBox In TableLayoutPanel1.Controls
+            If (ComboBox.Tag = dugme.Tag) And (ComboBox.name <> dugme.Name) Then
+                ComboBox.Text = ""
+            End If
+        Next
+
+
+        'Try
+        '    Dim nestoNovo = novoI
+
+
+        '    'If dugme.Tag >= nestoNovo Then
+        '    '    Return
+        '    'End If
+
+        '    ' delete all controls of row that we want to delete
+        '    For i As Integer = 0 To TableLayoutPanel1.ColumnCount
+        '        Dim Control = TableLayoutPanel1.GetControlFromPosition(i, dugme.Tag)
+        '        TableLayoutPanel1.Controls.Remove(Control)
+
+        '    Next
+
+
+        '    'move up row controls that comes after row we want to remove
+
+
+        '    For i = dugme.Tag + 1 To novoI
+        '        For j = 0 To TableLayoutPanel1.ColumnCount
+        '            Dim Control = TableLayoutPanel1.GetControlFromPosition(j, i)
+
+        '            If (Control Is Nothing) Then
+
+        '            Else
+
+        '                TableLayoutPanel1.SetRow(Control, i - 1)
+        '            End If
+        '        Next
+
+        '    Next
+
+
+        '    Dim removeStyle = nestoNovo - 1
+
+        '    If (nestoNovo > removeStyle) Then
+        '        TableLayoutPanel1.RowStyles.RemoveAt(removeStyle)
+        '    End If
+
+        '    nestoNovo -= 1
+        '    novoI -= 1
+        'Catch
+
+        'End Try
+        ' brisanje reda i pomijeranje redova koji su ispod izbrisanog reda 
+
+
+    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         'If  Then
@@ -280,9 +413,11 @@ select @new", baza.konekcija)
         x = tabela.Rows(0)(0)
         Return x
     End Function
+
+
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Dim miniBrojac As Integer = 0   'brojac koji provjerava da li je sve popunjeno kako bi dodalo novo dugme za novi red
-
         Try
             Dim ctrl As Control
             For Each ctrl In TableLayoutPanel1.Controls
@@ -304,33 +439,75 @@ select @new", baza.konekcija)
         Catch
         End Try
 
-        If miniBrojac = 2 Then              'dugme za dodavanje novog reda kada se popuni prethodni
-            ' Button1.Visible = True
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("kolicinaCombo" + (novoI + 1).ToString) And ctrl.Text <> "") Then               'provjerava da li je jedinica mjere izabrana i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+
+        Catch
+        End Try
+
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("cijenaCombo" + (novoI + 1).ToString) And ctrl.Text <> "") Then               'provjerava da li je jedinica mjere izabrana i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+
+        Catch
+        End Try
+
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("iznosCombo" + (novoI + 1).ToString) And ctrl.Text <> "") Then               'provjerava da li je jedinica mjere izabrana i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+
+        Catch
+        End Try
+
+        Try
+            Dim ctrl As Control
+            For Each ctrl In TableLayoutPanel1.Controls
+                If (ctrl.Name = ("rabatCombo" + (novoI + 1).ToString) And ctrl.Text <> "") Then               'provjerava da li je jedinica mjere izabrana i povecava brojac
+                    miniBrojac += 1
+                End If
+            Next
+
+        Catch
+        End Try
+
+        If miniBrojac = 6 Then              'dugme za dodavanje novog reda kada se popuni prethodni
             novoI += 1
             dodavanjeReda()
-
         Else
-            'Button1.Visible = False
         End If
 
 
 
-        Dim jCommand As New SqlCommand("declare @jed as bit	
-declare @x as char(1)
-set @jed = (Select DISTINCT jed_mjere  from Inventar  where naziv_robe = '" & ComboBox5.SelectedValue & "')
-if @jed = 1 
-set @x = 'k'
-else if @jed = 0
-set @x = 'h'
-select @x", baza.konekcija)
-        Dim jAdapter As New SqlDataAdapter(jCommand)
-        Dim jDS As New DataTable()
-        Try
-            jAdapter.Fill(jDS)
-            TextBox2.Text = jDS.Rows(0)(0)
-        Catch ex As Exception
+        '        Dim jCommand As New SqlCommand("declare @jed as bit	
+        'declare @x as char(1)
+        'set @jed = (Select DISTINCT jed_mjere  from Inventar  where naziv_robe = '" & ComboBox5.SelectedValue & "')
+        'if @jed = 1 
+        'set @x = 'k'
+        'else if @jed = 0
+        'set @x = 'h'
+        'select @x", baza.konekcija)
+        '        Dim jAdapter As New SqlDataAdapter(jCommand)
+        '        Dim jDS As New DataTable()
+        '        Try
+        '            jAdapter.Fill(jDS)
+        '            TextBox2.Text = jDS.Rows(0)(0)
+        '        Catch ex As Exception
 
-        End Try
+        '        End Try
+
 
 
     End Sub
@@ -414,8 +591,41 @@ select @x", baza.konekcija)
     End Sub
 
     Private Sub dodajRedButton_Click(sender As Object, e As EventArgs) Handles dodajRedButton.Click
-        novoI += 1
+
         dodavanjeReda()  'dugme za dodavanje novog reda, van funkcije je jer je visible = false jer smo automatski stavili da dodaje novi red kad se prethodni popuni
 
     End Sub
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        Try
+            Dim broj = 0
+            For Each lista As Control In TableLayoutPanel1.Controls
+                If (lista.Name = "nazivRobe" + (broj + 1).ToString And lista.Text <> "") Then
+                    For Each lista2 As Control In TableLayoutPanel1.Controls
+                        If (lista2.Name = "jedMjere" + (broj + 1).ToString) Then
+
+                            Dim kolCommand As New SqlCommand("DECLARE @int as Integer	
+set @int = (SELECT kolicina from Inventar where naziv_robe = '" & lista.Text & "')
+
+while @int >= 1 
+begin
+print @int                                   
+set @int = @int - 1;
+end;", baza.konekcija)
+                            Dim kolAdapter As New SqlDataAdapter(kolCommand)
+                            Dim kolDS As New DataTable()  '----------------------------------------------ovde se zaustavio
+                            kolAdapter.Fill(kolDS)
+
+
+                            lista2.Text = kolDS.Rows.Item(0)(0) ' kolDS.Tables(0)(0).ToString
+                        End If
+                    Next
+                End If
+            Next
+        Catch
+
+        End Try
+
+    End Sub
 End Class
+
