@@ -74,6 +74,7 @@ Partial Class test
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.dodajRedButton = New System.Windows.Forms.Button()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'snimi
@@ -530,6 +531,10 @@ Partial Class test
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 1
         '
+        'Timer3
+        '
+        Me.Timer3.Enabled = True
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -644,4 +649,5 @@ Partial Class test
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents dodajRedButton As Button
     Friend WithEvents Timer2 As Timer
+    Friend WithEvents Timer3 As Timer
 End Class

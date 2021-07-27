@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "otpremniceProjekat", "otpremniceProjekat\otpremniceProjekat.vbproj", "{3EFAB6B5-2D33-40A7-BA12-C940E92B0D7B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5F70DCFD-B548-4748-BE97-8A330E6731AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
