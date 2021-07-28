@@ -48,10 +48,10 @@ Public Class test
 
                 Dim CellOneHdr As New PdfPCell(New Phrase(redni_broj(), fntTableFontHdr))
                 ptabela.AddCell(CellOneHdr)
-                Dim celltwohdr As New PdfPCell(New Phrase(ComboBox5.SelectedValue, fntTableFontHdr))
-                ptabela.AddCell(celltwohdr)
-                Dim cellthreehdr As New PdfPCell(New Phrase(TextBox2.Text, fntTableFontHdr))
-                ptabela.AddCell(cellthreehdr)
+                '   Dim celltwohdr As New PdfPCell(New Phrase(ComboBox5.SelectedValue, fntTableFontHdr))
+                ' ptabela.AddCell(celltwohdr)
+                ' Dim cellthreehdr As New PdfPCell(New Phrase(TextBox2.Text, fntTableFontHdr))
+                'ptabela.AddCell(cellthreehdr)
                 Dim cellfourhdr As New PdfPCell(New Phrase("Kolicina", fntTableFontHdr))
                 ptabela.AddCell(cellfourhdr)
                 Dim cellfivehdr As New PdfPCell(New Phrase("Cijena", fntTableFontHdr))
@@ -106,7 +106,7 @@ Public Class test
 
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-
+        ComboBox10.SelectedIndex = 0
         Focus()
         TableLayoutPanel1.HorizontalScroll.Enabled = True
 
@@ -169,13 +169,13 @@ end;", baza.konekcija)
         'ComboBox7.DataSource = kolDS.Tables(0)
         'ComboBox7.ValueMember = "@int"
         'ComboBox7.DisplayMember = "@int"
-        If brojac = 22 Then
-            command.CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
-        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.SelectedValue & "','" & vozilotb.SelectedValue & "');
-INSERT INTO Usluge (redni_broj, naziv_robe, kolicina, cijena, rabat, pdv, otpremnica_br, iznos)
-VALUES (" & redni_broj() & ", " & roba() & ", "
-            MsgBox("Molimo popunite sva polja")
-        End If
+        '        If brojac = 22 Then
+        '            command.CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
+        '        VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.Text & "," & reklamacijatb.Text & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.SelectedValue & "','" & vozilotb.SelectedValue & "');
+        'INSERT INTO Usluge (redni_broj, naziv_robe, kolicina, cijena, rabat, pdv, otpremnica_br, iznos)
+        'VALUES (" & redni_broj() & ", " & roba() & ", "
+        '            MsgBox("Molimo popunite sva polja")
+        '        End If
 
     End Sub
 
@@ -205,6 +205,13 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
         Radapter.Fill(Rds)
 
         '----------------------------------------------------------------------------- dataSet za artikle
+        '----------------------------------------------------------------------------- tabela za rabat
+        Dim rabatKomanda As New SqlCommand("Select rb from Rabat", baza.konekcija)
+        Dim rabatAdapter As New SqlDataAdapter(rabatKomanda)
+        Dim rabatDSet As New DataSet()
+        rabatAdapter.Fill(rabatDSet)
+
+        '----------------------------------------------------------------------------- tabela za rabat
 
         With nazivRobe
             .Name = "nazivRobe" + (novoI + 1).ToString
@@ -238,9 +245,7 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
         Dim kolicinaCombo As ComboBox = New ComboBox
         With kolicinaCombo
             .Name = "kolicinaCombo" + (novoI + 1).ToString
-            '.DataSource = ComboBox5.DataSource ' ---------------------------------------- KOLICINA
-            '.ValueMember = "naziv_robe"
-            '.DisplayMember = "naziv_robe"
+            '---------------------------------------- KOLICINA
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
@@ -252,9 +257,7 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
         Dim cijenaCombo As ComboBox = New ComboBox
         With cijenaCombo
             .Name = "cijenaCombo" + (novoI + 1).ToString
-            '.DataSource = ComboBox5.DataSource ' ----------------------------------------- CIJENA
-            '.ValueMember = "naziv_robe"
-            '.DisplayMember = "naziv_robe"
+            ' ----------------------------------------- CIJENA
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
@@ -263,49 +266,50 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
             .Tag = novoI
         End With
 
-        Dim iznosCombo As ComboBox = New ComboBox
+        Dim iznosCombo As TextBox = New TextBox
         With iznosCombo
             .Name = "iznosCombo" + (novoI + 1).ToString
-            '.DataSource = ComboBox5.DataSource ' ----------------------------------------- IZNOS
-            '.ValueMember = "naziv_robe"
-            '.DisplayMember = "naziv_robe"
+            ' ----------------------------------------- IZNOS
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
-            .FlatStyle = FlatStyle.Flat
-            TableLayoutPanel1.Controls.Add(iznosCombo, 5, novoI)
-            .SelectedIndex = -1
+            .ReadOnly = True
+            .BorderStyle = BorderStyle.FixedSingle
+            .TextAlign = .TextAlign.Right
+            TableLayoutPanel1.Controls.Add(iznosCombo, 6, novoI)
             .Tag = novoI
         End With
 
         Dim rabatCombo As ComboBox = New ComboBox
         With rabatCombo
             .Name = "rabatCombo" + (novoI + 1).ToString
-            '.DataSource = ComboBox5.DataSource  ' ---------------------------------------- RABAT
-            '.ValueMember = "naziv_robe"
-            '.DisplayMember = "naziv_robe"
+            ' ---------------------------------------- RABAT
+            .BindingContext = New BindingContext()
+            .ValueMember = "rb"
+            .DisplayMember = "rb"
+            .Enabled = False
+            .DataSource = rabatDSet.Tables(0)
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
-            TableLayoutPanel1.Controls.Add(rabatCombo, 6, novoI)
+            TableLayoutPanel1.Controls.Add(rabatCombo, 5, novoI)
             .SelectedIndex = -1
             .Tag = novoI
+            AddHandler rabatCombo.SelectedIndexChanged, AddressOf rabat_change
         End With
 
         Dim dodajButton As Button = New Button
         With dodajButton
-
             .Text = "IZBRISI"
             .Name = "dodajButton" + (novoI + 1).ToString
-            .Visible = True
             .Size = New Size(80, 40)
             .Tag = novoI
-
-            AddHandler dodajButton.Click, AddressOf btnCreate_Click
+            AddHandler dodajButton.Click, AddressOf brisiDugme_Click
             TableLayoutPanel1.Controls.Add(dodajButton, 7, novoI)
+            '.Visible = False
         End With
         novoI += 1
     End Sub
-    Public Sub btnCreate_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Public Sub brisiDugme_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim dugme As Button = DirectCast(sender, Button)
 
@@ -316,19 +320,21 @@ VALUES (" & redni_broj() & ", " & roba() & ", "
                     Case GetType(TextBox)
                         ComboBox.Text = ""
                     Case GetType(ComboBox)
+                        ComboBox.selectedIndex = -1
                         ComboBox.Text = ""
                         ComboBox.selectedIndex = -1
                         ComboBox.selectedIndex = -1
                         ComboBox.selectedIndex = -1
                 End Select
-
-
+                If (ComboBox.Name = "rabatCombo" + (ComboBox.Tag + 1).ToString) Then
+                    ComboBox.Enabled = False
+                End If
             End If
+
         Next
 
 
     End Sub
-
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         'If  Then
         '    MsgBox("meh")
@@ -357,15 +363,6 @@ select @new", baza.konekcija)
         adapter.Fill(tabela)
         s = tabela.Rows(0)(0)
         Return s
-    End Function
-    Private Function roba() As Integer
-        Dim x As Integer
-        Dim command As New SqlCommand("Select id_robe from Inventar where naziv_robe = " & ComboBox5.SelectedValue & "")
-        Dim tabela As New DataTable()
-        Dim adatpter As New SqlDataAdapter(command)
-        adatpter.Fill(tabela)
-        x = tabela.Rows(0)(0)
-        Return x
     End Function
     Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
         'izvlacimo prethodne adrese izabranog kupca kao prijedlog
@@ -448,44 +445,119 @@ select @new", baza.konekcija)
         dodavanjeReda()  'dugme za dodavanje novog reda, van funkcije je jer je visible = false jer smo automatski stavili da dodaje novi red kad se prethodni popuni
 
     End Sub
-
-
-    Public Sub combobox_change(ByVal sender As Object, ByVal e As EventArgs)
+    Public Sub combobox_change(ByVal sender As Object, ByVal e As EventArgs) '------------------ povlacenje jedinice mjere nakon biranja artikla
 
         Dim cmbx As ComboBox = DirectCast(sender, ComboBox)
-
         Try
 
             Dim lista As Control
             For Each lista In TableLayoutPanel1.Controls
-                If (lista.Tag = cmbx.Tag And lista.Name = "jedMjere" + (cmbx.Tag + 1).ToString) Then
-                    'If lista Then
 
-                    'End If
-                    Dim kolCommand As New SqlCommand("SELECT jed_mjere from Inventar where naziv_robe = '" + cmbx.Text + "'", baza.konekcija)
+                If (lista.Tag = cmbx.Tag) Then
+                    Dim kolCommand As New SqlCommand("SELECT jed_mjere, kolicina, cijena from Inventar where naziv_robe = '" + cmbx.Text + "'", baza.konekcija)
                     Dim kolAdapter As New SqlDataAdapter(kolCommand)
                     Dim kolDS As New DataTable()
                     kolAdapter.Fill(kolDS)
 
-                    Dim pretvori As String = kolDS.Rows.Item(0)(0).ToString
-                    If pretvori = "True" Then
-                        lista.Text = "k"
-                    Else
-                        lista.Text = "h"
+                    If (lista.Name = "jedMjere" + (cmbx.Tag + 1).ToString) Then
+                        Dim pretvori As String = kolDS.Rows.Item(0)(0).ToString
+                        If pretvori = "True" Then
+                            lista.Text = "K"
+                        Else
+                            lista.Text = "H"
+                        End If
+
+                        '        ElseIf (lista.Tag = cmbx.Tag And lista.Name <> "jedMjere" + (cmbx.Tag + 1).ToString And lista.Text <> "IZBRISI") Then
+                    ElseIf (lista.Tag = cmbx.Tag And lista.Name <> "jedMjere" + (cmbx.Tag + 1).ToString And lista.Text <> "IZBRISI") Then
+                        lista.Text = ""
+                    End If ' if grananje gdje ulazimo u jedMjere textbox i dodjeljujemo vrijednosti
+
+                    If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString) Then
+                        'Dim instance = lista.GetValue(lista, null)
+
+                        lista.Text = kolDS.Rows.Item(0)(1).ToString
+                    End If ' if grananje gdje ulazimo u kilicina combobox i dodjeljujemo vrijednosti
+
+                    If (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString) Then
+                        Dim DecimalniBroj = kolDS.Rows.Item(0)(2)
+                        Dim noviBroj = Math.Round(DecimalniBroj, 2)
+                        lista.Text = noviBroj
+
+                    End If ' if grananje gdje ulazimo u cijena combobox i dodjeljujemo vrijednosti
+                    If (lista.Name = "rabatCombo" + (cmbx.Tag + 1).ToString) Then
+                        lista.Enabled = True
+
                     End If
 
-                    '        ElseIf (lista.Tag = cmbx.Tag And lista.Name <> "jedMjere" + (cmbx.Tag + 1).ToString And lista.Text <> "IZBRISI") Then
-                ElseIf (lista.Tag = cmbx.Tag And lista.Name <> "jedMjere" + (cmbx.Tag + 1).ToString And lista.Text <> "IZBRISI") Then
-                    lista.Text = ""
-                End If
+
+
+                End If '--- preko if-a ulazimo u textbox koji nosi isti tag kao promjenjeni ComboBox (provjera da l' pristupa ispravnom)
 
             Next
 
         Catch ex As Exception
 
         End Try
-
     End Sub
+    Public Sub rabat_change(ByVal sender As Object, ByVal e As EventArgs) '------------------ povlacenje jedinice mjere nakon biranja artikla
 
+        Dim cmbx As ComboBox = DirectCast(sender, ComboBox)
+        Dim kolicina, cijena, rabat, pdv
+
+
+        Try
+            Dim lista As Control
+            For Each lista In TableLayoutPanel1.Controls
+                If (lista.Tag = cmbx.Tag) Then
+
+
+                    Try
+
+                        If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString) Then
+                            kolicina = lista.Text
+                        End If
+                    Catch
+                    End Try
+
+                    Try
+
+
+                        If (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString) Then
+                            cijena = lista.Text
+                        End If
+                    Catch
+                    End Try
+
+                    Try
+
+                        If (ComboBox10.SelectedIndex = 0) Then
+                            pdv = True
+                        ElseIf (ComboBox10.SelectedIndex = 1) Then
+                            pdv = False
+                        End If
+                    Catch
+                    End Try
+
+                    Try
+
+                        If (lista.Name = "rabatCombo" + (cmbx.Tag + 1).ToString) Then
+                            rabat = lista.Text
+                        End If
+                    Catch
+                    End Try
+
+
+                    MsgBox(rabat, pdv.ToString, cijena.ToString)
+
+
+                End If
+            Next
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Function GetAll(Control As Control, Type As Type) As IEnumerable(Of Control)
+        Dim Controls = Control.Controls.Cast(Of Control)()
+        Return Controls.SelectMany(Function(x) GetAll(x, Type)).Concat(Controls).Where(Function(y) y.GetType = Type)
+    End Function
 End Class
 
