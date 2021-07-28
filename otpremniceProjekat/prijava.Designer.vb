@@ -29,26 +29,30 @@ Partial Class prijava
         '
         'dugmePrijava
         '
-        Me.dugmePrijava.Location = New System.Drawing.Point(464, 156)
+        Me.dugmePrijava.Location = New System.Drawing.Point(312, 229)
         Me.dugmePrijava.Name = "dugmePrijava"
-        Me.dugmePrijava.Size = New System.Drawing.Size(75, 23)
+        Me.dugmePrijava.Size = New System.Drawing.Size(133, 64)
         Me.dugmePrijava.TabIndex = 0
         Me.dugmePrijava.Text = "Prijavi"
         Me.dugmePrijava.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(343, 156)
+        Me.TextBox1.ForeColor = System.Drawing.Color.Gray
+        Me.TextBox1.Location = New System.Drawing.Point(312, 143)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(133, 20)
         Me.TextBox1.TabIndex = 1
+        Me.TextBox1.Text = "Unesi korisničko ime ovde"
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(343, 196)
+        Me.TextBox2.ForeColor = System.Drawing.Color.Gray
+        Me.TextBox2.Location = New System.Drawing.Point(312, 187)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(100, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(133, 20)
         Me.TextBox2.TabIndex = 2
+        Me.TextBox2.Text = "Unesi lozinku ovde"
         '
         'prijava
         '
