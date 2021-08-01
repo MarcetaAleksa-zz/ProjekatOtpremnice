@@ -249,6 +249,8 @@ end;", baza.konekcija)
             .Dock = DockStyle.Fill
             .BackColor = SystemColors.ActiveBorder
             .FlatStyle = FlatStyle.Flat
+
+            .DropDownStyle = ComboBoxStyle.DropDownList
             TableLayoutPanel1.Controls.Add(kolicinaCombo, 3, novoI)
             .SelectedIndex = -1
             .Tag = novoI
@@ -472,10 +474,54 @@ select @new", baza.konekcija)
                         lista.Text = ""
                     End If ' if grananje gdje ulazimo u jedMjere textbox i dodjeljujemo vrijednosti
 
-                    If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString) Then
+                    If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString And lista.GetType() Is GetType(ComboBox)) Then
                         'Dim instance = lista.GetValue(lista, null)
 
-                        lista.Text = kolDS.Rows.Item(0)(1).ToString
+                        '   lista.Text = kolDS.Rows.Item(0)(1).ToString
+
+                        Dim kolicinaCommand As New SqlCommand("SELECT kolicina from Inventar where naziv_robe = '" + cmbx.Text + "'", baza.konekcija)
+                        Dim kolicinaAdapter As New SqlDataAdapter(kolicinaCommand)
+                        Dim kolicinaDataSet As New DataTable()
+                        kolicinaAdapter.Fill(kolicinaDataSet)
+
+                        ' TryCast(lista, ComboBox).DataSource = kolicinaDataSet.Tables(0)
+                        ' Dim nesto = kolicinaDataSet.Tables(0).ToString
+
+                        Dim privBroj As Integer
+                        TryCast(lista, ComboBox).Items.Clear()
+                        For privBroj = 1 To kolicinaDataSet.Rows(0)(0)
+                            TryCast(lista, ComboBox).Items.Add(privBroj)
+                        Next
+
+                        TryCast(lista, ComboBox).ValueMember = "kolicina"
+                        TryCast(lista, ComboBox).DisplayMember = "kolicina"
+                        TryCast(lista, ComboBox).SelectedIndex = -1
+                        TryCast(lista, ComboBox).SelectedIndex = -1
+
+                        'Try
+                        '    'Dim ncbx As New ComboBox
+
+                        '    ''With ncbx
+                        '    ''    '  .BindingContext = New BindingContext()
+                        '    ''    .Name = "nestoNovo" + novoI.ToString
+
+                        '    ''    .ValueMember = "kolicina"
+                        '    ''    .DisplayMember = "kolicina"
+                        '    ''    .DataSource = kolicinaDataSet.Tables(0)
+                        '    ''    .SelectedIndex = -1
+                        '    ''End With
+                        '    ''  lista.GetType(ComboBox)
+                        '    'lista = ncbx
+                        '    '     lista.Controls.CopyTo(ncbx)
+
+                        'Catch
+
+                        'End Try
+
+
+
+
+
                     End If ' if grananje gdje ulazimo u kilicina combobox i dodjeljujemo vrijednosti
 
                     If (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString) Then
@@ -504,7 +550,6 @@ select @new", baza.konekcija)
         Dim cmbx As ComboBox = DirectCast(sender, ComboBox)
         Dim kolicina, cijena, rabat, pdv
 
-
         Try
             Dim lista As Control
             For Each lista In TableLayoutPanel1.Controls
@@ -513,8 +558,11 @@ select @new", baza.konekcija)
 
                     Try
 
-                        If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString) Then
+                        If (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString And lista.Text <> "") Then
                             kolicina = lista.Text
+                        ElseIf (lista.Name = "kolicinaCombo" + (cmbx.Tag + 1).ToString And lista.Text = "") Then
+                            MsgBox("Unesite kolicinu", vbOKOnly)
+                            kolicina = 0
                         End If
                     Catch
                     End Try
@@ -522,8 +570,11 @@ select @new", baza.konekcija)
                     Try
 
 
-                        If (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString) Then
+                        If (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString And lista.Text <> "") Then
                             cijena = lista.Text
+                        ElseIf (lista.Name = "cijenaCombo" + (cmbx.Tag + 1).ToString And lista.Text = "") Then
+                            cijena = 0
+
                         End If
                     Catch
                     End Try
@@ -535,6 +586,7 @@ select @new", baza.konekcija)
                         ElseIf (ComboBox10.SelectedIndex = 1) Then
                             pdv = False
                         End If
+
                     Catch
                     End Try
 
@@ -542,12 +594,28 @@ select @new", baza.konekcija)
 
                         If (lista.Name = "rabatCombo" + (cmbx.Tag + 1).ToString) Then
                             rabat = lista.Text
+
                         End If
                     Catch
                     End Try
 
 
-                    MsgBox(rabat, pdv.ToString, cijena.ToString)
+                    Try
+
+                        If (lista.Name = "iznosCombo" + (cmbx.Tag + 1).ToString And rabat IsNot Nothing And kolicina IsNot Nothing) Then
+
+                            lista.Text = (kolicina * cijena * 17) / 100
+
+                        Else
+
+
+
+
+                        End If
+                    Catch
+                    End Try
+
+
 
 
                 End If
