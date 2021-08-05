@@ -68,6 +68,8 @@ Partial Class test
         Me.dodajRedButton = New System.Windows.Forms.Button()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'snimi
@@ -473,11 +475,31 @@ Partial Class test
         '
         Me.Timer3.Enabled = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(419, 213)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 64
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(544, 222)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(45, 13)
+        Me.Label10.TabIndex = 65
+        Me.Label10.Text = "Label10"
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(837, 755)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.dodajRedButton)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.ComboBox10)
@@ -574,4 +596,6 @@ Partial Class test
     Friend WithEvents dodajRedButton As Button
     Friend WithEvents Timer2 As Timer
     Friend WithEvents Timer3 As Timer
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Label10 As Label
 End Class
