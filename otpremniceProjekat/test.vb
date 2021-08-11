@@ -15,7 +15,9 @@ Public Class test
         Dim adapter As New SqlDataAdapter(komanda)
         Dim tabela As New DataTable
         adapter.Fill(tabela)
+
         Try
+
             Dim sfd As New SaveFileDialog With {.Filter = "PDF Files (*.pdf | *.pdfs"}   'Samo mozemo praviti file tipa .pdf, SaveFileDialog nam sluzi za poziv da sacuvamo file
             Dim appPath As String = My.Application.Info.DirectoryPath  ' dobijamo default lokaciju gdje se .exe projekta nalazi
             sfd.FileName = tabela.Rows(0)(0)  'dodjela naziva za .pdf file
@@ -175,15 +177,24 @@ Public Class test
                                 jedm = False
                             End If
 
+
                             Dim kommanden As New SqlCommand("INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
-Values (" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & 6 & "", baza.konekcija)
+                            Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & 15 & ");
+                            declare @jeste int
+set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where id_robe = " & cmbxx.SelectedIndex + 1 & ")
+UPDATE Panleksa.dbo.Inventar
+SET kolicina = (@jeste - " & kolicinaKontrol.Text & ")
+Where id_robe = " & cmbxx.SelectedIndex + 1 & "", baza.konekcija)
                             kommanden.Connection.Open()
                             kommanden.ExecuteNonQuery()
                             kommanden.Connection.Close()
 
+
                         End If
 
-                    Catch
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message)
+
                     End Try
                 Next
 
@@ -191,14 +202,11 @@ Values (" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm &
                 pdfDoc.Close()
 
             End If
-            Dim command As New SqlCommand("") With {
-                .CommandText = "INSERT INTO Osnove (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
-                VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.SelectedValue & "', '" & kupacAdresaComboBox.SelectedValue & "'," & OtpremaTB.SelectedIndex + 1 & "," & reklamacijatb.SelectedIndex + 1 & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.SelectedValue & "','" & vozilotb.SelectedValue & "');"
-            }
-
-
-
-            MsgBox("Molimo popunite sva polja")
+            Dim command As New SqlCommand("INSERT INTO Panleksa.dbo.Osnovne (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
+                            VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.Text & "', '" & kupacAdresaComboBox.Text & "'," & OtpremaTB.SelectedIndex + 1 & "," & reklamacijatb.SelectedIndex + 1 & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.Text & "','" & vozilotb.Text & "');", baza.konekcija)
+            command.Connection.Open()
+            command.ExecuteNonQuery()
+            command.Connection.Close()
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
         End Try

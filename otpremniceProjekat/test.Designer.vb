@@ -202,7 +202,7 @@ Partial Class test
         Me.otpremnicatb.ReadOnly = True
         Me.otpremnicatb.Size = New System.Drawing.Size(100, 20)
         Me.otpremnicatb.TabIndex = 27
-        Me.otpremnicatb.Text = "6"
+        Me.otpremnicatb.Text = "26"
         '
         'datumtb
         '
