@@ -37,13 +37,7 @@ Partial Class test
         Me.IBKupac = New System.Windows.Forms.Label()
         Me.vozilo = New System.Windows.Forms.Label()
         Me.pdv = New System.Windows.Forms.Label()
-        Me.izdavaoc = New System.Windows.Forms.Label()
-        Me.primalac = New System.Windows.Forms.Label()
-        Me.licna = New System.Windows.Forms.Label()
-        Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.otpremnicatb = New System.Windows.Forms.TextBox()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.datumtb = New System.Windows.Forms.TextBox()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.OtpremaTB = New System.Windows.Forms.ComboBox()
@@ -201,60 +195,14 @@ Partial Class test
         Me.pdv.TabIndex = 16
         Me.pdv.Text = "Cijena sa PDV-om:"
         '
-        'izdavaoc
-        '
-        Me.izdavaoc.AutoSize = True
-        Me.izdavaoc.Location = New System.Drawing.Point(7, 728)
-        Me.izdavaoc.Name = "izdavaoc"
-        Me.izdavaoc.Size = New System.Drawing.Size(36, 13)
-        Me.izdavaoc.TabIndex = 17
-        Me.izdavaoc.Text = "Izdao:"
-        '
-        'primalac
-        '
-        Me.primalac.AutoSize = True
-        Me.primalac.Location = New System.Drawing.Point(325, 728)
-        Me.primalac.Name = "primalac"
-        Me.primalac.Size = New System.Drawing.Size(38, 13)
-        Me.primalac.TabIndex = 18
-        Me.primalac.Text = "Primio:"
-        '
-        'licna
-        '
-        Me.licna.AutoSize = True
-        Me.licna.Location = New System.Drawing.Point(475, 730)
-        Me.licna.Name = "licna"
-        Me.licna.Size = New System.Drawing.Size(35, 13)
-        Me.licna.TabIndex = 19
-        Me.licna.Text = "LK br."
-        '
-        'TextBox9
-        '
-        Me.TextBox9.Location = New System.Drawing.Point(49, 725)
-        Me.TextBox9.Name = "TextBox9"
-        Me.TextBox9.Size = New System.Drawing.Size(162, 20)
-        Me.TextBox9.TabIndex = 24
-        '
         'otpremnicatb
         '
         Me.otpremnicatb.Location = New System.Drawing.Point(700, 53)
         Me.otpremnicatb.Name = "otpremnicatb"
+        Me.otpremnicatb.ReadOnly = True
         Me.otpremnicatb.Size = New System.Drawing.Size(100, 20)
         Me.otpremnicatb.TabIndex = 27
-        '
-        'TextBox13
-        '
-        Me.TextBox13.Location = New System.Drawing.Point(369, 725)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox13.TabIndex = 28
-        '
-        'TextBox14
-        '
-        Me.TextBox14.Location = New System.Drawing.Point(513, 725)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.Size = New System.Drawing.Size(100, 20)
-        Me.TextBox14.TabIndex = 29
+        Me.otpremnicatb.Text = "6"
         '
         'datumtb
         '
@@ -410,7 +358,7 @@ Partial Class test
         '
         Me.ComboBox10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox10.FormattingEnabled = True
-        Me.ComboBox10.Items.AddRange(New Object() {"Da", "Ne"})
+        Me.ComboBox10.Items.AddRange(New Object() {"Ne", "Da"})
         Me.ComboBox10.Location = New System.Drawing.Point(111, 695)
         Me.ComboBox10.Name = "ComboBox10"
         Me.ComboBox10.Size = New System.Drawing.Size(100, 21)
@@ -520,13 +468,7 @@ Partial Class test
         Me.Controls.Add(Me.OtpremaTB)
         Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.datumtb)
-        Me.Controls.Add(Me.TextBox14)
-        Me.Controls.Add(Me.TextBox13)
         Me.Controls.Add(Me.otpremnicatb)
-        Me.Controls.Add(Me.TextBox9)
-        Me.Controls.Add(Me.licna)
-        Me.Controls.Add(Me.primalac)
-        Me.Controls.Add(Me.izdavaoc)
         Me.Controls.Add(Me.pdv)
         Me.Controls.Add(Me.vozilo)
         Me.Controls.Add(Me.IBKupac)
@@ -563,13 +505,7 @@ Partial Class test
     Friend WithEvents IBKupac As Label
     Friend WithEvents vozilo As Label
     Friend WithEvents pdv As Label
-    Friend WithEvents izdavaoc As Label
-    Friend WithEvents primalac As Label
-    Friend WithEvents licna As Label
-    Friend WithEvents TextBox9 As TextBox
     Friend WithEvents otpremnicatb As TextBox
-    Friend WithEvents TextBox13 As TextBox
-    Friend WithEvents TextBox14 As TextBox
     Friend WithEvents datumtb As TextBox
 
     Friend WithEvents ZaposleniBindingSource1 As BindingSource
