@@ -181,10 +181,10 @@ Public Class test
                             Dim kommanden As New SqlCommand("INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
                             Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & 15 & ");
                             declare @jeste int
-set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where id_robe = " & cmbxx.SelectedIndex + 1 & ")
-UPDATE Panleksa.dbo.Inventar
+set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & cmbxx.Text & "')
+UPDATE Panleksa.dbo.Inventar 
 SET kolicina = (@jeste - " & kolicinaKontrol.Text & ")
-Where id_robe = " & cmbxx.SelectedIndex + 1 & "", baza.konekcija)
+Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                             kommanden.Connection.Open()
                             kommanden.ExecuteNonQuery()
                             kommanden.Connection.Close()
@@ -207,8 +207,13 @@ Where id_robe = " & cmbxx.SelectedIndex + 1 & "", baza.konekcija)
             command.Connection.Open()
             command.ExecuteNonQuery()
             command.Connection.Close()
+            Me.Controls.Clear()
+            InitializeComponent()
+            test_Load(e, e)
+            novoI = 0
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
+
         End Try
 
 
