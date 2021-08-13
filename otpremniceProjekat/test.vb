@@ -180,6 +180,8 @@ Public Class test
 
                             Dim kommanden As New SqlCommand("INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
                             Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & 15 & ");
+                            declare @x as bit
+set @x = (select jed_mjere from Inventar where naziv_robe = '" & cmbxx.Text & "')
                             declare @jeste int
 set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & cmbxx.Text & "')
 UPDATE Panleksa.dbo.Inventar 
