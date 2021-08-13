@@ -105,29 +105,22 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hash.vb" />
+    <Compile Include="Medjuforma.Designer.vb">
+      <DependentUpon>Medjuforma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Medjuforma.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="prijava.Designer.vb">
       <DependentUpon>prijava.vb</DependentUpon>
     </Compile>
     <Compile Include="prijava.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="prodajaRobe.Designer.vb">
-      <DependentUpon>prodajaRobe.vb</DependentUpon>
-    </Compile>
-    <Compile Include="prodajaRobe.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="istorijaProdaje.Designer.vb">
       <DependentUpon>istorijaProdaje.vb</DependentUpon>
     </Compile>
     <Compile Include="istorijaProdaje.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formaPrva.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formaPrva.Designer.vb">
-      <DependentUpon>formaPrva.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -157,17 +150,14 @@
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Medjuforma.resx">
+      <DependentUpon>Medjuforma.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="prijava.resx">
       <DependentUpon>prijava.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="prodajaRobe.resx">
-      <DependentUpon>prodajaRobe.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="istorijaProdaje.resx">
       <DependentUpon>istorijaProdaje.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formaPrva.resx">
-      <DependentUpon>formaPrva.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

@@ -36,8 +36,9 @@ Public Class prijava
 
         Hash.Hashing()
         Try
-            If TextBox1.Text = UN And Hash.HashStorePrijava = Hash.HashStore Then
+            If TextBox1.Text.ToLower = UN And Hash.HashStorePrijava = Hash.HashStore Then
                 Try
+
                     Hash.HashStore = Nothing
                     Hash.HashStorePrijava = Nothing
                     email.From = New MailAddress("servisracunaradoo@gmail.com")
@@ -57,37 +58,15 @@ Public Class prijava
                 AuthKey = InputBox("Unesite autentikacioni kljuc:")
                 If AuthKey = tempo Then
                     MessageBox.Show("Dobrodosli")
-
+                    Medjuforma.Show()
+                    Me.Hide()
                 Else
-                    MessageBox.Show("Pogresan kod, probajte ponovo.")
-                    MessageBox.Show("Pokusaji preostali: 3")
-                    AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                    If AuthKey = tempo Then
-                        MessageBox.Show("Dobrodosli")
-                    Else
-                        MessageBox.Show("Pogresan kod, probajte ponovo.")
-                        MessageBox.Show("Pokusaji preostali: 2")
-                        AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                        If AuthKey = tempo Then
-                            MessageBox.Show("Dobrodosli")
-                        Else
-                            MessageBox.Show("Pogresan kod, probajte ponovo.")
-                            MessageBox.Show("Pokusaji preostali: 1")
-                            AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                            If AuthKey = tempo Then
-                                MessageBox.Show("Dobrodosli")
-                            Else
-                                MessageBox.Show("Pogresan kod, nemate vise pokusaja. Molimo zatrazite novi kod kako bi ste se prijavili.")
-                                TextBox1.Text = "Unesi korisničko ime ovde"
-                                TextBox1.ForeColor = Color.Gray
-                                TextBox2.Text = "Unesi lozinku ovde"
-                                TextBox2.UseSystemPasswordChar = False
-                                TextBox2.ForeColor = Color.Gray
-
-                            End If
-                        End If
-                    End If
-
+                    MessageBox.Show("Pogresan kod. Molimo zatrazite novi kod kako bi ste se prijavili.")
+                    TextBox1.Text = "Unesi korisničko ime ovde"
+                    TextBox1.ForeColor = Color.Gray
+                    TextBox2.Text = "Unesi lozinku ovde"
+                    TextBox2.UseSystemPasswordChar = False
+                    TextBox2.ForeColor = Color.Gray
                 End If
 
             Else
@@ -98,7 +77,6 @@ Public Class prijava
                 TextBox2.UseSystemPasswordChar = False
                 TextBox2.ForeColor = Color.Gray
             End If
-
         Catch ex As Exception
         End Try
 
