@@ -22,54 +22,158 @@ Partial Class prijava
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(prijava))
         Me.dugmePrijava = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
         '
         'dugmePrijava
         '
-        Me.dugmePrijava.Location = New System.Drawing.Point(312, 229)
+        Me.dugmePrijava.BackColor = System.Drawing.Color.Firebrick
+        Me.dugmePrijava.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.dugmePrijava.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dugmePrijava.Location = New System.Drawing.Point(274, 283)
         Me.dugmePrijava.Name = "dugmePrijava"
-        Me.dugmePrijava.Size = New System.Drawing.Size(133, 64)
+        Me.dugmePrijava.Size = New System.Drawing.Size(247, 54)
         Me.dugmePrijava.TabIndex = 0
-        Me.dugmePrijava.Text = "Prijavi"
-        Me.dugmePrijava.UseVisualStyleBackColor = True
+        Me.dugmePrijava.Text = "PRIJAVI SE"
+        Me.dugmePrijava.UseVisualStyleBackColor = False
         '
         'TextBox1
         '
+        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.ForeColor = System.Drawing.Color.Gray
-        Me.TextBox1.Location = New System.Drawing.Point(312, 143)
+        Me.TextBox1.Location = New System.Drawing.Point(6, 6)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(133, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(236, 22)
         Me.TextBox1.TabIndex = 1
         Me.TextBox1.Text = "Unesi korisničko ime ovde"
         '
         'TextBox2
         '
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.Gray
-        Me.TextBox2.Location = New System.Drawing.Point(312, 187)
+        Me.TextBox2.Location = New System.Drawing.Point(4, 6)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(133, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(236, 22)
         Me.TextBox2.TabIndex = 2
         Me.TextBox2.Text = "Unesi lozinku ovde"
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.Window
+        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Location = New System.Drawing.Point(274, 189)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(247, 35)
+        Me.Panel1.TabIndex = 3
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.SystemColors.Window
+        Me.Panel2.Controls.Add(Me.TextBox2)
+        Me.Panel2.Location = New System.Drawing.Point(274, 231)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(247, 35)
+        Me.Panel2.TabIndex = 4
+        '
+        'Panel6
+        '
+        Me.Panel6.BackColor = System.Drawing.Color.Firebrick
+        Me.Panel6.Location = New System.Drawing.Point(211, -13)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(381, 85)
+        Me.Panel6.TabIndex = 5
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(46, 1)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(75, 91)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 6
+        Me.PictureBox1.TabStop = False
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.Color.Firebrick
+        Me.Panel8.Controls.Add(Me.Label1)
+        Me.Panel8.Location = New System.Drawing.Point(31, 445)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(77, 147)
+        Me.Panel8.TabIndex = 5
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Gray
+        Me.Label1.Location = New System.Drawing.Point(15, 12)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(46, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "V1.0"
+        '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.Firebrick
+        Me.Panel10.Location = New System.Drawing.Point(46, -27)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(75, 89)
+        Me.Panel10.TabIndex = 5
+        '
         'prijava
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.ClientSize = New System.Drawing.Size(800, 484)
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.Panel6)
+        Me.Controls.Add(Me.Panel8)
+        Me.Controls.Add(Me.Panel10)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.dugmePrijava)
+        Me.Font = New System.Drawing.Font("Microsoft PhagsPa", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "prijava"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "prijava"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel8.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents dugmePrijava As Button
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Panel10 As Panel
 End Class
