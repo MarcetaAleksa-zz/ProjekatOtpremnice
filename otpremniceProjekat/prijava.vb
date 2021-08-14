@@ -9,23 +9,23 @@ Public Class prijava
     Public Shared pw As String
     Private Sub dugmePrijava_Click(sender As Object, e As EventArgs) Handles dugmePrijava.Click
         Dim AuthKey As String
-        Dim tempo As String
+        ' Dim tempo As String
         Dim r As New Random
-        Dim emailZ As String
+        'Dim emailZ As String
         Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
         Dim adapter As New SqlDataAdapter(komanda)
         Dim tabela As New DataTable
         Dim email As New MailMessage()
-        Dim UN As String
+        ' Dim UN As String
         Dim pz As Integer
 
         Try
             adapter.Fill(tabela)
-            emailZ = tabela.Rows(0)(0)
-            UN = tabela.Rows(0)(1)
             pw = tabela.Rows(0)(2)
             Salt = tabela.Rows(0)(3)
-            tempo = RandomString(r)
+            ' emailZ = tabela.Rows(0)(0)
+            ' UN = tabela.Rows(0)(1)
+            ' tempo = RandomString(r)
         Catch
 
         End Try
@@ -36,16 +36,16 @@ Public Class prijava
 
         Hash.Hashing()
         Try
-            If TextBox1.Text.ToLower = UN And Hash.HashStorePrijava = Hash.HashStore Then
+            If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
                 Try
 
                     Hash.HashStore = Nothing
                     Hash.HashStorePrijava = Nothing
                     email.From = New MailAddress("servisracunaradoo@gmail.com")
-                    email.To.Add(emailZ)
+                    email.To.Add(tabela.Rows(0)(0)) 'emailZ
                     email.Subject = "Racunari d.o.o 2FA"
                     email.IsBodyHtml = False
-                    email.Body = tempo
+                    email.Body = RandomString(r) 'tempo
                     Dim SMTP As New SmtpClient("smtp.gmail.com")
                     SMTP.Port = 587S
                     SMTP.EnableSsl = True
@@ -56,7 +56,7 @@ Public Class prijava
 
                 End Try
                 AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                If AuthKey = tempo Then
+                If AuthKey = RandomString(r) Then 'tempo
                     MessageBox.Show("Dobrodosli")
                     Medjuforma.Show()
                     Me.Hide()

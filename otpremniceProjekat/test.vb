@@ -5,9 +5,6 @@ Imports iTextSharp.text
 Imports System.IO
 Imports System.Drawing
 
-
-
-
 Public Class test
     Dim novoI As Integer = 0
     Dim brojDodanih As String = 0
@@ -496,7 +493,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
-            .TextAlign = .TextAlign.Center
+            .TextAlign = HorizontalAlignment.Center
             TableLayoutPanel1.Controls.Add(jedMjere, 2, novoI)
             .Tag = novoI
 
@@ -512,7 +509,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
-            .TextAlign = .TextAlign.Center
+            .TextAlign = HorizontalAlignment.Center
             .Tag = novoI
             TableLayoutPanel1.Controls.Add(cijenaCombo, 4, novoI)
             ' .SelectedIndex = -1
@@ -577,7 +574,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
-            .TextAlign = .TextAlign.Right
+            .TextAlign = HorizontalAlignment.Right
             .Tag = novoI
             TableLayoutPanel1.Controls.Add(iznosCombo, 6, novoI)
         End With
@@ -737,7 +734,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
     Public Sub combobox_change(ByVal sender As Object, ByVal e As EventArgs) '------------------ povlacenje jedinice mjere nakon biranja artikla
 
         Dim cmbx As ComboBox = DirectCast(sender, ComboBox)
-        Dim k, c As Double
+        Dim k As Double
         Try
 
             Dim lista As Control
