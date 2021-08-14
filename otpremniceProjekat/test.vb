@@ -267,6 +267,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         For i = 0 To 11
             dodavanjeReda()
         Next
+        ComboBox1.TabStop = True
         reklamacijatb.SelectedIndex = 0
         OtpremaTB.SelectedIndex = 0
         ComboBox10.SelectedIndex = 1
@@ -282,6 +283,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Font = New Drawing.Font("Microsoft Sans Serif", 8)
             .Dock = DockStyle.Fill
             .ReadOnly = True
+            .TabStop = False
+
             .ForeColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .BackColor = SystemColors.Control
             TableLayoutPanel2.Controls.Add(label1, 0, 0)
@@ -290,6 +293,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         With label2
             .Name = "LKUPAC"
             .Text = "KUPAC"
+
+            .TabStop = False
             .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
             .Dock = DockStyle.Fill
             .ReadOnly = True
@@ -300,6 +305,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         End With
         Dim label3 As New TextBox                                          'DATUM
         With label3
+
+            .TabStop = False
             .Name = "LDATUM"
             .Text = "DATUM"
             .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
@@ -341,6 +348,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                     .TextAlign = ContentAlignment.TopCenter
                     .ForeColor = SystemColors.Control
                     .Enabled = True
+
+                    .TabStop = False
                     .ReadOnly = True
                     .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
                     TableLayoutPanel2.Controls.Add(L, 0, smg + 1)
@@ -353,6 +362,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                     .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
                     .BorderStyle = BorderStyle.Fixed3D
                     .Enabled = True
+
+                    .TabStop = False
                     .Dock = DockStyle.Fill
                     .ReadOnly = True
                     .ForeColor = SystemColors.Control
@@ -365,6 +376,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                     .Text = bRds.Rows(smg)(2)
                     .BorderStyle = BorderStyle.Fixed3D
                     .TextAlign = ContentAlignment.TopCenter
+
+                    .TabStop = False
                     .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
                     .Name = "mTfOtpremnice" + smg.ToString
                     .ReadOnly = True
@@ -531,7 +544,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .FlatStyle = FlatStyle.Flat
             .ForeColor = SystemColors.Control
             .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
-            .Size = New Size(80, 40)
+
+            .Size = New Size(61, 24)
             .Tag = novoI
             AddHandler dodajButton.Click, AddressOf brisiDugme_Click
             TableLayoutPanel1.Controls.Add(dodajButton, 7, novoI)
@@ -567,13 +581,17 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Tag = novoI
             TableLayoutPanel1.Controls.Add(iznosCombo, 6, novoI)
         End With
+        If novoI > 14 Then
+            TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 30.0))
+
+        End If
         novoI += 1
     End Sub
     Public Sub brisiDugme_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim dugme As Button = DirectCast(sender, Button)
 
-
+        MsgBox(dugme.Size.ToString)
         For Each ComboBox In TableLayoutPanel1.Controls
             If (ComboBox.Tag = dugme.Tag) And (ComboBox.Name <> dugme.Name) Then
                 Select Case ComboBox.GetType
@@ -908,7 +926,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         Me.Close()
         Me.Dispose()
     End Sub
-
     Private Sub OtpremaTB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OtpremaTB.SelectedIndexChanged
         Dim commandBrojOtpremnice As New SqlCommand("select reg_br_vozila_sluzbenog from Osnovne", baza.konekcija)
         Dim adapterBO As New SqlDataAdapter(commandBrojOtpremnice)
@@ -917,25 +934,25 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
 
         If OtpremaTB.SelectedIndex = 1 Then
 
-            vozilotb.BindingContext = New BindingContext()
             vozilotb.DataSource = tabelaBO.Tables(0)
             vozilotb.ValueMember = "reg_br_vozila_sluzbenog"
             vozilotb.DisplayMember = "reg_br_vozila_sluzbenog"
             vozilotb.SelectedIndex = -1
         ElseIf OtpremaTB.SelectedIndex = 0 Then
-            vozilotb.SelectedIndex = -1
-            vozilotb.Text = ""
 
-            vozilotb.BindingContext = New BindingContext()
+            vozilotb.DataSource = Nothing
+            vozilotb.Items.Add("")
+            vozilotb.Items.Clear()
+
 
         ElseIf OtpremaTB.SelectedIndex = 2 Then
-            vozilotb.SelectedIndex = -1
-            vozilotb.Text = ""
-            vozilotb.BindingContext = New BindingContext()
+            vozilotb.DataSource = Nothing
+            vozilotb.Items.Add("")
+            vozilotb.Items.Clear()
         Else
-            vozilotb.SelectedIndex = -1
-            vozilotb.Text = ""
-            vozilotb.BindingContext = New BindingContext()
+            vozilotb.DataSource = Nothing
+            vozilotb.Items.Add("")
+            vozilotb.Items.Clear()
         End If
 
     End Sub
