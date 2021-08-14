@@ -3,6 +3,7 @@ Imports iTextSharp
 Imports iTextSharp.text.pdf
 Imports iTextSharp.text
 Imports System.IO
+Imports System.Drawing
 
 
 
@@ -12,7 +13,7 @@ Public Class test
     Dim brojDodanih As String = 0
     Dim sveOkej As Integer = 0
     Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
-        Dim komanda As New SqlCommand("SELECT ID FROM Osnovne", baza.konekcija)
+        Dim komanda As New SqlCommand("SELECT MAX(ID) FROM Osnovne", baza.konekcija)
         Dim adapter As New SqlDataAdapter(komanda)
         Dim tabela As New DataTable
         adapter.Fill(tabela)
@@ -21,7 +22,7 @@ Public Class test
 
             Dim sfd As New SaveFileDialog With {.Filter = "PDF Files (*.pdf | *.pdfs"}   'Samo mozemo praviti file tipa .pdf, SaveFileDialog nam sluzi za poziv da sacuvamo file
             Dim appPath As String = My.Application.Info.DirectoryPath  ' dobijamo default lokaciju gdje se .exe projekta nalazi
-            sfd.FileName = tabela.Rows(0)(0)  'dodjela naziva za .pdf file
+            sfd.FileName = (tabela.Rows(0)(0) + 1).ToString + " " + NaslovTB.Text 'dodjela naziva za .pdf file
 
             If sfd.ShowDialog = 1 Then
                 sveOkej = 0
@@ -216,6 +217,10 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         ComboBox10.SelectedIndex = 1
         Focus()
         TableLayoutPanel1.HorizontalScroll.Enabled = True
+        'For Each row As RowStyle In Me.TableLayoutPanel2.RowStyles
+        '    row.SizeType = SizeType.Absolute
+        '    row.Height = 30.0!
+        'Next
 
         Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
         Dim adapter As New SqlDataAdapter(command)
@@ -258,65 +263,166 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         NaslovTB.DisplayMember = "otpremi_na_naslov"
         NaslovTB.SelectedIndex = -1
 
+        dodavanjeRedaOtpremnica()
         For i = 0 To 11
             dodavanjeReda()
         Next
-        dodavanjeRedaOtpremnica()
+        reklamacijatb.SelectedIndex = 0
+        OtpremaTB.SelectedIndex = 0
+        ComboBox10.SelectedIndex = 1
         Me.WindowState = FormWindowState.Normal
     End Sub
-
     Private Sub dodavanjeRedaOtpremnica()
+        'TableLayoutPanel2.GetControlFromPosition(0, 0).BackColor = Color.control
+
+        Dim label1 As New TextBox                                          'SIFRA
+        With label1
+            .name = "LSifra"
+            .Text = "SFR"
+            .Font = New Drawing.Font("Microsoft Sans Serif", 8)
+            .Dock = DockStyle.Fill
+            .ReadOnly = True
+            .ForeColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+            .BackColor = SystemColors.Control
+            TableLayoutPanel2.Controls.Add(label1, 0, 0)
+        End With
+        Dim label2 As New TextBox                                          'KUPAC
+        With label2
+            .Name = "LKUPAC"
+            .Text = "KUPAC"
+            .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
+            .Dock = DockStyle.Fill
+            .ReadOnly = True
+            .TextAlign = ContentAlignment.TopCenter
+            .ForeColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+            .BackColor = SystemColors.Control
+            TableLayoutPanel2.Controls.Add(label2, 1, 0)
+        End With
+        Dim label3 As New TextBox                                          'DATUM
+        With label3
+            .Name = "LDATUM"
+            .Text = "DATUM"
+            .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
+            .Dock = DockStyle.Fill
+            .ReadOnly = True
+            .TextAlign = ContentAlignment.TopCenter
+            .ForeColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+            .BackColor = SystemColors.Control
+            TableLayoutPanel2.Controls.Add(label3, 2, 0)
+        End With
+
+
+
 
         Try
             '----------------------------------------------------------------------------- dt za otpremnice
 
             Dim bRCommand As New SqlCommand("Select ID, otpremi_na_naslov, datum from Osnovne", baza.konekcija)
-
             Dim bRadapter As New SqlDataAdapter(bRCommand)
-
             Dim bRds As New DataTable()
-
             bRadapter.Fill(bRds)
+
+            If bRds.Rows.Count > 16 Then
+                Dim kolikoTreba = bRds.Rows.Count - 16
+                For i = 0 To kolikoTreba
+                    TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Absolute, 30.0))
+                Next
+            End If
 
             '----------------------------------------------------------------------------- dt za otpremnice
             For smg = 0 To bRds.Rows.Count - 1
-                Dim L As New TextBox
+
+                Dim L As New TextBox                                          'SIFRA OTPREMNICE
                 With L
                     .Text = bRds.Rows(smg)(0)
                     .Name = "mBrOtpremnice" + smg.ToString
+                    .BorderStyle = BorderStyle.Fixed3D
+                    .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
+                    .TextAlign = ContentAlignment.TopCenter
                     .ForeColor = SystemColors.Control
+                    .Enabled = True
+                    .ReadOnly = True
                     .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
-                    TableLayoutPanel2.Controls.Add(L, 0, smg)
+                    TableLayoutPanel2.Controls.Add(L, 0, smg + 1)
                 End With
 
-                Dim T As New TextBox
+                Dim T As New TextBox                                           'NAZIV KUPCA
                 With T
-                    .Text = bRds.Rows(smg)(1)
+                    .Text = " " + bRds.Rows(smg)(1)
                     .Name = "mTrOtpremnice" + smg.ToString
+                    .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
+                    .BorderStyle = BorderStyle.Fixed3D
+                    .Enabled = True
+                    .Dock = DockStyle.Fill
+                    .ReadOnly = True
                     .ForeColor = SystemColors.Control
                     .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
-                    TableLayoutPanel2.Controls.Add(T, 1, smg)
+                    TableLayoutPanel2.Controls.Add(T, 1, smg + 1)
                 End With
 
-                Dim T2 As New TextBox
+                Dim T2 As New TextBox                                           'DATUM OTP
                 With T2
                     .Text = bRds.Rows(smg)(2)
+                    .BorderStyle = BorderStyle.Fixed3D
+                    .TextAlign = ContentAlignment.TopCenter
+                    .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
                     .Name = "mTfOtpremnice" + smg.ToString
+                    .ReadOnly = True
+                    .Enabled = True
                     .ForeColor = SystemColors.Control
                     .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
-                    TableLayoutPanel2.Controls.Add(T2, 2, smg)
+                    TableLayoutPanel2.Controls.Add(T2, 2, smg + 1)
                 End With
+
+                Dim btn1 As New PictureBox
+                Dim tt As New ToolTip
+                With btn1
+                    .Size = New Size(28, 24)
+                    .Name = "btn1" + smg.ToString
+                    ' .FlatStyle = FlatStyle.Flat
+                    .ForeColor = SystemColors.Control
+                    .Size = New Size(28, 24)
+                    .BackgroundImageLayout = ImageLayout.Stretch
+                    .Image = My.Resources.saveeeeeeee1
+                    .Size = New Size(28, 24)
+                    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+                    .Dock = DockStyle.Fill
+                    .Tag = bRds.Rows(smg)(0)
+                    .Size = New Size(28, 24)
+                    AddHandler btn1.Click, AddressOf otvoriOtpremnicu_Click
+                    TableLayoutPanel2.Controls.Add(btn1, 3, smg + 1)
+                End With
+                tt.SetToolTip(btn1, "Otvori otpremnicu")
+                'Dim btn2 As New Button                                           'DUGME IZMIJENI OTPREMNICU
+                'With btn2
+
+                '    .Name = "btn2" + smg.ToString
+                '    .FlatStyle = FlatStyle.Flat
+                '    .Dock = DockStyle.Fill
+                '    .Size = New Size(28, 24)
+                '    .BackgroundImageLayout = ImageLayout.Stretch
+                '    .Image = My.Resources.saveeeeeeee1
+                '    .Size = New Size(28, 24)
+                '    .ForeColor = SystemColors.Control
+                '    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+                '    .Tag = bRds.Rows(smg)(0) 'TAG JE SIFRA OTPREMNICE TKD KADA KLIKNEMO NA DUGME ODMAH OTVARA NOVU FORMU U KOJOJ UZ DUGME STIZE KOJU SIFRU OTPREMNNICE TO DUGME NOSI UZ SEBE, TAKO DA ODMAH U NOVOJ FORMI MOZEMO IZ BTN.TAG IZVUCI SVE VEZANO ZA TU SIFRU OTPREMNICE
+                '    '    AddHandler dodajButton.Click, AddressOf brisiDugme_Click
+                '    TableLayoutPanel2.Controls.Add(btn2, 4, smg + 1)
+                'End With
             Next
 
 
-        Catch ex As Exception
-            MsgBox(ex)
+        Catch
         End Try
+    End Sub
+    Public Sub otvoriOtpremnicu_Click(ByVal sender As Object, ByVal e As EventArgs)
 
-
+        Dim dugme As PictureBox = DirectCast(sender, PictureBox)
+        istorijaProdaje.Show()
+        istorijaProdaje.otvaranjeOtpremnice(dugme.Tag)
+        Me.Enabled = False
 
     End Sub
-
     Private Sub dodavanjeReda()
 
 
@@ -489,14 +595,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
 
         Next
 
-
-    End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        'If  Then
-        '    MsgBox("meh")
-        'Else
-        '    MessageBox.Show("shew")
-        'End If
 
     End Sub
     Private Function id_lica() As Integer
@@ -806,13 +904,40 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             End If
         Next
     End Sub
-
-
-
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Close()
         Me.Dispose()
     End Sub
 
+    Private Sub OtpremaTB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OtpremaTB.SelectedIndexChanged
+        Dim commandBrojOtpremnice As New SqlCommand("select reg_br_vozila_sluzbenog from Osnovne", baza.konekcija)
+        Dim adapterBO As New SqlDataAdapter(commandBrojOtpremnice)
+        Dim tabelaBO As New DataSet()
+        adapterBO.Fill(tabelaBO)
 
+        If OtpremaTB.SelectedIndex = 1 Then
+
+            vozilotb.BindingContext = New BindingContext()
+            vozilotb.DataSource = tabelaBO.Tables(0)
+            vozilotb.ValueMember = "reg_br_vozila_sluzbenog"
+            vozilotb.DisplayMember = "reg_br_vozila_sluzbenog"
+            vozilotb.SelectedIndex = -1
+        ElseIf OtpremaTB.SelectedIndex = 0 Then
+            vozilotb.SelectedIndex = -1
+            vozilotb.Text = ""
+
+            vozilotb.BindingContext = New BindingContext()
+
+        ElseIf OtpremaTB.SelectedIndex = 2 Then
+            vozilotb.SelectedIndex = -1
+            vozilotb.Text = ""
+            vozilotb.BindingContext = New BindingContext()
+        Else
+            vozilotb.SelectedIndex = -1
+            vozilotb.Text = ""
+            vozilotb.BindingContext = New BindingContext()
+        End If
+
+    End Sub
 End Class
 

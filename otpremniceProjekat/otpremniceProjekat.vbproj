@@ -192,5 +192,14 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveSlika1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveeeeeeee.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\saveeeeeeee.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
