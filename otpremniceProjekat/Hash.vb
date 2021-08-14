@@ -24,7 +24,7 @@ Public Class Hash
 
                 HashStorePrijava = Chr(128) & StringtoSha512(prijava.Salt + temp)
 
-            Catch ex As Exception
+            Catch
 
             End Try
         End If
@@ -32,7 +32,7 @@ Public Class Hash
             Try
                 HashStore = Chr(128) & StringtoSha512(prijava.Salt + prijava.pw)
 
-            Catch ex As Exception
+            Catch
 
             End Try
         End If

@@ -26,8 +26,8 @@ Public Class prijava
             pw = tabela.Rows(0)(2)
             Salt = tabela.Rows(0)(3)
             tempo = RandomString(r)
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString)
+        Catch
+
         End Try
         Select Case pz
             Case 1
@@ -77,7 +77,7 @@ Public Class prijava
                 TextBox2.UseSystemPasswordChar = False
                 TextBox2.ForeColor = Color.Gray
             End If
-        Catch ex As Exception
+        Catch
         End Try
 
 

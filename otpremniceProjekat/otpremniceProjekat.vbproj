@@ -145,6 +145,12 @@
     <Compile Include="test.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ucitavanje.Designer.vb">
+      <DependentUpon>ucitavanje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucitavanje.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="dodajArtikal.resx">
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="test.resx">
       <DependentUpon>test.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucitavanje.resx">
+      <DependentUpon>ucitavanje.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

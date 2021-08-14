@@ -10,6 +10,7 @@ Imports System.IO
 Public Class test
     Dim novoI As Integer = 0
     Dim brojDodanih As String = 0
+    Dim sveOkej As Integer = 0
     Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
         Dim komanda As New SqlCommand("SELECT ID FROM Osnovne", baza.konekcija)
         Dim adapter As New SqlDataAdapter(komanda)
@@ -23,7 +24,7 @@ Public Class test
             sfd.FileName = tabela.Rows(0)(0)  'dodjela naziva za .pdf file
 
             If sfd.ShowDialog = 1 Then
-
+                sveOkej = 0
                 Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
                 Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
                 Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
@@ -86,8 +87,6 @@ Public Class test
                 .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
                 }
 
-
-                '   cellsevenhdr.aligment = Element.ALIGN_RIGHT
                 ptabela.AddCell(cellsevenhdr)
 
 
@@ -110,8 +109,6 @@ Public Class test
                             } 'redni broj
 
                             ptabela.AddCell(cellone)
-
-
 
                             Dim celltwo As New PdfPCell(New Phrase(cmbxx.Text, fntTableFont)) 'naziv usluge
                             ptabela.AddCell(celltwo)
@@ -161,15 +158,6 @@ Public Class test
                             } 'iznos
 
                             ptabela.AddCell(cellseven)
-
-                            redniBroj += 1
-                            'rednibroj.tostring = redni broj
-                            'cmbxx.text naziv usluge
-                            'jedinicamjere.text = jedinica mjere
-                            'koliciakontrol.text = kolicina
-                            'cijenakontrol.text = cijena
-                            'rabatkontrol.text = rabat
-                            'combobox10.selectindex = pdv
                             Dim jedm As Boolean
                             If jedinicaMjere.Text = "K" Then
                                 jedm = True
@@ -179,7 +167,7 @@ Public Class test
 
 
                             Dim kommanden As New SqlCommand("INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
-                            Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & 15 & ");
+                            Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");
                             declare @x as bit
 set @x = (select jed_mjere from Inventar where naziv_robe = '" & cmbxx.Text & "')
                             declare @jeste int
@@ -190,7 +178,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                             kommanden.Connection.Open()
                             kommanden.ExecuteNonQuery()
                             kommanden.Connection.Close()
-
+                            redniBroj += 1
 
                         End If
 
@@ -200,30 +188,28 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                     End Try
                 Next
 
+                Dim command As New SqlCommand("INSERT INTO Panleksa.dbo.Osnovne (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
+                            VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.Text & "', '" & kupacAdresaComboBox.Text & "'," & OtpremaTB.SelectedIndex + 1 & "," & reklamacijatb.SelectedIndex + 1 & ",'" & datumtb.Text & "'," & brotpremniceTxt.Text & ",'" & iBKupcaComboBox.Text & "','" & vozilotb.Text & "');", baza.konekcija)
+                command.Connection.Open()
+                command.ExecuteNonQuery()
+                command.Connection.Close()
+
                 pdfDoc.Add(ptabela)
                 pdfDoc.Close()
-
             End If
-            Dim command As New SqlCommand("INSERT INTO Panleksa.dbo.Osnovne (naziv_pravnog_lica, adresa, IB, otpremi_na_naslov, adresa_kupac, nacin_otpreme, reklamacija, datum, ID, IB_kupac, reg_br_vozila_sluzbenog)
-                            VALUES ( " & id_lica() & ", '" & adresaTB.Text & "', '" & ibTB.Text & "','" & NaslovTB.Text & "', '" & kupacAdresaComboBox.Text & "'," & OtpremaTB.SelectedIndex + 1 & "," & reklamacijatb.SelectedIndex + 1 & ",'" & datumtb.Text & "'," & otpremnicatb.Text & ",'" & iBKupcaComboBox.Text & "','" & vozilotb.Text & "');", baza.konekcija)
-            command.Connection.Open()
-            command.ExecuteNonQuery()
-            command.Connection.Close()
-            Me.Controls.Clear()
-            InitializeComponent()
-            test_Load(e, e)
-            novoI = 0
+            sveOkej = 1
+            MsgBox("Uspjesno ste izdali otpremnicu!")
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
 
         End Try
-
-
-
-
-
-
-
+        If sveOkej = 1 Then
+            novoI = 0
+            ucitavanje.Show()
+            Me.Dispose()
+        Else
+            MsgBox("Desila se greska!")
+        End If
     End Sub
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -238,10 +224,19 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         adapter.Fill(ds)
 
 
+
         ComboBox1.DataSource = ds.Tables(0)
         ComboBox1.ValueMember = "name"
         ComboBox1.DisplayMember = "name"
         ComboBox1.SelectedIndex = -1
+
+
+        Dim commandBrojOtpremnice As New SqlCommand("select MAX(otpremnica_br) from Usluge", baza.konekcija)
+        Dim adapterBO As New SqlDataAdapter(commandBrojOtpremnice)
+        Dim tabelaBO As New DataTable()
+        adapterBO.Fill(tabelaBO)
+
+        brotpremniceTxt.Text = tabelaBO.Rows(0)(0) + 1
 
 
 
@@ -263,21 +258,65 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         NaslovTB.DisplayMember = "otpremi_na_naslov"
         NaslovTB.SelectedIndex = -1
 
-
-
-
-
-
-
-
         For i = 0 To 11
             dodavanjeReda()
         Next
+        dodavanjeRedaOtpremnica()
+        Me.WindowState = FormWindowState.Normal
+    End Sub
 
+    Private Sub dodavanjeRedaOtpremnica()
+
+        Try
+            '----------------------------------------------------------------------------- dt za otpremnice
+
+            Dim bRCommand As New SqlCommand("Select ID, otpremi_na_naslov, datum from Osnovne", baza.konekcija)
+
+            Dim bRadapter As New SqlDataAdapter(bRCommand)
+
+            Dim bRds As New DataTable()
+
+            bRadapter.Fill(bRds)
+
+            '----------------------------------------------------------------------------- dt za otpremnice
+            For smg = 0 To bRds.Rows.Count - 1
+                Dim L As New TextBox
+                With L
+                    .Text = bRds.Rows(smg)(0)
+                    .Name = "mBrOtpremnice" + smg.ToString
+                    .ForeColor = SystemColors.Control
+                    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+                    TableLayoutPanel2.Controls.Add(L, 0, smg)
+                End With
+
+                Dim T As New TextBox
+                With T
+                    .Text = bRds.Rows(smg)(1)
+                    .Name = "mTrOtpremnice" + smg.ToString
+                    .ForeColor = SystemColors.Control
+                    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+                    TableLayoutPanel2.Controls.Add(T, 1, smg)
+                End With
+
+                Dim T2 As New TextBox
+                With T2
+                    .Text = bRds.Rows(smg)(2)
+                    .Name = "mTfOtpremnice" + smg.ToString
+                    .ForeColor = SystemColors.Control
+                    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
+                    TableLayoutPanel2.Controls.Add(T2, 2, smg)
+                End With
+            Next
+
+
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
 
 
 
     End Sub
+
     Private Sub dodavanjeReda()
 
 
@@ -289,7 +328,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Name = "redniBroj" + (novoI + 1).ToString '------------------------------------- REDNI BROJ
             .TextAlign = ContentAlignment.TopCenter
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .BorderStyle = BorderStyle.Fixed3D
             .Tag = 404
             TableLayoutPanel1.Controls.Add(redniBroj, 0, novoI)
@@ -318,21 +358,23 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .ValueMember = "naziv_robe"
             .DisplayMember = "naziv_robe" ' ------------------------------------------------- NAZIV ROBE
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .FlatStyle = FlatStyle.Flat
             .SelectedIndex = -1
             .Tag = novoI
             .DropDownStyle = ComboBoxStyle.DropDownList
             .DataSource = Rds.Tables(0)
             .SelectedIndex = -1 '
-            AddHandler nazivRobe.SelectedIndexChanged, AddressOf ComboBox_change
+            AddHandler nazivRobe.SelectedIndexChanged, AddressOf combobox_change
         End With
         TableLayoutPanel1.Controls.Add(nazivRobe, 1, novoI)
         Dim jedMjere As TextBox = New TextBox
         With jedMjere
             .Name = "jedMjere" + (novoI + 1).ToString
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
             .TextAlign = .TextAlign.Center
@@ -347,7 +389,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Name = "cijenaCombo" + (novoI + 1).ToString
             ' ----------------------------------------- CIJENA
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
             .TextAlign = .TextAlign.Center
@@ -366,7 +409,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Enabled = False
             .DataSource = rabatDSet.Tables(0)
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .FlatStyle = FlatStyle.Flat
             .Tag = novoI
             TableLayoutPanel1.Controls.Add(rabatCombo, 5, novoI)
@@ -378,6 +422,9 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         With dodajButton
             .Text = "IZBRISI"
             .Name = "dodajButton" + (novoI + 1).ToString
+            .FlatStyle = FlatStyle.Flat
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .Size = New Size(80, 40)
             .Tag = novoI
             AddHandler dodajButton.Click, AddressOf brisiDugme_Click
@@ -390,7 +437,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Name = "kolicinaCombo" + (novoI + 1).ToString
             '---------------------------------------- KOLICINA
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .FlatStyle = FlatStyle.Flat
 
             .DropDownStyle = ComboBoxStyle.DropDownList
@@ -405,7 +453,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Name = "iznosCombo" + (novoI + 1).ToString
             ' ----------------------------------------- IZNOS
             .Dock = DockStyle.Fill
-            .BackColor = SystemColors.ActiveBorder
+            .ForeColor = SystemColors.Control
+            .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
             .ReadOnly = True
             .BorderStyle = BorderStyle.FixedSingle
             .TextAlign = .TextAlign.Right
@@ -461,18 +510,18 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         id_lica = table.Rows(0)(0)
         Return id_lica
     End Function
-    Private Function redni_broj() As Integer
-        Dim s As Integer
-        Dim command As New SqlCommand("declare @new as smallint 
-set @new = (select  MAX(redni_broj) as max
-from Usluge) + 1;
-select @new", baza.konekcija)
-        Dim adapter As New SqlDataAdapter(command)
-        Dim tabela As New DataTable()
-        adapter.Fill(tabela)
-        s = tabela.Rows(0)(0)
-        Return s
-    End Function
+    '    Private Function redni_broj() As Integer
+    '        Dim s As Integer
+    '        Dim command As New SqlCommand("declare @new as smallint 
+    'set @new = (select  MAX(redni_broj) as max
+    'from Usluge) + 1;
+    'select @new", baza.konekcija)
+    '        Dim adapter As New SqlDataAdapter(command)
+    '        Dim tabela As New DataTable()
+    '        adapter.Fill(tabela)
+    '        s = tabela.Rows(0)(0)
+    '        Return s
+    '    End Function
     Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
         'izvlacimo prethodne adrese izabranog kupca kao prijedlog
 
@@ -482,16 +531,31 @@ select @new", baza.konekcija)
             Dim kads As New DataSet()
 
             kaadapter.Fill(kads)
-            With kupacAdresaComboBox
-                .DataSource = kads.Tables(0)
-                .ValueMember = "adresa_kupac"
-                .DisplayMember = "adresa_kupac"
-                .SelectedIndex = -1
-                .DropDownStyle = ComboBoxStyle.DropDown
-                .AutoCompleteMode = AutoCompleteMode.Suggest
-                .AutoCompleteSource = AutoCompleteSource.ListItems
-            End With
+            If kads.Tables(0).Rows.Count > 0 Then
+                With kupacAdresaComboBox
+                    .DataSource = kads.Tables(0)
+                    .ValueMember = "adresa_kupac"
+                    .DisplayMember = "adresa_kupac"
+                    .SelectedIndex = 0
+                    .DropDownStyle = ComboBoxStyle.DropDownList
+                    .AutoCompleteMode = AutoCompleteMode.Suggest
+                    .AutoCompleteSource = AutoCompleteSource.ListItems
+                End With
+            Else
+                With kupacAdresaComboBox
+                    .Text = ""
+                    .DataSource = Nothing
+                    .ValueMember = ""
+                    .DisplayMember = ""
+                    .SelectedIndex = -1
+                    .DropDownStyle = ComboBoxStyle.DropDown
+                    .AutoCompleteMode = AutoCompleteMode.Suggest
+                    .AutoCompleteSource = AutoCompleteSource.ListItems
+                End With
+            End If
         Catch
+
+
         End Try
 
 
@@ -622,8 +686,8 @@ select @new", baza.konekcija)
                         If (lista.Name = "rabatCombo" + (cmbx.Tag + 1).ToString) Then
                             lista.Enabled = True
                             TryCast(lista, ComboBox).SelectedIndex = 0
-                            brojDodanih += 1
-                            Label10.Text = brojDodanih.ToString
+                            ' brojDodanih += 1
+                            'optBrojLabel.Text = brojDodanih.ToString
                             TryCast(lista, ComboBox).SelectedIndex = 0
                         End If
                         If (lista.Name = "iznosCombo" + (cmbx.Tag + 1).ToString) Then
@@ -741,6 +805,12 @@ select @new", baza.konekcija)
                 nekoI += 1
             End If
         Next
+    End Sub
+
+
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        Me.Dispose()
     End Sub
 
 
