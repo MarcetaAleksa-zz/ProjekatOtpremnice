@@ -107,3 +107,4 @@ C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\o
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Medjuforma.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Medjuforma.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.ucitavanje.resources
+C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.ucitavanje.resources
