@@ -276,8 +276,8 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         Dim label1 As New TextBox                                          'SIFRA
         With label1
             .name = "LSifra"
-            .Text = "SFR"
-            .Font = New Drawing.Font("Microsoft Sans Serif", 8)
+            .Text = "ŠIF"
+            .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
             .Dock = DockStyle.Fill
             .ReadOnly = True
             .TabStop = False
