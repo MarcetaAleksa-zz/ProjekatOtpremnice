@@ -24,17 +24,17 @@ Public Class istorijaProdaje
             Dim tabela As New DataTable()
             adapter.Fill(tabela)
 
-            Label1.Text = tabela.Rows(0)(0)
-            Label2.Text = tabela.Rows(0)(1)
-            Label3.Text = tabela.Rows(0)(2)
-            Label4.Text = tabela.Rows(0)(3)
-            Label5.Text = tabela.Rows(0)(4)
-            Label6.Text = tabela.Rows(0)(5)
-            Label7.Text = tabela.Rows(0)(6)
-            Label8.Text = tabela.Rows(0)(7)
-            Label9.Text = tabela.Rows(0)(8)
-            Label10.Text = tabela.Rows(0)(9)
-            Label11.Text = tabela.Rows(0)(10)
+            Label1.Text = tabela.Rows(0)(0)     'naziv pravnog lica
+            Label2.Text = tabela.Rows(0)(1)     'adresa
+            Label3.Text = tabela.Rows(0)(2)     'IB preduzeca
+            Label4.Text = tabela.Rows(0)(3)     'KUPAC
+            Label5.Text = tabela.Rows(0)(4)     'adresa kupca
+            Label6.Text = tabela.Rows(0)(5)     'nacin otrpeme
+            Label7.Text = tabela.Rows(0)(6)     'reklamacija
+            Label8.Text = tabela.Rows(0)(7)     'datum
+            Label9.Text = tabela.Rows(0)(8)     'ID otrpemnice (broj)
+            Label10.Text = tabela.Rows(0)(9)    'IB kupca
+            Label11.Text = tabela.Rows(0)(10)   'reg_br_vozila
 
         Catch
 
