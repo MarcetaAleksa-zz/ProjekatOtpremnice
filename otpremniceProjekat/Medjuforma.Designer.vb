@@ -25,9 +25,9 @@ Partial Class Medjuforma
         Me.components = New System.ComponentModel.Container()
         Me.NapraviOtpremnicu = New System.Windows.Forms.Button()
         Me.DodajRobu = New System.Windows.Forms.Button()
-        Me.PregledOtpremnica = New System.Windows.Forms.Button()
         Me.Administrativno = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'NapraviOtpremnicu
@@ -40,7 +40,7 @@ Partial Class Medjuforma
         Me.NapraviOtpremnicu.Name = "NapraviOtpremnicu"
         Me.NapraviOtpremnicu.Size = New System.Drawing.Size(400, 200)
         Me.NapraviOtpremnicu.TabIndex = 0
-        Me.NapraviOtpremnicu.Text = "Napravi novu otpremnicu"
+        Me.NapraviOtpremnicu.Text = "OTPREMNICE"
         Me.NapraviOtpremnicu.UseVisualStyleBackColor = False
         '
         'DodajRobu
@@ -49,25 +49,12 @@ Partial Class Medjuforma
         Me.DodajRobu.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.DodajRobu.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DodajRobu.ForeColor = System.Drawing.SystemColors.Control
-        Me.DodajRobu.Location = New System.Drawing.Point(397, 196)
+        Me.DodajRobu.Location = New System.Drawing.Point(395, -3)
         Me.DodajRobu.Name = "DodajRobu"
-        Me.DodajRobu.Size = New System.Drawing.Size(400, 200)
+        Me.DodajRobu.Size = New System.Drawing.Size(403, 200)
         Me.DodajRobu.TabIndex = 1
-        Me.DodajRobu.Text = "Dodaj Robu"
+        Me.DodajRobu.Text = "UNOS ROBE"
         Me.DodajRobu.UseVisualStyleBackColor = False
-        '
-        'PregledOtpremnica
-        '
-        Me.PregledOtpremnica.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.PregledOtpremnica.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.PregledOtpremnica.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PregledOtpremnica.ForeColor = System.Drawing.SystemColors.Control
-        Me.PregledOtpremnica.Location = New System.Drawing.Point(-1, 196)
-        Me.PregledOtpremnica.Name = "PregledOtpremnica"
-        Me.PregledOtpremnica.Size = New System.Drawing.Size(400, 200)
-        Me.PregledOtpremnica.TabIndex = 2
-        Me.PregledOtpremnica.Text = "Pregled Otpremnica"
-        Me.PregledOtpremnica.UseVisualStyleBackColor = False
         '
         'Administrativno
         '
@@ -75,24 +62,37 @@ Partial Class Medjuforma
         Me.Administrativno.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Administrativno.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Administrativno.ForeColor = System.Drawing.SystemColors.Control
-        Me.Administrativno.Location = New System.Drawing.Point(397, -2)
+        Me.Administrativno.Location = New System.Drawing.Point(-1, 196)
         Me.Administrativno.Name = "Administrativno"
-        Me.Administrativno.Size = New System.Drawing.Size(400, 200)
+        Me.Administrativno.Size = New System.Drawing.Size(649, 200)
         Me.Administrativno.TabIndex = 3
-        Me.Administrativno.Text = "Administrativna Zona"
+        Me.Administrativno.Text = "ADMINISTRATIVNA ZONA"
         Me.Administrativno.UseVisualStyleBackColor = False
         '
         'Timer1
         '
         Me.Timer1.Interval = 1
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Button1.Location = New System.Drawing.Point(646, 196)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(152, 200)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "NAZAD"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
         'Medjuforma
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(795, 395)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DodajRobu)
-        Me.Controls.Add(Me.PregledOtpremnica)
         Me.Controls.Add(Me.Administrativno)
         Me.Controls.Add(Me.NapraviOtpremnicu)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -105,7 +105,7 @@ Partial Class Medjuforma
 
     Friend WithEvents NapraviOtpremnicu As Button
     Friend WithEvents DodajRobu As Button
-    Friend WithEvents PregledOtpremnica As Button
     Friend WithEvents Administrativno As Button
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Button1 As Button
 End Class

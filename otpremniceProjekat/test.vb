@@ -1014,7 +1014,7 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         Next
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        Me.Close()
+        Medjuforma.Show()
         Me.Dispose()
     End Sub
     Private Sub OtpremaTB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OtpremaTB.SelectedIndexChanged
