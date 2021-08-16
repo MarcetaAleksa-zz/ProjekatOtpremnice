@@ -65,7 +65,7 @@ Partial Class test
         Me.Button1 = New System.Windows.Forms.Button()
         Me.brotpremniceTxt = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ukupanIznos = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -543,6 +543,7 @@ Partial Class test
         Me.dodajRedButton.Size = New System.Drawing.Size(51, 42)
         Me.dodajRedButton.TabIndex = 63
         Me.dodajRedButton.Text = "+"
+        Me.ToolTip1.SetToolTip(Me.dodajRedButton, "Dodaj novi red")
         Me.dodajRedButton.UseVisualStyleBackColor = True
         '
         'Button1
@@ -578,19 +579,19 @@ Partial Class test
         Me.Label10.TabIndex = 66
         Me.Label10.Text = "UKUPNO:"
         '
-        'TextBox1
+        'ukupanIznos
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.SystemColors.Control
-        Me.TextBox1.Location = New System.Drawing.Point(146, 6)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(86, 13)
-        Me.TextBox1.TabIndex = 67
-        Me.TextBox1.Text = "00.00"
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.ukupanIznos.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.ukupanIznos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ukupanIznos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ukupanIznos.ForeColor = System.Drawing.SystemColors.Control
+        Me.ukupanIznos.Location = New System.Drawing.Point(146, 6)
+        Me.ukupanIznos.Name = "ukupanIznos"
+        Me.ukupanIznos.ReadOnly = True
+        Me.ukupanIznos.Size = New System.Drawing.Size(86, 13)
+        Me.ukupanIznos.TabIndex = 67
+        Me.ukupanIznos.Text = "00.00"
+        Me.ukupanIznos.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Panel1
         '
@@ -598,7 +599,7 @@ Partial Class test
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.Label10)
-        Me.Panel1.Controls.Add(Me.TextBox1)
+        Me.Panel1.Controls.Add(Me.ukupanIznos)
         Me.Panel1.Location = New System.Drawing.Point(867, 708)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(326, 26)
@@ -924,7 +925,7 @@ Partial Class test
     Friend WithEvents Button1 As Button
     Friend WithEvents brotpremniceTxt As TextBox
     Friend WithEvents Label10 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents ukupanIznos As TextBox
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label11 As Label
     Friend WithEvents Button2 As Button
