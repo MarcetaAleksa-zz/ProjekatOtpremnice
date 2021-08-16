@@ -122,21 +122,10 @@ Public Class prijava
         TextBox1.Focus()
     End Sub
 
-
-    Private Sub Exit_MouseEnter(sender As Object, e As EventArgs) Handles PictureBox1.MouseEnter
-        PictureBox1.BorderStyle = BorderStyle.Fixed3D
-    End Sub
-
-    Private Sub Exit_MouseLeave(sender As Object, e As EventArgs) Handles PictureBox1.MouseLeave, MyBase.MouseEnter
-        PictureBox1.BorderStyle = BorderStyle.None
-    End Sub
-
-
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Dim odogovor = MsgBox("Da li zelite da izadjete iz programa?", vbYesNo)
         If odogovor = vbYes Then
             Me.Close()
         End If
     End Sub
-
 End Class
