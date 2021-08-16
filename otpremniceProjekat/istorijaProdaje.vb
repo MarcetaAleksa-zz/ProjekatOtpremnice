@@ -12,7 +12,7 @@ Public Class istorijaProdaje
 
     Public Sub otvaranjeOtpremnice(brojOtpremnice)
         Try
-            Dim command As New SqlCommand("select * from Usluge where otpremnica_br = '" & brojOtpremnice & "'", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
+            Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, iznos from Usluge where otpremnica_br = '" & brojOtpremnice & "'", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
             Dim adapter As New SqlDataAdapter(command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
@@ -20,6 +20,8 @@ Public Class istorijaProdaje
 
             DataGridView1.AutoGenerateColumns = True
             DataGridView1.DataSource = ds.Tables(0)
+            Me.DataGridView1.Columns(3).DefaultCellStyle.Format = "n2" 'formatiranje cijene na dvije decimale
+            Me.DataGridView1.Columns(5).DefaultCellStyle.Format = "n2" 'formatiranje iznosa na dvije decimale
         Catch
         End Try
 
@@ -138,13 +140,13 @@ Public Class istorijaProdaje
                     } 'redni broj
                     ptabela.AddCell(cellone)
 
-                    Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(1).Value, fntTableFont)) 'naziv usluge
+                    Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(0).Value, fntTableFont)) 'naziv usluge
                     ptabela.AddCell(celltwo)
 
                     Dim jedm
-                    If DataGridView1.Rows(noviBrojOpet).Cells(2).Value = True Then
+                    If DataGridView1.Rows(noviBrojOpet).Cells(1).Value = True Then
                         jedm = "K"
-                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(2).Value = False Then
+                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(1).Value = False Then
                         jedm = "H"
                     End If
                     Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
@@ -154,14 +156,14 @@ Public Class istorijaProdaje
                     ptabela.AddCell(cellthree)
 
 
-                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(3).Value, fntTableFont)) With {
+                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(2).Value, fntTableFont)) With {
                         .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
                     .VerticalAlignment = PdfPCell.ALIGN_CENTER
                     } 'kolicina
                     ptabela.AddCell(cellfour)
 
                     '                            Dim cijenaKontrol As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBrojOpet)
-                    Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(4).Value
+                    Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(3).Value
                     cijenaDvijeDec = Format(Val(cijenaDvijeDec), "0.00")
                     Dim cellfive As New PdfPCell(New Phrase(cijenaDvijeDec.ToString, fntTableFont)) With {
                         .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
@@ -170,14 +172,14 @@ Public Class istorijaProdaje
                     ptabela.AddCell(cellfive)
 
 
-                    Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(5).Value & "%", fntTableFont)) With {
+                    Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(4).Value & "%", fntTableFont)) With {
                          .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
                     .VerticalAlignment = PdfPCell.ALIGN_CENTER
                     } 'rabat
                     ptabela.AddCell(cellsix)
 
 
-                    Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(8).Value
+                    Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(5).Value
                     iznosDvijeDec = Format(Val(iznosDvijeDec), "0.00")
                     Dim cellseven As New PdfPCell(New Phrase(iznosDvijeDec, fntTableFont)) With {
 .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
