@@ -22,6 +22,21 @@ otpremniceProjekat
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:otpremniceProjekat.My.Resources.Resources.back">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:otpremniceProjekat.My.Resources.Resources.back1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:otpremniceProjekat.My.Resources.Resources.backpng">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:otpremniceProjekat.My.Resources.Resources.saveeeeeeee">
 <summary>
   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).

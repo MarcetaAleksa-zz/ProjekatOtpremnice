@@ -216,8 +216,11 @@ Public Class istorijaProdaje
         End Try
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
         Dim x As Integer
         MsgBox(DataGridView1.Rows(1).Cells(1).Value)
+    End Sub
+
+    Private Sub istorijaProdaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
     End Sub
 End Class
