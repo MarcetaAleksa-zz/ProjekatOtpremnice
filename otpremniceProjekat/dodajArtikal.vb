@@ -61,9 +61,6 @@ Public Class dodajArtikal
 
     End Sub
 
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs) Handles TextBox3.TextChanged
-
-    End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
@@ -72,21 +69,78 @@ Public Class dodajArtikal
     End Sub
 
     Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress, TextBox3.KeyPress, TextBox2.KeyPress
-        'Dim KeyAscii As Integer = Asc(e.KeyChar)
-        'Select Case KeyAscii
-        '    Case 8, 27, 48 To 57, 9
-        '    Case Else
-        '        KeyAscii = 0
-        'End Select
 
-        'If KeyAscii = 0 Then
-        '    e.Handled = True
-        'Else
-        '    e.Handled = False
-        'End If
-        'e.Handled = Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".")
         If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".") And Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click   'dodavanje
+        If (TextBox1.Text <> "" And TextBox2.Text <> "" And TextBox3.Text <> "" And TextBox4.Text <> "" And ComboBox1.SelectedIndex <> -1) Then
+            Dim odgovor = MsgBox("Da li zelite da unesete navedeni artikal?", vbYesNo)
+            Select Case odgovor
+                Case vbYes
+                    Dim jedMjere
+                    If ComboBox1.SelectedIndex = 0 Then
+                        jedMjere = "True"
+                    ElseIf ComboBox1.SelectedIndex = 1 Then
+                        jedMjere = "False"
+                    End If
+                    Dim kommanden As New SqlCommand("INSERT INTO Inventar (id_robe, naziv_robe, kolicina, cijena, jed_mjere)
+                            Values('" & TextBox4.Text & "', '" & TextBox1.Text & "', '" & TextBox2.Text & "','" & TextBox3.Text & "', '" & jedMjere.ToString & "') ", baza.konekcija)
+                    kommanden.Connection.Open()
+                    kommanden.ExecuteNonQuery()
+                    kommanden.Connection.Close()
+                    Me.Controls.Clear() 'removes all the controls on the form
+                    InitializeComponent() 'load all the controls again
+                    dodajArtikal_Load(e, e)
+                Case vbNo
+            End Select
+        Else
+            MsgBox("Popunite sva polja!")
+        End If
+
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click  'brisanje
+        Dim odgovor = MsgBox("Da li zelite da izbrisete navedeni artikal?", vbYesNo)
+        Select Case odgovor
+            Case vbYes
+
+                Dim kommanden As New SqlCommand("Delete  from Inventar where id_robe = '" & TextBox4.Text & "'", baza.konekcija)
+                kommanden.Connection.Open()
+                kommanden.ExecuteNonQuery()
+                kommanden.Connection.Close()
+                Me.Controls.Clear() 'removes all the controls on the form
+                InitializeComponent() 'load all the controls again
+                dodajArtikal_Load(e, e)
+            Case vbNo
+        End Select
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim odgovor = MsgBox("Da li zelite da azurirate navedeni artikal?", vbYesNo)
+        If (TextBox1.Text <> "" And TextBox2.Text <> "" And TextBox3.Text <> "" And TextBox4.Text <> "" And ComboBox1.SelectedIndex <> -1 And TextBox2.Text > 0) Then
+            Select Case odgovor
+                Case vbYes
+                    Dim jedMjere
+                    If ComboBox1.SelectedIndex = 0 Then
+                        jedMjere = "True"
+                    ElseIf ComboBox1.SelectedIndex = 1 Then
+                        jedMjere = "False"
+                    End If
+                    Dim kommanden As New SqlCommand("UPDATE Inventar SET naziv_robe =  '" & TextBox1.Text & "', kolicina=  '" & TextBox2.Text & "', cijena=  '" & TextBox3.Text & "' , jed_mjere=  '" & jedMjere.ToString & "' WHERE  id_robe = '" & TextBox4.Text & "'", baza.konekcija)
+                    kommanden.Connection.Open()
+                    kommanden.ExecuteNonQuery()
+                    kommanden.Connection.Close()
+                    Me.Controls.Clear() 'removes all the controls on the form
+                    InitializeComponent() 'load all the controls again
+                    dodajArtikal_Load(e, e)
+                Case vbNo
+            End Select
+        Else
+            MsgBox("Popunite sva polja!")
+        End If
+
     End Sub
 End Class
