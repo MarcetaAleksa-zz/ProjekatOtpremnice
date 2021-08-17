@@ -95,6 +95,7 @@ Partial Class istorijaProdaje
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer))
         Me.DataGridView1.Location = New System.Drawing.Point(48, 275)
         Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
         Me.DataGridView1.Size = New System.Drawing.Size(652, 406)
         Me.DataGridView1.TabIndex = 0
         '

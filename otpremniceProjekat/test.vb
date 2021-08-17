@@ -375,10 +375,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .BackColor = SystemColors.Control
             TableLayoutPanel2.Controls.Add(label3, 2, 0)
         End With
-
-
-
-
         Try
             '----------------------------------------------------------------------------- dt za otpremnice
 
@@ -481,23 +477,16 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                 '    TableLayoutPanel2.Controls.Add(btn2, 4, smg + 1)
                 'End With
             Next
-
-
         Catch
         End Try
     End Sub
     Public Sub otvoriOtpremnicu_Click(ByVal sender As Object, ByVal e As EventArgs)
-
         Dim dugme As PictureBox = DirectCast(sender, PictureBox)
         istorijaProdaje.Show()
         istorijaProdaje.otvaranjeOtpremnice(dugme.Tag)
         Me.Enabled = False
-
     End Sub
     Private Sub dodavanjeReda()
-
-
-
         Dim redniBroj As TextBox = New TextBox
         With redniBroj
             .Text = (novoI + 1).ToString
@@ -511,8 +500,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Tag = 404
             TableLayoutPanel1.Controls.Add(redniBroj, 0, novoI)
         End With
-
-
         '----------------------------------------------------------------------------- dataSet za artikle
         Dim nazivRobe As ComboBox = New ComboBox
         Dim RCommand As New SqlCommand("Select naziv_robe from Inventar where kolicina > 0", baza.konekcija)
@@ -559,8 +546,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .Tag = novoI
 
         End With
-
-
         Dim cijenaCombo As TextBox = New TextBox
         With cijenaCombo
             .Name = "cijenaCombo" + (novoI + 1).ToString
@@ -575,7 +560,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             TableLayoutPanel1.Controls.Add(cijenaCombo, 4, novoI)
             ' .SelectedIndex = -1
         End With
-
         Dim rabatCombo As ComboBox = New ComboBox
         With rabatCombo
             .Name = "rabatCombo" + (novoI + 1).ToString
@@ -594,7 +578,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             AddHandler rabatCombo.SelectedIndexChanged, AddressOf kolicina_change
             .SelectedIndex = -1
         End With
-
         Dim dodajButton As Button = New Button
         With dodajButton
             .Text = "IZBRISI"
@@ -609,7 +592,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             TableLayoutPanel1.Controls.Add(dodajButton, 7, novoI)
             '.Visible = False
         End With
-
         Dim kolicinaCombo As ComboBox = New ComboBox
         With kolicinaCombo
             .Name = "kolicinaCombo" + (novoI + 1).ToString
@@ -624,7 +606,6 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
             .SelectedIndex = -1
             .Tag = novoI
             AddHandler kolicinaCombo.SelectedIndexChanged, AddressOf kolicina_change
-
         End With
         Dim iznosCombo As TextBox = New TextBox
         With iznosCombo
@@ -641,15 +622,11 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
         End With
         If novoI > 14 Then
             TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 30.0))
-
         End If
         novoI += 1
     End Sub
     Public Sub brisiDugme_Click(ByVal sender As Object, ByVal e As EventArgs)
-
         Dim dugme As Button = DirectCast(sender, Button)
-
-        ' MsgBox(dugme.Size.ToString)
         For Each ComboBox In TableLayoutPanel1.Controls
             If (ComboBox.Tag = dugme.Tag) And (ComboBox.Name <> dugme.Name) Then
                 Select Case ComboBox.GetType
@@ -669,34 +646,19 @@ Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
                     brojDodanih -= 1
                 End If
             End If
-
         Next
-
-
     End Sub
     Private Function id_lica() As Integer
         Dim command As New SqlCommand("Select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija) With {
              .CommandText = "select zaposleni.id from zaposleni where zaposleni.ime + ' ' + zaposleni.prezime  = '" & ComboBox1.SelectedValue & "'"
         }
-
         Dim adapter As New SqlDataAdapter(command)
         Dim table As New DataTable()
         adapter.Fill(table)
         id_lica = table.Rows(0)(0)
         Return id_lica
     End Function
-    '    Private Function redni_broj() As Integer
-    '        Dim s As Integer
-    '        Dim command As New SqlCommand("declare @new as smallint 
-    'set @new = (select  MAX(redni_broj) as max
-    'from Usluge) + 1;
-    'select @new", baza.konekcija)
-    '        Dim adapter As New SqlDataAdapter(command)
-    '        Dim tabela As New DataTable()
-    '        adapter.Fill(tabela)
-    '        s = tabela.Rows(0)(0)
-    '        Return s
-    '    End Function
+
     Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
         'izvlacimo prethodne adrese izabranog kupca kao prijedlog
 

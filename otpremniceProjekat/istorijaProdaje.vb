@@ -12,7 +12,7 @@ Public Class istorijaProdaje
 
     Public Sub otvaranjeOtpremnice(brojOtpremnice)
         Try
-            Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, iznos from Usluge where otpremnica_br = '" & brojOtpremnice & "'", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
+            Dim command As New SqlCommand("select inv.naziv_robe, inv.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
             Dim adapter As New SqlDataAdapter(command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
@@ -26,22 +26,54 @@ Public Class istorijaProdaje
         End Try
 
         Try
-            Dim command As New SqlCommand("select * from Osnovne where ID = '" & brojOtpremnice & "'", baza.konekcija) 'izvlacenje svih ostalih informacija pod nadurdzbomID (npr naziv pravnog lica, datum i sl)
+            Dim command As New SqlCommand("declare @x smallint	
+set @x = " & brojOtpremnice & "
+declare @otprema  varchar(20)
+declare @naop smallint
+declare @reklamacija smallint
+declare @rekl smallint
+set @rekl = (select reklamacija from Osnovne where ID = @x)
+if @rekl = 1
+begin
+set @reklamacija = 7
+end
+else if @rekl = 2
+begin
+set @reklamacija = 14
+end
+else if @rekl = 3
+begin
+set @reklamacija = 21
+end
+set @naop = (select nacin_otpreme from Osnovne where ID = @x) 
+if @naop = 1 
+begin
+set @otprema = 'Posta'
+end
+else if @naop  = 2
+begin
+set @otprema = 'Sluzbeno vozilo'
+end
+else if @naop = 3
+begin 
+set @otprema = 'Kupac preuzima'
+end
+select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID, os.IB, os.adresa, @otprema as [nacin otpreme], os.reg_br_vozila_sluzbenog, @reklamacija as reklamacija, os.otpremi_na_naslov, os.IB, os.adresa_kupac from  zaposleni join Osnovne as os on (zaposleni.id = naziv_pravnog_lica)  where os.ID = " & brojOtpremnice & ";", baza.konekcija) 'izvlacenje svih ostalih informacija pod nadurdzbomID (npr naziv pravnog lica, datum i sl)
             Dim adapter As New SqlDataAdapter(command)
             Dim tabela As New DataTable()
             adapter.Fill(tabela)
 
             Label1.Text = tabela.Rows(0)(0)     'naziv pravnog lica
-            Label2.Text = tabela.Rows(0)(1)     'adresa
-            Label3.Text = tabela.Rows(0)(2)     'IB preduzeca
-            Label4.Text = tabela.Rows(0)(3)     'KUPAC
-            Label5.Text = tabela.Rows(0)(4)     'adresa kupca
+            Label8.Text = tabela.Rows(0)(1)     'datum
+            Label9.Text = tabela.Rows(0)(2)     'ID otrpemnice (broj)
+            Label3.Text = tabela.Rows(0)(3)     'IB preduzeca
+            Label2.Text = tabela.Rows(0)(4)     'adresa
             Label6.Text = tabela.Rows(0)(5)     'nacin otrpeme
-            Label7.Text = tabela.Rows(0)(6)     'reklamacija
-            Label8.Text = tabela.Rows(0)(7)     'datum
-            Label9.Text = tabela.Rows(0)(8)     'ID otrpemnice (broj)
+            Label11.Text = tabela.Rows(0)(6)   'reg_br_vozila
+            Label7.Text = tabela.Rows(0)(7)     'reklamacija
+            Label4.Text = tabela.Rows(0)(8)     'KUPAC
             Label10.Text = tabela.Rows(0)(9)    'IB kupca
-            Label11.Text = tabela.Rows(0)(10)   'reg_br_vozila
+            Label5.Text = tabela.Rows(0)(10)     'adresa kupca
 
         Catch
 
@@ -65,7 +97,7 @@ Public Class istorijaProdaje
 
             Dim sfd As New SaveFileDialog With {.Filter = "PDF Files (*.pdf | *.pdfs"}   'Samo mozemo praviti file tipa .pdf, SaveFileDialog nam sluzi za poziv da sacuvamo file
             Dim appPath As String = My.Application.Info.DirectoryPath  ' dobijamo default lokaciju gdje se .exe projekta nalazi
-            sfd.FileName = Label9.Text + " " + Label1.Text 'dodjela naziva za .pdf file
+            sfd.FileName = Label9.Text + " " + Label4.Text 'dodjela naziva za .pdf file
 
             If sfd.ShowDialog = 1 Then
                 Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta

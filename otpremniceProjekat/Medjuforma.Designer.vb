@@ -64,7 +64,7 @@ Partial Class Medjuforma
         Me.Administrativno.ForeColor = System.Drawing.SystemColors.Control
         Me.Administrativno.Location = New System.Drawing.Point(-1, 196)
         Me.Administrativno.Name = "Administrativno"
-        Me.Administrativno.Size = New System.Drawing.Size(649, 200)
+        Me.Administrativno.Size = New System.Drawing.Size(400, 200)
         Me.Administrativno.TabIndex = 3
         Me.Administrativno.Text = "ADMINISTRATIVNA ZONA"
         Me.Administrativno.UseVisualStyleBackColor = False
@@ -79,9 +79,9 @@ Partial Class Medjuforma
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Button1.Location = New System.Drawing.Point(646, 196)
+        Me.Button1.Location = New System.Drawing.Point(395, 196)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(152, 200)
+        Me.Button1.Size = New System.Drawing.Size(403, 200)
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "NAZAD"
         Me.Button1.UseVisualStyleBackColor = False
