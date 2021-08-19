@@ -12,14 +12,31 @@ Public Class istorijaProdaje
 
     Public Sub otvaranjeOtpremnice(brojOtpremnice)
         Try
-            Dim command As New SqlCommand("select inv.naziv_robe, inv.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
-            Dim adapter As New SqlDataAdapter(command)
+            'Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
+            Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
+
+            Dim adapter As New SqlDataAdapter(Command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
             adapter.Fill(ds)
 
             DataGridView1.AutoGenerateColumns = True
-            DataGridView1.DataSource = ds.Tables(0)
+
+            Dim dtCloned As DataSet = ds.Clone()
+            dtCloned.Tables(0).Columns(1).DataType = GetType(String)
+            For Each Row As DataRow In ds.Tables(0).Rows
+                dtCloned.Tables(0).ImportRow(Row)
+            Next
+            For Each Row As DataRow In dtCloned.Tables(0).Rows
+                If (Row.Item(1) = "True") Then
+                    Row.Item(1) = "Kolicina"
+                ElseIf (Row.Item(1) = "False") Then
+                    Row.Item(1) = "Satnica"
+                End If
+
+            Next
+
+            DataGridView1.DataSource = dtCloned.Tables(0)
             Me.DataGridView1.Columns(3).DefaultCellStyle.Format = "n2" 'formatiranje cijene na dvije decimale
             Me.DataGridView1.Columns(5).DefaultCellStyle.Format = "n2" 'formatiranje iznosa na dvije decimale
         Catch
@@ -78,6 +95,8 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
         Catch
 
         End Try
+
+        DataGridView1.Refresh()
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
@@ -254,5 +273,22 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
     End Sub
 
     Private Sub istorijaProdaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    End Sub
+
+    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
+
+        If Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("jed_mjere") = True And Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("naziv_robe") <> Nothing Then
+            If CBool(e.Value) = True Then
+
+                e.Value = "Da"
+            Else
+
+                e.Value = "Ne"
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+        DataGridView1("jed_mjere", e.RowIndex).Value = Convert.ToBoolean(DataGridView1("jed_mjere", e.RowIndex).Value)
     End Sub
 End Class
