@@ -97,7 +97,7 @@ Partial Class istorijaProdaje
         Me.DataGridView1.Location = New System.Drawing.Point(48, 275)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(652, 406)
+        Me.DataGridView1.Size = New System.Drawing.Size(676, 406)
         Me.DataGridView1.TabIndex = 0
         '
         'Button1
@@ -362,7 +362,7 @@ Partial Class istorijaProdaje
         Me.Panel9.Controls.Add(Me.Label26)
         Me.Panel9.Location = New System.Drawing.Point(-3, 113)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(758, 41)
+        Me.Panel9.Size = New System.Drawing.Size(776, 41)
         Me.Panel9.TabIndex = 80
         '
         'Label28
@@ -370,7 +370,7 @@ Partial Class istorijaProdaje
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label28.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label28.Location = New System.Drawing.Point(599, 9)
+        Me.Label28.Location = New System.Drawing.Point(614, 9)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(84, 25)
         Me.Label28.TabIndex = 76
@@ -381,7 +381,7 @@ Partial Class istorijaProdaje
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label27.Location = New System.Drawing.Point(321, 9)
+        Me.Label27.Location = New System.Drawing.Point(342, 9)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(98, 25)
         Me.Label27.TabIndex = 76
@@ -403,7 +403,7 @@ Partial Class istorijaProdaje
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Label23.Location = New System.Drawing.Point(283, 65)
+        Me.Label23.Location = New System.Drawing.Point(329, 67)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(133, 29)
         Me.Label23.TabIndex = 81
@@ -415,7 +415,7 @@ Partial Class istorijaProdaje
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel1.Controls.Add(Me.Label21)
         Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Location = New System.Drawing.Point(268, 160)
+        Me.Panel1.Location = New System.Drawing.Point(287, 160)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(194, 27)
         Me.Panel1.TabIndex = 82
@@ -426,7 +426,7 @@ Partial Class istorijaProdaje
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Controls.Add(Me.Label22)
-        Me.Panel2.Location = New System.Drawing.Point(268, 226)
+        Me.Panel2.Location = New System.Drawing.Point(287, 226)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(194, 27)
         Me.Panel2.TabIndex = 83
@@ -437,7 +437,7 @@ Partial Class istorijaProdaje
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label15)
         Me.Panel3.Controls.Add(Me.Label11)
-        Me.Panel3.Location = New System.Drawing.Point(268, 193)
+        Me.Panel3.Location = New System.Drawing.Point(287, 193)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(194, 27)
         Me.Panel3.TabIndex = 84
@@ -481,7 +481,7 @@ Partial Class istorijaProdaje
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel7.Controls.Add(Me.Label16)
         Me.Panel7.Controls.Add(Me.Label5)
-        Me.Panel7.Location = New System.Drawing.Point(530, 226)
+        Me.Panel7.Location = New System.Drawing.Point(558, 226)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(194, 27)
         Me.Panel7.TabIndex = 83
@@ -492,7 +492,7 @@ Partial Class istorijaProdaje
         Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel8.Controls.Add(Me.Label14)
         Me.Panel8.Controls.Add(Me.Label10)
-        Me.Panel8.Location = New System.Drawing.Point(530, 193)
+        Me.Panel8.Location = New System.Drawing.Point(558, 193)
         Me.Panel8.Name = "Panel8"
         Me.Panel8.Size = New System.Drawing.Size(194, 27)
         Me.Panel8.TabIndex = 83
@@ -503,7 +503,7 @@ Partial Class istorijaProdaje
         Me.Panel10.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel10.Controls.Add(Me.Label17)
         Me.Panel10.Controls.Add(Me.Label4)
-        Me.Panel10.Location = New System.Drawing.Point(530, 160)
+        Me.Panel10.Location = New System.Drawing.Point(558, 160)
         Me.Panel10.Name = "Panel10"
         Me.Panel10.Size = New System.Drawing.Size(194, 27)
         Me.Panel10.TabIndex = 83
@@ -554,7 +554,7 @@ Partial Class istorijaProdaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(754, 701)
+        Me.ClientSize = New System.Drawing.Size(771, 701)
         Me.Controls.Add(Me.Panel12)
         Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.Label24)

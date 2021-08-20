@@ -12,13 +12,15 @@ Public Class istorijaProdaje
 
     Public Sub otvaranjeOtpremnice(brojOtpremnice)
         Try
-            Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
-            'Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
-
+            'Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz inner join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
+            '''moj Dim command As New SqlCommand("select Inventar.naziv_robe, Usluge.jed_mjere, Usluge.kolicina, Usluge.cijena, Usluge.rabat, Usluge.iznos  from  Usluge inner join Inventar on (Inventar.id_robe = Usluge.naziv_robe) where Usluge.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
+            ' Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
+            Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
             Dim adapter As New SqlDataAdapter(Command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
             adapter.Fill(ds)
+
 
             DataGridView1.AutoGenerateColumns = True
 
@@ -87,7 +89,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             Label2.Text = tabela.Rows(0)(4)     'adresa
             Label6.Text = tabela.Rows(0)(5)     'nacin otrpeme
             Label11.Text = tabela.Rows(0)(6)   'reg_br_vozila
-            Label7.Text = tabela.Rows(0)(7)     'reklamacija
+            Label7.Text = tabela.Rows(0)(7) & "dana"     'reklamacija
             Label4.Text = tabela.Rows(0)(8)     'KUPAC
             Label10.Text = tabela.Rows(0)(9)    'IB kupca
             Label5.Text = tabela.Rows(0)(10)     'adresa kupca
@@ -195,9 +197,9 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     ptabela.AddCell(celltwo)
 
                     Dim jedm
-                    If DataGridView1.Rows(noviBrojOpet).Cells(1).Value = True Then
+                    If DataGridView1.Rows(noviBrojOpet).Cells(1).Value = "Kolicina" Then
                         jedm = "K"
-                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(1).Value = False Then
+                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(1).Value = "Satnica" Then
                         jedm = "H"
                     End If
                     Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
@@ -207,7 +209,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     ptabela.AddCell(cellthree)
 
 
-                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(2).Value, fntTableFont)) With {
+                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(2).Value.ToString, fntTableFont)) With {
                         .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
                     .VerticalAlignment = PdfPCell.ALIGN_CENTER
                     } 'kolicina
@@ -277,18 +279,18 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
 
     Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
 
-        If Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("jed_mjere") = True And Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("naziv_robe") <> Nothing Then
-            If CBool(e.Value) = True Then
+        'If Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("jed_mjere") = True And Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("naziv_robe") <> Nothing Then
+        '    If CBool(e.Value) = True Then
 
-                e.Value = "Da"
-            Else
+        '        e.Value = "Da"
+        '    Else
 
-                e.Value = "Ne"
-            End If
-        End If
+        '        e.Value = "Ne"
+        '    End If
+        'End If
     End Sub
 
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
-        DataGridView1("jed_mjere", e.RowIndex).Value = Convert.ToBoolean(DataGridView1("jed_mjere", e.RowIndex).Value)
+        'DataGridView1("jed_mjere", e.RowIndex).Value = Convert.ToBoolean(DataGridView1("jed_mjere", e.RowIndex).Value)
     End Sub
 End Class

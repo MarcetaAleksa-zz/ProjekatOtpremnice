@@ -255,7 +255,6 @@ end", baza.konekcija)
             MsgBox("Popunite sva polja!")
         End If
 
-
     End Sub
     Public Sub iznos_change()
         Try
@@ -629,8 +628,14 @@ end", baza.konekcija)
         End With
         If novoI > 14 Then
             TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Absolute, 30.0))
+            TableLayoutPanel1.RowCount += 1
+
         End If
+        'If novoI > 14 Then
+        '    TableLayoutPanel1.RowCount += 1
+        'End If
         novoI += 1
+
     End Sub
     Public Sub brisiDugme_Click(ByVal sender As Object, ByVal e As EventArgs)
         Dim dugme As Button = DirectCast(sender, Button)
@@ -1062,5 +1067,8 @@ end", baza.konekcija)
 
     End Sub
 
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+
+    End Sub
 End Class
 
