@@ -205,15 +205,22 @@ Public Class test
                                 End If
 
 
-                                Dim kommanden As New SqlCommand("INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
-                            Values(" & redniBroj.ToString & ", " & cmbxx.SelectedIndex + 1 & ", '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");
+                                Dim kommanden As New SqlCommand("
+declare @y smallint
+set @y = (Select id_robe from Inventar where naziv_robe = '" & cmbxx.Text & "')
+INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
+                            Values(" & redniBroj.ToString & ", @y, '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");
                             declare @x as bit
 set @x = (select jed_mjere from Inventar where naziv_robe = '" & cmbxx.Text & "')
+if @x = 1
+begin
+
                             declare @jeste int
 set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & cmbxx.Text & "')
 UPDATE Panleksa.dbo.Inventar 
 SET kolicina = (@jeste - " & kolicinaKontrol.Text & ")
-Where naziv_robe = '" & cmbxx.Text & "'", baza.konekcija)
+Where naziv_robe = '" & cmbxx.Text & "'
+end", baza.konekcija)
                                 kommanden.Connection.Open()
                                 kommanden.ExecuteNonQuery()
                                 kommanden.Connection.Close()
