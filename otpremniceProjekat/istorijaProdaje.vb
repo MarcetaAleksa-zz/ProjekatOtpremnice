@@ -15,7 +15,7 @@ Public Class istorijaProdaje
             'Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz inner join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
             '''moj Dim command As New SqlCommand("select Inventar.naziv_robe, Usluge.jed_mjere, Usluge.kolicina, Usluge.cijena, Usluge.rabat, Usluge.iznos  from  Usluge inner join Inventar on (Inventar.id_robe = Usluge.naziv_robe) where Usluge.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
             ' Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
-            Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
+            Dim command As New SqlCommand("select uz.redni_broj, inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
             Dim adapter As New SqlDataAdapter(Command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
@@ -25,22 +25,56 @@ Public Class istorijaProdaje
             DataGridView1.AutoGenerateColumns = True
 
             Dim dtCloned As DataSet = ds.Clone()
-            dtCloned.Tables(0).Columns(1).DataType = GetType(String)
+            dtCloned.Tables(0).Columns(2).DataType = GetType(String)
             For Each Row As DataRow In ds.Tables(0).Rows
                 dtCloned.Tables(0).ImportRow(Row)
             Next
             For Each Row As DataRow In dtCloned.Tables(0).Rows
-                If (Row.Item(1) = "True") Then
-                    Row.Item(1) = "Kolicina"
-                ElseIf (Row.Item(1) = "False") Then
-                    Row.Item(1) = "Satnica"
+                If (Row.Item(2) = "True") Then
+                    Row.Item(2) = "Kolicina"
+                ElseIf (Row.Item(2) = "False") Then
+                    Row.Item(2) = "Satnica"
                 End If
 
             Next
 
             DataGridView1.DataSource = dtCloned.Tables(0)
-            Me.DataGridView1.Columns(3).DefaultCellStyle.Format = "n2" 'formatiranje cijene na dvije decimale
-            Me.DataGridView1.Columns(5).DefaultCellStyle.Format = "n2" 'formatiranje iznosa na dvije decimale
+            With DataGridView1
+                .RowHeadersVisible = False
+                .Columns(0).HeaderCell.Value = "RB"
+                .Columns(0).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomLeft
+                .Columns(1).HeaderCell.Value = "NAZIV ROBE"
+                .Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomLeft
+                .Columns(2).HeaderCell.Value = "JED.MJER."
+                .Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter
+                .Columns(3).HeaderCell.Value = "KOLICINA"
+                .Columns(3).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter
+                .Columns(4).HeaderCell.Value = "CIJENA"
+                .Columns(4).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter
+                .Columns(5).HeaderCell.Value = "RABAT%"
+                .Columns(5).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomCenter
+                .Columns(6).HeaderCell.Value = "IZNOS"
+                .Columns(6).HeaderCell.Style.Alignment = DataGridViewContentAlignment.BottomRight
+                .Columns(0).HeaderCell.SortGlyphDirection = System.Windows.Forms.SortOrder.Ascending
+            End With
+            DataGridView1.Sort(DataGridView1.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
+
+            Me.DataGridView1.Columns(4).DefaultCellStyle.Format = "n2" 'formatiranje cijene na dvije decimale
+            Me.DataGridView1.Columns(6).DefaultCellStyle.Format = "n2" 'formatiranje iznosa na dvije decimale
+            Me.DataGridView1.Columns(5).AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+            Me.DataGridView1.Columns(2).AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+            Me.DataGridView1.Columns(3).AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+            Me.DataGridView1.Columns(4).AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+            Me.DataGridView1.Columns(1).AutoSizeMode = DataGridViewAutoSizeColumnsMode.Fill
+            Me.DataGridView1.Columns(0).AutoSizeMode = DataGridViewAutoSizeColumnsMode.AllCells
+            Me.DataGridView1.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+            Me.DataGridView1.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            Me.DataGridView1.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            Me.DataGridView1.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            Me.DataGridView1.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            Me.DataGridView1.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            Me.DataGridView1.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
         Catch
         End Try
 
@@ -97,7 +131,8 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
         Catch
 
         End Try
-
+        ' DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+        DataGridView1.AutoResizeColumns()
         DataGridView1.Refresh()
     End Sub
 
@@ -193,13 +228,13 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     } 'redni broj
                     ptabela.AddCell(cellone)
 
-                    Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(0).Value, fntTableFont)) 'naziv usluge
+                    Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(1).Value, fntTableFont)) 'naziv usluge
                     ptabela.AddCell(celltwo)
 
                     Dim jedm
-                    If DataGridView1.Rows(noviBrojOpet).Cells(1).Value = "Kolicina" Then
+                    If DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Kolicina" Then
                         jedm = "K"
-                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(1).Value = "Satnica" Then
+                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Satnica" Then
                         jedm = "H"
                     End If
                     Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
@@ -209,14 +244,14 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     ptabela.AddCell(cellthree)
 
 
-                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(2).Value.ToString, fntTableFont)) With {
+                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(3).Value.ToString, fntTableFont)) With {
                         .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
                     .VerticalAlignment = PdfPCell.ALIGN_CENTER
                     } 'kolicina
                     ptabela.AddCell(cellfour)
 
                     '                            Dim cijenaKontrol As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBrojOpet)
-                    Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(3).Value
+                    Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(4).Value
                     cijenaDvijeDec = Format(Val(cijenaDvijeDec), "0.00")
                     Dim cellfive As New PdfPCell(New Phrase(cijenaDvijeDec.ToString, fntTableFont)) With {
                         .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
@@ -225,14 +260,14 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     ptabela.AddCell(cellfive)
 
 
-                    Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(4).Value & "%", fntTableFont)) With {
+                    Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(5).Value & "%", fntTableFont)) With {
                          .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
                     .VerticalAlignment = PdfPCell.ALIGN_CENTER
                     } 'rabat
                     ptabela.AddCell(cellsix)
 
 
-                    Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(5).Value
+                    Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(6).Value
                     iznosDvijeDec = Format(Val(iznosDvijeDec), "0.00")
                     Dim cellseven As New PdfPCell(New Phrase(iznosDvijeDec, fntTableFont)) With {
 .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
@@ -269,28 +304,5 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
         End Try
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs)
-        Dim x As Integer
-        MsgBox(DataGridView1.Rows(1).Cells(1).Value)
-    End Sub
 
-    Private Sub istorijaProdaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-    End Sub
-
-    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
-
-        'If Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("jed_mjere") = True And Me.DataGridView1.Columns(e.ColumnIndex).Name.Equals("naziv_robe") <> Nothing Then
-        '    If CBool(e.Value) = True Then
-
-        '        e.Value = "Da"
-        '    Else
-
-        '        e.Value = "Ne"
-        '    End If
-        'End If
-    End Sub
-
-    Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
-        'DataGridView1("jed_mjere", e.RowIndex).Value = Convert.ToBoolean(DataGridView1("jed_mjere", e.RowIndex).Value)
-    End Sub
 End Class
