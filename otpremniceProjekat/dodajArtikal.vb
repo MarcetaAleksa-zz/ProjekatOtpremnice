@@ -7,6 +7,7 @@ Public Class dodajArtikal
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
+
     End Sub
 
     Private Sub dodajArtikal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -20,7 +21,7 @@ Public Class dodajArtikal
             Button4.Visible = False
             TextBox1.Text = ""
             TextBox2.Text = ""
-            TextBox3.Text = ""
+            TextBox3.Text = "1.00"
             ComboBox1.SelectedIndex = -1
 
         Else
@@ -47,7 +48,7 @@ Public Class dodajArtikal
                 Else
                     TextBox1.Text = ""
                     TextBox2.Text = ""
-                    TextBox3.Text = ""
+                    TextBox3.Text = "1.00"
                     ComboBox1.SelectedIndex = -1
                     Button7.Visible = False
                     Button6.Visible = False
@@ -68,9 +69,15 @@ Public Class dodajArtikal
         Me.Dispose()
     End Sub
 
-    Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress, TextBox3.KeyPress, TextBox2.KeyPress
+    'Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox22.KeyPress
 
-        If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".") And Not Char.IsControl(e.KeyChar) Then
+    '    If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".") And Not Char.IsControl(e.KeyChar) Then
+    '        e.Handled = True
+    '    End If
+    'End Sub
+    Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress, TextBox2.KeyPress
+
+        If Not (Char.IsDigit(e.KeyChar)) And Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
@@ -141,6 +148,16 @@ Public Class dodajArtikal
         Else
             MsgBox("Popunite sva polja!")
         End If
+
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs)
+        'Dim broj = TextBox22.Text
+        'Try
+        '    TextBox22.Text = broj.ToString("0.00")
+        'Catch
+        'End Try
+
 
     End Sub
 End Class

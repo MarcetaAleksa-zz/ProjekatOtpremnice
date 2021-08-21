@@ -74,7 +74,7 @@ Public Class istorijaProdaje
             Me.DataGridView1.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             Me.DataGridView1.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             Me.DataGridView1.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+            ' DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
         Catch
         End Try
 
@@ -123,7 +123,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             Label2.Text = tabela.Rows(0)(4)     'adresa
             Label6.Text = tabela.Rows(0)(5)     'nacin otrpeme
             Label11.Text = tabela.Rows(0)(6)   'reg_br_vozila
-            Label7.Text = tabela.Rows(0)(7) & "dana"     'reklamacija
+            Label7.Text = tabela.Rows(0)(7) & " dana"     'reklamacija
             Label4.Text = tabela.Rows(0)(8)     'KUPAC
             Label10.Text = tabela.Rows(0)(9)    'IB kupca
             Label5.Text = tabela.Rows(0)(10)     'adresa kupca
@@ -160,7 +160,8 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                 Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
                 Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
                 Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
-
+                Dim ev As New itsEvents
+                pdfWriter.PageEvent = ev
 
                 pdfDoc.Open()
 
@@ -303,6 +304,33 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
 
         End Try
     End Sub
+    Public Class itsEvents
+        Inherits PdfPageEventHelper
+        Public Overrides Sub OnStartPage(ByVal writer As iTextSharp.text.pdf.PdfWriter, ByVal document As iTextSharp.text.Document)
+
+            Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.BANNER.GetHbitmap())
+            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
+            logo.ScaleToFit(595.0F, 40.0F)
+            document.Add(logo)
 
 
+
+            'Dim ch As New Chunk("This is my Stack Overflow Header on page " & writer.PageNumber)
+            'document.Add(ch)
+            'Dim slika As New iTextSharp.text.Image
+
+
+            '''Dim headerTbl = New PdfPTable(2)
+            '''headerTbl.SetWidths({4, 1})
+            '''headerTbl.TotalWidth = document.PageSize.Width
+
+
+
+            '''Dim cell = New PdfPCell(logo)
+            '''cell.HorizontalAlignment = Element.ALIGN_RIGHT
+            '''cell.PaddingRight = 20
+            '''cell.Border = iTextSharp.text.Rectangle.NO_BORDER
+
+        End Sub
+    End Class
 End Class

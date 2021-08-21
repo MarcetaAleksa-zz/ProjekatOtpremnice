@@ -22,6 +22,7 @@ Partial Class istorijaProdaje
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -65,6 +66,7 @@ Partial Class istorijaProdaje
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel9.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -206,10 +208,11 @@ Partial Class istorijaProdaje
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.Control
         Me.Label9.Location = New System.Drawing.Point(14, 7)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(24, 13)
+        Me.Label9.Size = New System.Drawing.Size(28, 16)
         Me.Label9.TabIndex = 10
         Me.Label9.Text = "text"
         '
@@ -348,11 +351,12 @@ Partial Class istorijaProdaje
         '
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Image = Global.otpremniceProjekat.My.Resources.Resources.saveeeeeeee1
+        Me.Button2.Image = Global.otpremniceProjekat.My.Resources.Resources.favicon
         Me.Button2.Location = New System.Drawing.Point(658, -21)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(66, 73)
         Me.Button2.TabIndex = 27
+        Me.ToolTip1.SetToolTip(Me.Button2, "Stampaj otpremnicu")
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Panel9
@@ -652,4 +656,5 @@ Partial Class istorijaProdaje
     Friend WithEvents Label24 As Label
     Friend WithEvents Label25 As Label
     Friend WithEvents Panel12 As Panel
+    Friend WithEvents ToolTip1 As ToolTip
 End Class

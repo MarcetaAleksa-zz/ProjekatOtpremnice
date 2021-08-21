@@ -110,14 +110,13 @@ Partial Class test
         'snimi
         '
         Me.snimi.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.snimi.Image = CType(resources.GetObject("snimi.Image"), System.Drawing.Image)
+        Me.snimi.Image = Global.otpremniceProjekat.My.Resources.Resources.saveeeeeeee1
         Me.snimi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.snimi.Location = New System.Drawing.Point(497, 3)
         Me.snimi.Name = "snimi"
         Me.snimi.Size = New System.Drawing.Size(124, 42)
         Me.snimi.TabIndex = 1
-        Me.snimi.Text = "Sacuvaj otpremnicu"
-        Me.snimi.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.snimi.Text = "Sacuvaj"
         Me.snimi.UseVisualStyleBackColor = True
         '
         'nazivPravnogLica

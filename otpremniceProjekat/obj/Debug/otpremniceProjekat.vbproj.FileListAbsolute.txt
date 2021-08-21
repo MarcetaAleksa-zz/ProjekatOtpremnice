@@ -72,7 +72,6 @@ C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremnice
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\de\PdfSharp.Charting.resources.dll
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.prijava.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.istorijaProdaje.resources
-C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.CopyComplete
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\otpremniceProjekat.exe.config
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\otpremniceProjekat.exe
@@ -140,3 +139,4 @@ C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnic
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.exe
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.xml
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pdb
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources

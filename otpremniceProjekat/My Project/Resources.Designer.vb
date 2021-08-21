@@ -63,9 +63,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property back() As System.Drawing.Bitmap
+        Friend ReadOnly Property BANNER() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("back", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("BANNER", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -73,19 +73,9 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property back1() As System.Drawing.Bitmap
+        Friend ReadOnly Property favicon() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("back1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property backpng() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("backpng", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("favicon", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -116,16 +106,6 @@ Namespace My.Resources
         Friend ReadOnly Property saveSlika() As String
             Get
                 Return ResourceManager.GetString("saveSlika", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property saveSlika1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("saveSlika1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
     End Module

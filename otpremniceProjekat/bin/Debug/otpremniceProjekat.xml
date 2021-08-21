@@ -22,17 +22,12 @@ otpremniceProjekat
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.back">
+<member name="P:otpremniceProjekat.My.Resources.Resources.BANNER">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.back1">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.backpng">
+<member name="P:otpremniceProjekat.My.Resources.Resources.favicon">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -50,11 +45,6 @@ otpremniceProjekat
 <member name="P:otpremniceProjekat.My.Resources.Resources.saveSlika">
 <summary>
   Looks up a localized string similar to .
-</summary>
-</member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.saveSlika1">
-<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
 </members>

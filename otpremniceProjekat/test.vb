@@ -4,13 +4,27 @@ Imports iTextSharp.text.pdf
 Imports iTextSharp.text
 Imports System.IO
 Imports System.Drawing
+'Module Module1
+'    Sub Main()
+'        Dim pdfDoc As New Document()
+'        Dim pdfWrite As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream("tryme2.pdf", FileMode.Create))
+'        Dim ev As New itsEvents
+'        pdfWrite.PageEvent = ev
+'        pdfDoc.Open()
+'        pdfDoc.Add(New Paragraph("Hello World"))
+'        pdfDoc.NewPage()
+'        pdfDoc.Add(New Paragraph("Hello World Again"))
+'        pdfDoc.Close()
+'    End Sub
+'End Module
+
 
 Public Class test
     Dim novoI As Integer = 0 'KORISTIMO ZA DINAMICKO DODAVANJE OBJEKATA I VEOMA JE VAZNO!
     Dim brojDodanih As String = 0 'jos nije utvrdjeno cemu sluzi..
     Dim sveOkej As Integer = 0 'KORISTIMO ZA PROVJERU DA LI JE USPJESNO UNIJELO U BAZU I IZRADILO PDF, AKO JE SVE OKEJ OVA VARIABLA CE NATJERATI PROGRAM DA SE PONOVO UCITA
     Dim brojacSvihPolja As Integer = 0 'KORISTIMO ZA PROVJERU PRIJE OBRADE PODATAKA DA LI JE SVE UNESENO
-    ' Dim dugmezaizbjegavanjepogresneporukenabrisanju As Integer = 0
+
     Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
 
         brojacSvihPolja = 0
@@ -75,7 +89,8 @@ Public Class test
                     Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
                     Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
                     Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
-
+                    Dim ev As New itsEvents
+                    pdfWriter.PageEvent = ev
 
                     pdfDoc.Open()
 
@@ -342,7 +357,7 @@ end", baza.konekcija)
 
         Dim label1 As New TextBox                                          'SIFRA
         With label1
-            .name = "LSifra"
+            .Name = "LSifra"
             .Text = "ŠIF"
             .Font = New Drawing.Font("Microsoft Sans Serif", 9.75)
             .Dock = DockStyle.Fill
@@ -523,6 +538,7 @@ end", baza.konekcija)
         '----------------------------------------------------------------------------- tabela za rabat
 
         With nazivRobe
+
             .Name = "nazivRobe" + (novoI + 1).ToString
             .BindingContext = New BindingContext()
             .ValueMember = "naziv_robe"
@@ -670,7 +686,6 @@ end", baza.konekcija)
         id_lica = table.Rows(0)(0)
         Return id_lica
     End Function
-
     Private Sub NaslovTB_TextChanged(sender As Object, e As EventArgs) Handles NaslovTB.TextChanged
         'izvlacimo prethodne adrese izabranog kupca kao prijedlog
 
@@ -1066,9 +1081,31 @@ end", baza.konekcija)
 
 
     End Sub
+    Public Class itsEvents
+        Inherits PdfPageEventHelper
+        Public Overrides Sub OnStartPage(ByVal writer As iTextSharp.text.pdf.PdfWriter, ByVal document As iTextSharp.text.Document)
 
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+            Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.banner.GetHbitmap())
+            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
+            logo.ScaleToFit(595.0F, 40.0F)
+            document.Add(logo)
 
-    End Sub
+            'Dim ch As New Chunk("This is my Stack Overflow Header on page " & writer.PageNumber)
+            'document.Add(ch)
+            'Dim slika As New iTextSharp.text.Image
+
+
+            '''Dim headerTbl = New PdfPTable(2)
+            '''headerTbl.SetWidths({4, 1})
+            '''headerTbl.TotalWidth = document.PageSize.Width
+
+
+            '''Dim cell = New PdfPCell(logo)
+            '''cell.HorizontalAlignment = Element.ALIGN_RIGHT
+            '''cell.PaddingRight = 20
+            '''cell.Border = iTextSharp.text.Rectangle.NO_BORDER
+
+        End Sub
+    End Class
 End Class
 

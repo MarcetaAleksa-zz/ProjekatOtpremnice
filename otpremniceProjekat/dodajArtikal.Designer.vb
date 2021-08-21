@@ -25,7 +25,6 @@ Partial Class dodajArtikal
         Me.components = New System.ComponentModel.Container()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -39,6 +38,7 @@ Partial Class dodajArtikal
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.TextBox3 = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -51,6 +51,7 @@ Partial Class dodajArtikal
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
+        CType(Me.TextBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -69,14 +70,6 @@ Partial Class dodajArtikal
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(86, 31)
         Me.TextBox2.TabIndex = 2
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
-        Me.TextBox3.Location = New System.Drawing.Point(109, 4)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(78, 31)
-        Me.TextBox3.TabIndex = 3
         '
         'TextBox4
         '
@@ -118,10 +111,11 @@ Partial Class dodajArtikal
         '
         'Timer1
         '
-        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 1
         '
         'ComboBox1
         '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Items.AddRange(New Object() {"Kolicina", "Satnica"})
@@ -200,12 +194,25 @@ Partial Class dodajArtikal
         '
         Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Controls.Add(Me.TextBox3)
+        Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Location = New System.Drawing.Point(-1, 211)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(202, 41)
+        Me.Panel3.Size = New System.Drawing.Size(228, 41)
         Me.Panel3.TabIndex = 84
+        '
+        'TextBox3
+        '
+        Me.TextBox3.DecimalPlaces = 2
+        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!)
+        Me.TextBox3.Location = New System.Drawing.Point(104, 5)
+        Me.TextBox3.Maximum = New Decimal(New Integer() {5000, 0, 0, 0})
+        Me.TextBox3.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(110, 31)
+        Me.TextBox3.TabIndex = 77
+        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TextBox3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
         'Label2
         '
@@ -332,6 +339,7 @@ Partial Class dodajArtikal
         Me.Panel2.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.TextBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
@@ -339,7 +347,6 @@ Partial Class dodajArtikal
     End Sub
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
@@ -361,4 +368,5 @@ Partial Class dodajArtikal
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents TextBox3 As NumericUpDown
 End Class
