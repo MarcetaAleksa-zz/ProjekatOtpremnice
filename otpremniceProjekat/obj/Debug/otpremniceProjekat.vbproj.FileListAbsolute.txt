@@ -96,7 +96,6 @@ C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\o
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.prijava.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.istorijaProdaje.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Resources.resources
-C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.GenerateResource.cache
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.CoreCompileInputs.cache
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.CopyComplete
@@ -140,3 +139,5 @@ C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnic
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.xml
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pdb
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources
+C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.otpremnice.resources
+C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.servisiranje.resources

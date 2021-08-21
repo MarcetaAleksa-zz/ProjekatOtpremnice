@@ -28,4 +28,10 @@
         prijava.TextBox2.Text = "Unesi lozinku ovde"
         Me.Dispose()
     End Sub
+
+    Private Sub Servis_Click(sender As Object, e As EventArgs) Handles Servis.Click
+        servisiranje.Show()
+
+        Me.Hide()
+    End Sub
 End Class

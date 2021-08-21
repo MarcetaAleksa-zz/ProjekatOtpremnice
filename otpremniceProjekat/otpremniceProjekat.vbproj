@@ -139,10 +139,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="test.Designer.vb">
-      <DependentUpon>test.vb</DependentUpon>
+    <Compile Include="servisiranje.Designer.vb">
+      <DependentUpon>servisiranje.vb</DependentUpon>
     </Compile>
-    <Compile Include="test.vb">
+    <Compile Include="servisiranje.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="otpremnice.Designer.vb">
+      <DependentUpon>otpremnice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="otpremnice.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ucitavanje.Designer.vb">
@@ -171,8 +177,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.vb</DependentUpon>
+    <EmbeddedResource Include="otpremnice.resx">
+      <DependentUpon>otpremnice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="servisiranje.resx">
+      <DependentUpon>servisiranje.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucitavanje.resx">
       <DependentUpon>ucitavanje.vb</DependentUpon>

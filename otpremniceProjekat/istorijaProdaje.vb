@@ -10,15 +10,12 @@ Public Class istorijaProdaje
     Dim bezPdv = 0
     Public Shared comboIzabrani = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        test.Enabled = True
+        otpremnice.Enabled = True
         Me.Dispose()
     End Sub
 
     Public Sub otvaranjeOtpremnice(brojOtpremnice)
         Try
-            'Dim command As New SqlCommand("select inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Usluge as uz inner join Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
-            '''moj Dim command As New SqlCommand("select Inventar.naziv_robe, Usluge.jed_mjere, Usluge.kolicina, Usluge.cijena, Usluge.rabat, Usluge.iznos  from  Usluge inner join Inventar on (Inventar.id_robe = Usluge.naziv_robe) where Usluge.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
-            ' Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
             Dim command As New SqlCommand("select uz.redni_broj, inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
             Dim adapter As New SqlDataAdapter(command)
             Dim tabela As New DataTable()
@@ -159,7 +156,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        test.Enabled = True
+        otpremnice.Enabled = True
         Me.Dispose()
     End Sub
 

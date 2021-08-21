@@ -19,7 +19,7 @@ Imports System.Drawing
 'End Module
 
 
-Public Class test
+Public Class otpremnice
     Dim novoI As Integer = 0 'KORISTIMO ZA DINAMICKO DODAVANJE OBJEKATA I VEOMA JE VAZNO!
     Dim brojDodanih As String = 0 'jos nije utvrdjeno cemu sluzi..
     Dim sveOkej As Integer = 0 'KORISTIMO ZA PROVJERU DA LI JE USPJESNO UNIJELO U BAZU I IZRADILO PDF, AKO JE SVE OKEJ OVA VARIABLA CE NATJERATI PROGRAM DA SE PONOVO UCITA
@@ -1091,17 +1091,17 @@ end", baza.konekcija)
             document.Add(logo)
             Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
             Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
-            Dim datum As New Chunk("                                                                                                    Datum: " + test.datumtb.Text, fntTableFont)
-            Dim id As New Chunk("                       ID Otpremnice: " + test.brotpremniceTxt.Text, fntTableFont)
-            Dim lice As New Chunk("Naziv pravnog lica: " + test.ComboBox1.Text, fntTableFont)
-            Dim otprema As New Chunk("                      Nacin otpreme: " + test.OtpremaTB.Text, fntTableFont)
-            Dim naziv As New Chunk("                                 Otprema na naslov: " + test.NaslovTB.Text, fntTableFont)
-            Dim ib1 As New Chunk("IB: " + test.ibTB.Text, fntTableFont)
-            Dim regTab As New Chunk("                                               Registarske tablice: " + test.vozilotb.Text, fntTableFont)
-            Dim ib2 As New Chunk("                                  IB: " + test.iBKupcaComboBox.Text, fntTableFont)
-            Dim adresa1 As New Chunk("Adresa: " + test.adresaTB.Text, fntTableFont)
-            Dim reklamacija As New Chunk("                                 Reklamacija: " + test.reklamacijatb.Text + " dana", fntTableFont)
-            Dim adresa2 As New Chunk("                                                Adresa: " + test.kupacAdresaComboBox.Text, fntTableFont)
+            Dim datum As New Chunk("                                                                                                    Datum: " + otpremnice.datumtb.Text, fntTableFont)
+            Dim id As New Chunk("                       ID Otpremnice: " + otpremnice.brotpremniceTxt.Text, fntTableFont)
+            Dim lice As New Chunk("Naziv pravnog lica: " + otpremnice.ComboBox1.Text, fntTableFont)
+            Dim otprema As New Chunk("                      Nacin otpreme: " + otpremnice.OtpremaTB.Text, fntTableFont)
+            Dim naziv As New Chunk("                                 Otprema na naslov: " + otpremnice.NaslovTB.Text, fntTableFont)
+            Dim ib1 As New Chunk("IB: " + otpremnice.ibTB.Text, fntTableFont)
+            Dim regTab As New Chunk("                                               Registarske tablice: " + otpremnice.vozilotb.Text, fntTableFont)
+            Dim ib2 As New Chunk("                                  IB: " + otpremnice.iBKupcaComboBox.Text, fntTableFont)
+            Dim adresa1 As New Chunk("Adresa: " + otpremnice.adresaTB.Text, fntTableFont)
+            Dim reklamacija As New Chunk("                                 Reklamacija: " + otpremnice.reklamacijatb.Text + " dana", fntTableFont)
+            Dim adresa2 As New Chunk("                                                Adresa: " + otpremnice.kupacAdresaComboBox.Text, fntTableFont)
             document.Add(New Paragraph(""))
             document.Add(id)
             document.Add(datum)
