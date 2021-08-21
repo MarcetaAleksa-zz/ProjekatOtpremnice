@@ -1085,25 +1085,51 @@ end", baza.konekcija)
         Inherits PdfPageEventHelper
         Public Overrides Sub OnStartPage(ByVal writer As iTextSharp.text.pdf.PdfWriter, ByVal document As iTextSharp.text.Document)
 
-            Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.banner.GetHbitmap())
-            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
+            Dim testi As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.BANNER.GetHbitmap())
+            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(testi, System.Drawing.Imaging.ImageFormat.Png)
             logo.ScaleToFit(595.0F, 40.0F)
             document.Add(logo)
+            Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+            Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+            Dim datum As New Chunk("                                                                                                    Datum: " + test.datumtb.Text, fntTableFont)
+            Dim id As New Chunk("                       ID Otpremnice: " + test.brotpremniceTxt.Text, fntTableFont)
+            Dim lice As New Chunk("Naziv pravnog lica: " + test.ComboBox1.Text, fntTableFont)
+            Dim otprema As New Chunk("                      Nacin otpreme: " + test.OtpremaTB.Text, fntTableFont)
+            Dim naziv As New Chunk("                                 Otprema na naslov: " + test.NaslovTB.Text, fntTableFont)
+            Dim ib1 As New Chunk("IB: " + test.ibTB.Text, fntTableFont)
+            Dim regTab As New Chunk("                                               Registarske tablice: " + test.vozilotb.Text, fntTableFont)
+            Dim ib2 As New Chunk("                                  IB: " + test.iBKupcaComboBox.Text, fntTableFont)
+            Dim adresa1 As New Chunk("Adresa: " + test.adresaTB.Text, fntTableFont)
+            Dim reklamacija As New Chunk("                                 Reklamacija: " + test.reklamacijatb.Text + " dana", fntTableFont)
+            Dim adresa2 As New Chunk("                                                Adresa: " + test.kupacAdresaComboBox.Text, fntTableFont)
+            document.Add(New Paragraph(""))
+            document.Add(id)
+            document.Add(datum)
+            document.Add(New Paragraph(""))
+            document.Add(lice)
+            document.Add(otprema)
+            document.Add(naziv)
+            document.Add(New Paragraph(""))
+            document.Add(ib1)
+            document.Add(regTab)
+            document.Add(ib2)
+            document.Add(New Paragraph(""))
+            document.Add(adresa1)
+            document.Add(reklamacija)
+            document.Add(adresa2)
+            ' Dim slika As New iTextSharp.text.Image
 
-            'Dim ch As New Chunk("This is my Stack Overflow Header on page " & writer.PageNumber)
-            'document.Add(ch)
-            'Dim slika As New iTextSharp.text.Image
+
+            'Dim headerTbl = New PdfPTable(4)
+            'headerTbl.SetWidths({4, 1})
+            'headerTbl.TotalWidth = document.PageSize.Width
 
 
-            '''Dim headerTbl = New PdfPTable(2)
-            '''headerTbl.SetWidths({4, 1})
-            '''headerTbl.TotalWidth = document.PageSize.Width
 
-
-            '''Dim cell = New PdfPCell(logo)
-            '''cell.HorizontalAlignment = Element.ALIGN_RIGHT
-            '''cell.PaddingRight = 20
-            '''cell.Border = iTextSharp.text.Rectangle.NO_BORDER
+            'Dim cell = New PdfPCell(logo)
+            'cell.HorizontalAlignment = Element.ALIGN_RIGHT
+            'cell.PaddingRight = 20
+            'cell.Border = iTextSharp.text.Rectangle.NO_BORDER
 
         End Sub
     End Class

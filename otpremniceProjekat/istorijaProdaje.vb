@@ -75,6 +75,8 @@ Public Class istorijaProdaje
             Me.DataGridView1.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             Me.DataGridView1.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
             ' DataGridView1.Columns(0).SortMode = DataGridViewColumnSortMode.NotSortable
+
+
         Catch
         End Try
 
@@ -163,12 +165,13 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                 Dim ev As New itsEvents
                 pdfWriter.PageEvent = ev
 
+
+
                 pdfDoc.Open()
-
-
                 Dim ptabela As New PdfPTable(7) With { ' generisanje tabele (8) kolona
                 .WidthPercentage = 100, '
-                .SpacingAfter = 10
+                .SpacingAfter = 10,
+                .SpacingBefore = 10
                 }
                 ptabela.HorizontalAlignment = Element.ALIGN_CENTER
                 Dim sgltblhdwidth(6) As Single
@@ -280,9 +283,6 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
 
                     '------------------------------------------------- KRAJ TABELE -------------------------------------------------------------------------------------------
 
-
-
-
                     'ukupanIznos.Text  'ovo uglaviti na pdf kako bi osoba imala na pdfu koliko je sve kada se sumira
                     '-------------------------------------------------- KRAJ PDF-A -------------------------------------------------------------------------------------------
 
@@ -297,11 +297,8 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                 pdfDoc.Close()
                 MsgBox("Uspjesno ste izdali otpremnicu!")
             End If
-
-
         Catch ex As Exception
-        MsgBox(ex.Message, vbCritical)
-
+            MsgBox(ex.Message, vbCritical)
         End Try
     End Sub
     Public Class itsEvents
@@ -312,24 +309,47 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
             logo.ScaleToFit(595.0F, 40.0F)
             document.Add(logo)
+            Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+            Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+            Dim datum As New Chunk("                                                                                                    Datum: " + istorijaProdaje.Label8.Text, fntTableFont)
+            Dim id As New Chunk("                       ID Otpremnice: " + istorijaProdaje.Label9.Text, fntTableFont)
+            Dim lice As New Chunk("Naziv pravnog lica: " + istorijaProdaje.Label1.Text, fntTableFont)
+            Dim otprema As New Chunk("                      Nacin otpreme: " + istorijaProdaje.Label6.Text, fntTableFont)
+            Dim naziv As New Chunk("                                 Otprema na naslov: " + istorijaProdaje.Label4.Text, fntTableFont)
+            Dim ib1 As New Chunk("IB: " + istorijaProdaje.Label3.Text, fntTableFont)
+            Dim regTab As New Chunk("                                               Registarske tablice: " + istorijaProdaje.Label11.Text, fntTableFont)
+            Dim ib2 As New Chunk("                                  IB: " + istorijaProdaje.Label10.Text, fntTableFont)
+            Dim adresa1 As New Chunk("Adresa: " + istorijaProdaje.Label2.Text, fntTableFont)
+            Dim reklamacija As New Chunk("                                 Reklamacija: " + istorijaProdaje.Label7.Text, fntTableFont)
+            Dim adresa2 As New Chunk("                                                Adresa: " + istorijaProdaje.Label5.Text, fntTableFont)
+            document.Add(New Paragraph(""))
+            document.Add(id)
+            document.Add(datum)
+            document.Add(New Paragraph(""))
+            document.Add(lice)
+            document.Add(otprema)
+            document.Add(naziv)
+            document.Add(New Paragraph(""))
+            document.Add(ib1)
+            document.Add(regTab)
+            document.Add(ib2)
+            document.Add(New Paragraph(""))
+            document.Add(adresa1)
+            document.Add(reklamacija)
+            document.Add(adresa2)
+            ' Dim slika As New iTextSharp.text.Image
+
+
+            'Dim headerTbl = New PdfPTable(4)
+            'headerTbl.SetWidths({4, 1})
+            'headerTbl.TotalWidth = document.PageSize.Width
 
 
 
-            'Dim ch As New Chunk("This is my Stack Overflow Header on page " & writer.PageNumber)
-            'document.Add(ch)
-            'Dim slika As New iTextSharp.text.Image
-
-
-            '''Dim headerTbl = New PdfPTable(2)
-            '''headerTbl.SetWidths({4, 1})
-            '''headerTbl.TotalWidth = document.PageSize.Width
-
-
-
-            '''Dim cell = New PdfPCell(logo)
-            '''cell.HorizontalAlignment = Element.ALIGN_RIGHT
-            '''cell.PaddingRight = 20
-            '''cell.Border = iTextSharp.text.Rectangle.NO_BORDER
+            'Dim cell = New PdfPCell(logo)
+            'cell.HorizontalAlignment = Element.ALIGN_RIGHT
+            'cell.PaddingRight = 20
+            'cell.Border = iTextSharp.text.Rectangle.NO_BORDER
 
         End Sub
     End Class
