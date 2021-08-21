@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class otpremnice
+Partial Class test
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,7 +23,7 @@ Partial Class otpremnice
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(otpremnice))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(test))
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
@@ -85,6 +85,8 @@ Partial Class otpremnice
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -226,7 +228,7 @@ Partial Class otpremnice
         Me.reklamacije.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.reklamacije.AutoSize = True
         Me.reklamacije.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.reklamacije.Location = New System.Drawing.Point(895, 208)
+        Me.reklamacije.Location = New System.Drawing.Point(887, 176)
         Me.reklamacije.Name = "reklamacije"
         Me.reklamacije.Size = New System.Drawing.Size(197, 15)
         Me.reklamacije.TabIndex = 11
@@ -325,11 +327,11 @@ Partial Class otpremnice
         Me.reklamacijatb.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.reklamacijatb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.reklamacijatb.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.reklamacijatb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.reklamacijatb.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.reklamacijatb.ForeColor = System.Drawing.SystemColors.Control
         Me.reklamacijatb.FormattingEnabled = True
         Me.reklamacijatb.Items.AddRange(New Object() {"7", "14", "21"})
-        Me.reklamacijatb.Location = New System.Drawing.Point(1088, 206)
+        Me.reklamacijatb.Location = New System.Drawing.Point(1080, 174)
         Me.reklamacijatb.Name = "reklamacijatb"
         Me.reklamacijatb.Size = New System.Drawing.Size(55, 23)
         Me.reklamacijatb.TabIndex = 7
@@ -338,7 +340,7 @@ Partial Class otpremnice
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(1149, 210)
+        Me.Label1.Location = New System.Drawing.Point(1141, 178)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(34, 13)
         Me.Label1.TabIndex = 38
@@ -648,7 +650,7 @@ Partial Class otpremnice
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label12.Location = New System.Drawing.Point(85, 9)
+        Me.Label12.Location = New System.Drawing.Point(18, 10)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(328, 31)
         Me.Label12.TabIndex = 75
@@ -814,11 +816,38 @@ Partial Class otpremnice
         Me.Label16.TabIndex = 76
         Me.Label16.Text = "POPIS OTPREMNICA"
         '
+        'ComboBox2
+        '
+        Me.ComboBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ComboBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.ComboBox2.ForeColor = System.Drawing.SystemColors.Control
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {"Horizontalni", "Vertikalni"})
+        Me.ComboBox2.Location = New System.Drawing.Point(1045, 208)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(80, 23)
+        Me.ComboBox2.TabIndex = 95
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Label25.Location = New System.Drawing.Point(975, 208)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(64, 18)
+        Me.Label25.TabIndex = 94
+        Me.Label25.Text = "PRIKAZ:"
+        '
         'test
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1207, 749)
+        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel8)
         Me.Controls.Add(Me.TableLayoutPanel2)
@@ -944,4 +973,6 @@ Partial Class otpremnice
     Friend WithEvents Panel9 As Panel
     Friend WithEvents Label16 As Label
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label25 As Label
 End Class

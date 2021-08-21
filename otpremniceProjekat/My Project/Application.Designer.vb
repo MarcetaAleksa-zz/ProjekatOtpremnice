@@ -32,11 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-<<<<<<< Updated upstream
-            Me.MainForm = Global.otpremniceProjekat.test
-=======
             Me.MainForm = Global.otpremniceProjekat.Medjuforma
->>>>>>> Stashed changes
         End Sub
     End Class
 End Namespace
