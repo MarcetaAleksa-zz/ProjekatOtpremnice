@@ -5,6 +5,10 @@ Imports iTextSharp.text
 Imports System.IO
 Imports System.Drawing
 Public Class istorijaProdaje
+    Dim ukupno = 0
+    Dim saPdv = 0
+    Dim bezPdv = 0
+    Public Shared comboIzabrani = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         test.Enabled = True
         Me.Dispose()
@@ -16,7 +20,7 @@ Public Class istorijaProdaje
             '''moj Dim command As New SqlCommand("select Inventar.naziv_robe, Usluge.jed_mjere, Usluge.kolicina, Usluge.cijena, Usluge.rabat, Usluge.iznos  from  Usluge inner join Inventar on (Inventar.id_robe = Usluge.naziv_robe) where Usluge.otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID ' ne radi join
             ' Dim command As New SqlCommand("select naziv_robe, jed_mjere, kolicina, cijena, rabat, Iznos  from  Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija) 'izvlacenje u datagridView svih narucenih artikala pod narudzbomID
             Dim command As New SqlCommand("select uz.redni_broj, inv.naziv_robe, uz.jed_mjere, uz.kolicina, uz.cijena, uz.rabat, uz.iznos  from  Panleksa.dbo.Usluge as uz join Panleksa.dbo.Inventar as inv on (inv.id_robe = uz.naziv_robe) where uz.otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
-            Dim adapter As New SqlDataAdapter(Command)
+            Dim adapter As New SqlDataAdapter(command)
             Dim tabela As New DataTable()
             Dim ds As New DataSet()
             adapter.Fill(ds)
@@ -118,6 +122,12 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             Dim tabela As New DataTable()
             adapter.Fill(tabela)
 
+            Dim command3 As New SqlCommand("select distinct pdv  from  Panleksa.dbo.Usluge where otpremnica_br = " & brojOtpremnice & "", baza.konekcija)
+            Dim adapter3 As New SqlDataAdapter(command3)
+            Dim tabela3 As New DataTable()
+            adapter3.Fill(tabela3)
+
+
             Label1.Text = tabela.Rows(0)(0)     'naziv pravnog lica
             Label8.Text = tabela.Rows(0)(1)     'datum
             Label9.Text = tabela.Rows(0)(2)     'ID otrpemnice (broj)
@@ -125,11 +135,21 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             Label2.Text = tabela.Rows(0)(4)     'adresa
             Label6.Text = tabela.Rows(0)(5)     'nacin otrpeme
             Label11.Text = tabela.Rows(0)(6)   'reg_br_vozila
-            Label7.Text = tabela.Rows(0)(7) & " dana"     'reklamacija
+            Label7.Text = tabela.Rows(0)(7)      'reklamacija
+            If Label7.Text = "21" Then
+                Label7.Text = "21 dan"
+            Else
+                Label7.Text = tabela.Rows(0)(7) & " dana"
+            End If
             Label4.Text = tabela.Rows(0)(8)     'KUPAC
             Label10.Text = tabela.Rows(0)(9)    'IB kupca
             Label5.Text = tabela.Rows(0)(10)     'adresa kupca
-
+            Label29.Text = tabela3.Rows(0)(0)
+            If Label29.Text = True Then
+                Label29.Text = "Da"
+            Else
+                Label29.Text = "Ne"
+            End If
         Catch
 
         End Try
@@ -158,144 +178,373 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
             sfd.FileName = Label9.Text + " " + Label4.Text 'dodjela naziva za .pdf file
 
             If sfd.ShowDialog = 1 Then
-                Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
-                Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
-                Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
-                Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
-                Dim ev As New itsEvents
-                pdfWriter.PageEvent = ev
+                If comboIzabrani = 0 Then
+                    Dim pdfDoc As New Document(PageSize.A4.Rotate, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
+
+                    Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
+                    Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+                    Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+                    Dim ev As New itsEvents
+                    pdfWriter.PageEvent = ev
 
 
 
-                pdfDoc.Open()
-                Dim ptabela As New PdfPTable(7) With { ' generisanje tabele (8) kolona
-                .WidthPercentage = 100, '
-                .SpacingAfter = 10,
-                .SpacingBefore = 10
-                }
-                ptabela.HorizontalAlignment = Element.ALIGN_CENTER
-                Dim sgltblhdwidth(6) As Single
-                sgltblhdwidth(0) = 13
-                sgltblhdwidth(1) = 120
-                sgltblhdwidth(2) = 36
-                sgltblhdwidth(3) = 35
-                sgltblhdwidth(4) = 21
-                sgltblhdwidth(5) = 25
-                sgltblhdwidth(6) = 65
-                ptabela.SetWidths(sgltblhdwidth)
-                '------------------------------------------------- POCETAK TABELE -------------------------------------------------------------------------------------------
-                Dim CellOneHdr As New PdfPCell(New Phrase("BR", fntTableFontHdr)) With {
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER,
-                .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    pdfDoc.Open()
+                    Dim ptabela As New PdfPTable(7) With { ' generisanje tabele (7) kolona
+                    .WidthPercentage = 100, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
                     }
-
-                ptabela.AddCell(CellOneHdr)
-                Dim celltwohdr As New PdfPCell(New Phrase("NAZIV USLUGE/ROBE", fntTableFontHdr))
-                ptabela.AddCell(celltwohdr)
-
-                Dim cellthreehdr As New PdfPCell(New Phrase("JED. MJER.", fntTableFontHdr)) With {
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER,
-                .HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                }
-                ptabela.AddCell(cellthreehdr)
-
-                Dim cellfourhdr As New PdfPCell(New Phrase("KOLICINA", fntTableFontHdr)) With {
-                .VerticalAlignment = PdfPCell.ALIGN_CENTER, .HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                }
-                ptabela.AddCell(cellfourhdr)
-
-                Dim cellfivehdr As New PdfPCell(New Phrase("CIJENA", fntTableFontHdr)) With {
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER,
-                .HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                }
-                ptabela.AddCell(cellfivehdr)
-
-                Dim cellsixhdr As New PdfPCell(New Phrase("RABAT", fntTableFontHdr)) With {
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER,
-                .HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                }
-                ptabela.AddCell(cellsixhdr)
-
-                Dim cellsevenhdr As New PdfPCell(New Phrase("IZNOS", fntTableFontHdr)) With {
-                    .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
-                .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
-                }
-                ptabela.AddCell(cellsevenhdr)
-
-                Dim noviBrojOpet = 0
-                Dim redniBroj = 1
-                For noviBrojOpet = 0 To DataGridView1.RowCount - 2
-
-                    Dim cellone As New PdfPCell(New Phrase(redniBroj.ToString, fntTableFont)) With {
+                    ptabela.HorizontalAlignment = Element.ALIGN_CENTER
+                    Dim sgltblhdwidth(6) As Single
+                    sgltblhdwidth(0) = 13
+                    sgltblhdwidth(1) = 120
+                    sgltblhdwidth(2) = 36
+                    sgltblhdwidth(3) = 35
+                    sgltblhdwidth(4) = 21
+                    sgltblhdwidth(5) = 25
+                    sgltblhdwidth(6) = 65
+                    ptabela.SetWidths(sgltblhdwidth)
+                    '------------------------------------------------- POCETAK TABELE -------------------------------------------------------------------------------------------
+                    Dim CellOneHdr As New PdfPCell(New Phrase("BR", fntTableFontHdr)) With {
                         .VerticalAlignment = PdfPCell.ALIGN_CENTER,
                     .HorizontalAlignment = PdfPCell.ALIGN_CENTER
-                    } 'redni broj
-                    ptabela.AddCell(cellone)
+                        }
 
-                    Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(1).Value, fntTableFont)) 'naziv usluge
-                    ptabela.AddCell(celltwo)
+                    ptabela.AddCell(CellOneHdr)
+                    Dim celltwohdr As New PdfPCell(New Phrase("NAZIV USLUGE/ROBE", fntTableFontHdr))
+                    ptabela.AddCell(celltwohdr)
 
-                    Dim jedm
-                    If DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Kolicina" Then
-                        jedm = "K"
-                    ElseIf DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Satnica" Then
-                        jedm = "H"
+                    Dim cellthreehdr As New PdfPCell(New Phrase("JED. MJER.", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellthreehdr)
+
+                    Dim cellfourhdr As New PdfPCell(New Phrase("KOLICINA", fntTableFontHdr)) With {
+                    .VerticalAlignment = PdfPCell.ALIGN_CENTER, .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellfourhdr)
+
+                    Dim cellfivehdr As New PdfPCell(New Phrase("CIJENA", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellfivehdr)
+
+                    Dim cellsixhdr As New PdfPCell(New Phrase("RABAT", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellsixhdr)
+
+                    Dim cellsevenhdr As New PdfPCell(New Phrase("IZNOS", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+                    }
+                    ptabela.AddCell(cellsevenhdr)
+
+                    Dim noviBrojOpet = 0
+                    Dim redniBroj = 1
+                    For noviBrojOpet = 0 To DataGridView1.RowCount - 2
+
+                        Dim cellone As New PdfPCell(New Phrase(redniBroj.ToString, fntTableFont)) With {
+                            .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                        .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'redni broj
+                        ptabela.AddCell(cellone)
+
+                        Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(1).Value, fntTableFont)) 'naziv usluge
+                        ptabela.AddCell(celltwo)
+
+                        Dim jedm
+                        If DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Kolicina" Then
+                            jedm = "K"
+                        ElseIf DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Satnica" Then
+                            jedm = "H"
+                        End If
+                        Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'jedinca mjere
+                        ptabela.AddCell(cellthree)
+
+
+                        Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(3).Value.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'kolicina
+                        ptabela.AddCell(cellfour)
+
+
+                        Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(4).Value
+                        cijenaDvijeDec = Format(Val(cijenaDvijeDec), "0.00")
+                        Dim cellfive As New PdfPCell(New Phrase(cijenaDvijeDec.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT
+                        } 'cijena
+                        ptabela.AddCell(cellfive)
+
+
+                        Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(5).Value & "%", fntTableFont)) With {
+                             .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'rabat
+                        ptabela.AddCell(cellsix)
+
+
+                        Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(6).Value
+                        iznosDvijeDec = Format(Val(iznosDvijeDec), "0.00")
+                        Dim cellseven As New PdfPCell(New Phrase(iznosDvijeDec, fntTableFont)) With {
+    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT
+                        } 'iznos
+                        ukupno += iznosDvijeDec
+                        ptabela.AddCell(cellseven)
+
+
+
+                        '------------------------------------------------- KRAJ TABELE -------------------------------------------------------------------------------------------
+
+                        'ukupanIznos.Text  'ovo uglaviti na pdf kako bi osoba imala na pdfu koliko je sve kada se sumira
+                        '-------------------------------------------------- KRAJ PDF-A -------------------------------------------------------------------------------------------
+
+
+
+
+
+
+                        redniBroj += 1 'broj koji se vrti u for petlji i pomjera redove ka dole
+                    Next
+                    pdfDoc.Add(ptabela)
+
+                    Dim ptabela3 As New PdfPTable(2) With { ' generisanje tabele (7) kolona
+                    .WidthPercentage = 13, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
+                    }
+                    ptabela3.HorizontalAlignment = Element.ALIGN_RIGHT
+                    Dim sgltblhdwidth3(1) As Single
+                    sgltblhdwidth3(0) = 7
+                    sgltblhdwidth3(1) = 6
+                    ptabela3.SetWidths(sgltblhdwidth3)
+                    Dim nazivi As New List(Of String)({"Bez PDV-a:", "PDV:", "Ukupno:"})
+                    If Label29.Text = "Da" Then
+                        saPdv = ukupno * 0.17
+                        bezPdv = ukupno - saPdv
+                        saPdv = Format(Val(saPdv), "0.00")
+                        bezPdv = Format(Val(bezPdv), "0.00")
+                        ukupno = Format(Val(ukupno), "0.00")
+                    Else
+                        saPdv = 0
+                        bezPdv = 0
+                        saPdv = Format(Val(saPdv), "0.00")
+                        bezPdv = Format(Val(bezPdv), "0.00")
+                        ukupno = Format(Val(ukupno), "0.00")
                     End If
-                    Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
-                        .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER
-                    } 'jedinca mjere
-                    ptabela.AddCell(cellthree)
 
+                    Dim vrijednosti As New List(Of String)({bezPdv, saPdv, ukupno})
 
-                    Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(3).Value.ToString, fntTableFont)) With {
-                        .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER
-                    } 'kolicina
-                    ptabela.AddCell(cellfour)
+                    For i = 0 To 2
+                        Dim cellone As New PdfPCell(New Phrase(nazivi(i), fntTableFontHdr)) With {
+                           .VerticalAlignment = PdfPCell.ALIGN_LEFT,
+                       .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                       }
+                        ptabela3.AddCell(cellone)
 
-                    '                            Dim cijenaKontrol As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBrojOpet)
-                    Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(4).Value
-                    cijenaDvijeDec = Format(Val(cijenaDvijeDec), "0.00")
-                    Dim cellfive As New PdfPCell(New Phrase(cijenaDvijeDec.ToString, fntTableFont)) With {
-                        .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
-                    .VerticalAlignment = PdfPCell.ALIGN_RIGHT
-                    } 'cijena
-                    ptabela.AddCell(cellfive)
-
-
-                    Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(5).Value & "%", fntTableFont)) With {
-                         .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
-                    .VerticalAlignment = PdfPCell.ALIGN_CENTER
-                    } 'rabat
-                    ptabela.AddCell(cellsix)
-
-
-                    Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(6).Value
-                    iznosDvijeDec = Format(Val(iznosDvijeDec), "0.00")
-                    Dim cellseven As New PdfPCell(New Phrase(iznosDvijeDec, fntTableFont)) With {
-.HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
-                    .VerticalAlignment = PdfPCell.ALIGN_RIGHT
-                    } 'iznos
-                    ptabela.AddCell(cellseven)
+                        Dim celltwo As New PdfPCell(New Phrase(vrijednosti(i), fntTableFont)) With {
+                           .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                       .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+                       }
+                        ptabela3.AddCell(celltwo)
+                    Next
+                    pdfDoc.Add(ptabela3)
+                    pdfDoc.Close()
+                    MsgBox("Uspjesno ste izdali otpremnicu!")
+                Else
+                    Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
+                    Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
+                    Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+                    Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+                    Dim ev As New itsEvents
+                    pdfWriter.PageEvent = ev
 
 
 
-                    '------------------------------------------------- KRAJ TABELE -------------------------------------------------------------------------------------------
+                    pdfDoc.Open()
+                    Dim ptabela As New PdfPTable(7) With { ' generisanje tabele (7) kolona
+                    .WidthPercentage = 100, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
+                    }
+                    ptabela.HorizontalAlignment = Element.ALIGN_CENTER
+                    Dim sgltblhdwidth(6) As Single
+                    sgltblhdwidth(0) = 13
+                    sgltblhdwidth(1) = 120
+                    sgltblhdwidth(2) = 36
+                    sgltblhdwidth(3) = 35
+                    sgltblhdwidth(4) = 21
+                    sgltblhdwidth(5) = 25
+                    sgltblhdwidth(6) = 65
+                    ptabela.SetWidths(sgltblhdwidth)
+                    '------------------------------------------------- POCETAK TABELE -------------------------------------------------------------------------------------------
+                    Dim CellOneHdr As New PdfPCell(New Phrase("BR", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                        }
 
-                    'ukupanIznos.Text  'ovo uglaviti na pdf kako bi osoba imala na pdfu koliko je sve kada se sumira
-                    '-------------------------------------------------- KRAJ PDF-A -------------------------------------------------------------------------------------------
+                    ptabela.AddCell(CellOneHdr)
+                    Dim celltwohdr As New PdfPCell(New Phrase("NAZIV USLUGE/ROBE", fntTableFontHdr))
+                    ptabela.AddCell(celltwohdr)
+
+                    Dim cellthreehdr As New PdfPCell(New Phrase("JED. MJER.", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellthreehdr)
+
+                    Dim cellfourhdr As New PdfPCell(New Phrase("KOLICINA", fntTableFontHdr)) With {
+                    .VerticalAlignment = PdfPCell.ALIGN_CENTER, .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellfourhdr)
+
+                    Dim cellfivehdr As New PdfPCell(New Phrase("CIJENA", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellfivehdr)
+
+                    Dim cellsixhdr As New PdfPCell(New Phrase("RABAT", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                    .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                    }
+                    ptabela.AddCell(cellsixhdr)
+
+                    Dim cellsevenhdr As New PdfPCell(New Phrase("IZNOS", fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+                    }
+                    ptabela.AddCell(cellsevenhdr)
+
+                    Dim noviBrojOpet = 0
+                    Dim redniBroj = 1
+                    For noviBrojOpet = 0 To DataGridView1.RowCount - 2
+
+                        Dim cellone As New PdfPCell(New Phrase(redniBroj.ToString, fntTableFont)) With {
+                            .VerticalAlignment = PdfPCell.ALIGN_CENTER,
+                        .HorizontalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'redni broj
+                        ptabela.AddCell(cellone)
+
+                        Dim celltwo As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(1).Value, fntTableFont)) 'naziv usluge
+                        ptabela.AddCell(celltwo)
+
+                        Dim jedm
+                        If DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Kolicina" Then
+                            jedm = "K"
+                        ElseIf DataGridView1.Rows(noviBrojOpet).Cells(2).Value = "Satnica" Then
+                            jedm = "H"
+                        End If
+                        Dim cellthree As New PdfPCell(New Phrase(jedm.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'jedinca mjere
+                        ptabela.AddCell(cellthree)
+
+
+                        Dim cellfour As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(3).Value.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'kolicina
+                        ptabela.AddCell(cellfour)
+
+
+                        Dim cijenaDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(4).Value
+                        cijenaDvijeDec = Format(Val(cijenaDvijeDec), "0.00")
+                        Dim cellfive As New PdfPCell(New Phrase(cijenaDvijeDec.ToString, fntTableFont)) With {
+                            .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT
+                        } 'cijena
+                        ptabela.AddCell(cellfive)
+
+
+                        Dim cellsix As New PdfPCell(New Phrase(DataGridView1.Rows(noviBrojOpet).Cells(5).Value & "%", fntTableFont)) With {
+                             .HorizontalAlignment = PdfPCell.ALIGN_CENTER,
+                        .VerticalAlignment = PdfPCell.ALIGN_CENTER
+                        } 'rabat
+                        ptabela.AddCell(cellsix)
+
+
+                        Dim iznosDvijeDec = DataGridView1.Rows(noviBrojOpet).Cells(6).Value
+                        iznosDvijeDec = Format(Val(iznosDvijeDec), "0.00")
+                        Dim cellseven As New PdfPCell(New Phrase(iznosDvijeDec, fntTableFont)) With {
+    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT
+                        } 'iznos
+                        ukupno += iznosDvijeDec
+                        ptabela.AddCell(cellseven)
+
+
+
+                        '------------------------------------------------- KRAJ TABELE -------------------------------------------------------------------------------------------
+
+                        'ukupanIznos.Text  'ovo uglaviti na pdf kako bi osoba imala na pdfu koliko je sve kada se sumira
+                        '-------------------------------------------------- KRAJ PDF-A -------------------------------------------------------------------------------------------
 
 
 
 
 
 
-                    redniBroj += 1 'broj koji se vrti u for petlji i pomjera redove ka dole
-                Next
-                pdfDoc.Add(ptabela)
-                pdfDoc.Close()
-                MsgBox("Uspjesno ste izdali otpremnicu!")
+                        redniBroj += 1 'broj koji se vrti u for petlji i pomjera redove ka dole
+                    Next
+                    pdfDoc.Add(ptabela)
+
+                    Dim ptabela3 As New PdfPTable(2) With { ' generisanje tabele (7) kolona
+                    .WidthPercentage = 23, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
+                    }
+                    ptabela3.HorizontalAlignment = Element.ALIGN_RIGHT
+                    Dim sgltblhdwidth3(1) As Single
+                    sgltblhdwidth3(0) = 12
+                    sgltblhdwidth3(1) = 11
+                    ptabela3.SetWidths(sgltblhdwidth3)
+                    Dim nazivi As New List(Of String)({"Bez PDV-a:", "PDV:", "Ukupno:"})
+                    If Label29.Text = "Da" Then
+                        saPdv = ukupno * 0.17
+                        bezPdv = ukupno - saPdv
+                        saPdv = Format(Val(saPdv), "0.00")
+                        bezPdv = Format(Val(bezPdv), "0.00")
+                        ukupno = Format(Val(ukupno), "0.00")
+                    Else
+                        saPdv = 0
+                        bezPdv = 0
+                        saPdv = Format(Val(saPdv), "0.00")
+                        bezPdv = Format(Val(bezPdv), "0.00")
+                        ukupno = Format(Val(ukupno), "0.00")
+                    End If
+
+                    Dim vrijednosti As New List(Of String)({bezPdv, saPdv, ukupno})
+
+                    For i = 0 To 2
+                        Dim cellone As New PdfPCell(New Phrase(nazivi(i), fntTableFontHdr)) With {
+                           .VerticalAlignment = PdfPCell.ALIGN_LEFT,
+                       .HorizontalAlignment = PdfPCell.ALIGN_LEFT
+                       }
+                        ptabela3.AddCell(cellone)
+
+                        Dim celltwo As New PdfPCell(New Phrase(vrijednosti(i), fntTableFont)) With {
+                           .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                       .HorizontalAlignment = PdfPCell.ALIGN_RIGHT
+                       }
+                        ptabela3.AddCell(celltwo)
+                    Next
+                    pdfDoc.Add(ptabela3)
+                    pdfDoc.Close()
+                    MsgBox("Uspjesno ste izdali otpremnicu!")
+                End If
+
             End If
         Catch ex As Exception
             MsgBox(ex.Message, vbCritical)
@@ -304,53 +553,114 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
     Public Class itsEvents
         Inherits PdfPageEventHelper
         Public Overrides Sub OnStartPage(ByVal writer As iTextSharp.text.pdf.PdfWriter, ByVal document As iTextSharp.text.Document)
+            If comboIzabrani = 0 Then 'kada je rotirana tj. horizontalna
+                Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.BANNER_EXTENDED.GetHbitmap())
+                Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
+                logo.ScaleToFit(760.0F, 100.0F)
+                logo.WidthPercentage = 100
+                document.Add(logo)
 
-            Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.BANNER.GetHbitmap())
-            Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
-            logo.ScaleToFit(595.0F, 40.0F)
-            document.Add(logo)
-            Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
-            Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
-            Dim datum As New Chunk("                                                                                                    Datum: " + istorijaProdaje.Label8.Text, fntTableFont)
-            Dim id As New Chunk("                       ID Otpremnice: " + istorijaProdaje.Label9.Text, fntTableFont)
-            Dim lice As New Chunk("Naziv pravnog lica: " + istorijaProdaje.Label1.Text, fntTableFont)
-            Dim otprema As New Chunk("                      Nacin otpreme: " + istorijaProdaje.Label6.Text, fntTableFont)
-            Dim naziv As New Chunk("                                 Otprema na naslov: " + istorijaProdaje.Label4.Text, fntTableFont)
-            Dim ib1 As New Chunk("IB: " + istorijaProdaje.Label3.Text, fntTableFont)
-            Dim regTab As New Chunk("                                               Registarske tablice: " + istorijaProdaje.Label11.Text, fntTableFont)
-            Dim ib2 As New Chunk("                                  IB: " + istorijaProdaje.Label10.Text, fntTableFont)
-            Dim adresa1 As New Chunk("Adresa: " + istorijaProdaje.Label2.Text, fntTableFont)
-            Dim reklamacija As New Chunk("                                 Reklamacija: " + istorijaProdaje.Label7.Text, fntTableFont)
-            Dim adresa2 As New Chunk("                                                Adresa: " + istorijaProdaje.Label5.Text, fntTableFont)
-            document.Add(New Paragraph(""))
-            document.Add(id)
-            document.Add(datum)
-            document.Add(New Paragraph(""))
-            document.Add(lice)
-            document.Add(otprema)
-            document.Add(naziv)
-            document.Add(New Paragraph(""))
-            document.Add(ib1)
-            document.Add(regTab)
-            document.Add(ib2)
-            document.Add(New Paragraph(""))
-            document.Add(adresa1)
-            document.Add(reklamacija)
-            document.Add(adresa2)
-            ' Dim slika As New iTextSharp.text.Image
+                Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+                Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+                Dim headerTabela As New PdfPTable(6) With { ' generisanje tabele (8) kolona
+                    .WidthPercentage = 100, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
+                    }
+                headerTabela.HorizontalAlignment = Element.ALIGN_LEFT
+                Dim sgltblhdwidth(5) As Single
+                sgltblhdwidth(0) = 30
+                sgltblhdwidth(1) = 45
+                sgltblhdwidth(2) = 35
+                sgltblhdwidth(3) = 45
+                sgltblhdwidth(4) = 35
+                sgltblhdwidth(5) = 35
 
+                headerTabela.SetWidths(sgltblhdwidth)
 
-            'Dim headerTbl = New PdfPTable(4)
-            'headerTbl.SetWidths({4, 1})
-            'headerTbl.TotalWidth = document.PageSize.Width
+                Dim nazivi As New List(Of String)({"Naziv pravnog lica:", "Nacin otpreme:", "Otprema na naslov:", "IB:", "Registarske tablice:", "IB:", "Adresa:", "Reklamacija:", "Adresa:", "Broj otpremnice:", "PDV:", "Datum:"})
+                Dim podaciHeader As New List(Of String)({istorijaProdaje.Label1.Text, istorijaProdaje.Label6.Text, istorijaProdaje.Label4.Text, istorijaProdaje.Label3.Text, istorijaProdaje.Label11.Text, istorijaProdaje.Label10.Text, istorijaProdaje.Label2.Text, istorijaProdaje.Label7.Text, istorijaProdaje.Label5.Text, istorijaProdaje.Label9.Text, istorijaProdaje.Label29.Text, istorijaProdaje.Label8.Text})
+
+                For i = 0 To 11
+                    Dim CellOneHdr As New PdfPCell(New Phrase(nazivi(i), fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .Border = iTextSharp.text.Rectangle.NO_BORDER
+                        }
+                    headerTabela.AddCell(CellOneHdr)
 
 
 
-            'Dim cell = New PdfPCell(logo)
-            'cell.HorizontalAlignment = Element.ALIGN_RIGHT
-            'cell.PaddingRight = 20
-            'cell.Border = iTextSharp.text.Rectangle.NO_BORDER
+                    Dim celltwohdr As New PdfPCell(New Phrase(podaciHeader(i), fntTableFont)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_LEFT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_LEFT,
+                    .Border = iTextSharp.text.Rectangle.NO_BORDER
+                        }
+                    headerTabela.AddCell(celltwohdr)
+
+                Next
+                document.Add(headerTabela)
+
+            ElseIf comboIzabrani = 1 Then 'kada nije rotirana
+                Dim test As System.Drawing.Image = System.Drawing.Image.FromHbitmap(My.Resources.BANNER.GetHbitmap())
+                Dim logo As iTextSharp.text.Image = iTextSharp.text.Image.GetInstance(test, System.Drawing.Imaging.ImageFormat.Png)
+                logo.ScaleToFit(595.0F, 40.0F)
+                logo.WidthPercentage = 100
+                document.Add(logo)
+
+
+                Dim fntTableFontHdr As iTextSharp.text.Font = FontFactory.GetFont("Arial", 7, iTextSharp.text.Font.BOLD, BaseColor.BLACK)
+                Dim fntTableFont As iTextSharp.text.Font = FontFactory.GetFont("Arial", 7, iTextSharp.text.Font.NORMAL, BaseColor.BLACK)
+                Dim headerTabela As New PdfPTable(6) With { ' generisanje tabele (8) kolona
+                    .WidthPercentage = 100, '
+                    .SpacingAfter = 10,
+                    .SpacingBefore = 10
+                    }
+                headerTabela.HorizontalAlignment = Element.ALIGN_LEFT
+                Dim sgltblhdwidth(5) As Single
+                sgltblhdwidth(0) = 30
+                sgltblhdwidth(1) = 45
+                sgltblhdwidth(2) = 35
+                sgltblhdwidth(3) = 45
+                sgltblhdwidth(4) = 35
+                sgltblhdwidth(5) = 35
+
+                headerTabela.SetWidths(sgltblhdwidth)
+
+                Dim nazivi As New List(Of String)({"Naziv pravnog lica:", "Nacin otpreme:", "Otprema na naslov:", "IB:", "Registarske tablice:", "IB:", "Adresa:", "Reklamacija:", "Adresa:", "Broj otpremnice:", "PDV:", "Datum:"})
+                Dim podaciHeader As New List(Of String)({istorijaProdaje.Label1.Text, istorijaProdaje.Label6.Text, istorijaProdaje.Label4.Text, istorijaProdaje.Label3.Text, istorijaProdaje.Label11.Text, istorijaProdaje.Label10.Text, istorijaProdaje.Label2.Text, istorijaProdaje.Label7.Text, istorijaProdaje.Label5.Text, istorijaProdaje.Label9.Text, istorijaProdaje.Label29.Text, istorijaProdaje.Label8.Text})
+
+                For i = 0 To 11
+                    Dim CellOneHdr As New PdfPCell(New Phrase(nazivi(i), fntTableFontHdr)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_RIGHT,
+                    .Border = iTextSharp.text.Rectangle.NO_BORDER
+                        }
+                    headerTabela.AddCell(CellOneHdr)
+
+
+
+                    Dim celltwohdr As New PdfPCell(New Phrase(podaciHeader(i), fntTableFont)) With {
+                        .VerticalAlignment = PdfPCell.ALIGN_LEFT,
+                    .HorizontalAlignment = PdfPCell.ALIGN_LEFT,
+                    .Border = iTextSharp.text.Rectangle.NO_BORDER
+                        }
+                    headerTabela.AddCell(celltwohdr)
+
+                Next
+                document.Add(headerTabela)
+
+            End If
+
 
         End Sub
     End Class
+
+    Private Sub istorijaProdaje_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ComboBox1.SelectedIndex = 0
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        comboIzabrani = ComboBox1.SelectedIndex
+    End Sub
 End Class

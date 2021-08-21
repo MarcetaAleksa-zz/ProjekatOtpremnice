@@ -23,7 +23,7 @@ Partial Class istorijaProdaje
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -63,10 +63,15 @@ Partial Class istorijaProdaje
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.Panel11 = New System.Windows.Forms.Panel()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel12 = New System.Windows.Forms.Panel()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Panel13 = New System.Windows.Forms.Panel()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Label25 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel9.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -80,6 +85,7 @@ Partial Class istorijaProdaje
         Me.Panel10.SuspendLayout()
         Me.Panel11.SuspendLayout()
         Me.Panel12.SuspendLayout()
+        Me.Panel13.SuspendLayout()
         Me.SuspendLayout()
         '
         'DataGridView1
@@ -88,20 +94,20 @@ Partial Class istorijaProdaje
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.NullValue = Nothing
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer))
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle5.NullValue = Nothing
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer))
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer), CType(CType(71, Byte), Integer))
-        Me.DataGridView1.Location = New System.Drawing.Point(48, 275)
+        Me.DataGridView1.Location = New System.Drawing.Point(48, 292)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(676, 406)
+        Me.DataGridView1.Size = New System.Drawing.Size(676, 389)
         Me.DataGridView1.TabIndex = 0
         '
         'Button1
@@ -199,7 +205,7 @@ Partial Class istorijaProdaje
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label8.Location = New System.Drawing.Point(1, 7)
+        Me.Label8.Location = New System.Drawing.Point(55, 8)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(24, 13)
         Me.Label8.TabIndex = 9
@@ -208,11 +214,11 @@ Partial Class istorijaProdaje
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.Label9.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label9.Location = New System.Drawing.Point(14, 7)
+        Me.Label9.Location = New System.Drawing.Point(94, 8)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(28, 16)
+        Me.Label9.Size = New System.Drawing.Size(24, 13)
         Me.Label9.TabIndex = 10
         Me.Label9.Text = "text"
         '
@@ -518,56 +524,113 @@ Partial Class istorijaProdaje
         '
         Me.Panel11.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel11.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel11.Controls.Add(Me.Label12)
         Me.Panel11.Controls.Add(Me.Label9)
-        Me.Panel11.Location = New System.Drawing.Point(105, 23)
+        Me.Panel11.Location = New System.Drawing.Point(14, 259)
         Me.Panel11.Name = "Panel11"
-        Me.Panel11.Size = New System.Drawing.Size(55, 29)
+        Me.Panel11.Size = New System.Drawing.Size(194, 29)
         Me.Panel11.TabIndex = 86
         '
-        'Label24
+        'Label12
         '
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Label24.Location = New System.Drawing.Point(93, -1)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(84, 24)
-        Me.Label24.TabIndex = 87
-        Me.Label24.Text = "OTP.BR."
-        '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Label25.Location = New System.Drawing.Point(196, -1)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(77, 24)
-        Me.Label25.TabIndex = 88
-        Me.Label25.Text = "DATUM"
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Label12.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label12.Location = New System.Drawing.Point(7, 7)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(83, 13)
+        Me.Label12.TabIndex = 20
+        Me.Label12.Text = "Broj otpremnice:"
         '
         'Panel12
         '
         Me.Panel12.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Panel12.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel12.Controls.Add(Me.Label24)
         Me.Panel12.Controls.Add(Me.Label8)
-        Me.Panel12.Location = New System.Drawing.Point(200, 23)
+        Me.Panel12.Location = New System.Drawing.Point(558, 259)
         Me.Panel12.Name = "Panel12"
-        Me.Panel12.Size = New System.Drawing.Size(65, 29)
+        Me.Panel12.Size = New System.Drawing.Size(194, 29)
         Me.Panel12.TabIndex = 89
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Label24.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label24.Location = New System.Drawing.Point(12, 8)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(41, 13)
+        Me.Label24.TabIndex = 17
+        Me.Label24.Text = "Datum:"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label29.Location = New System.Drawing.Point(94, 6)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(24, 13)
+        Me.Label29.TabIndex = 91
+        Me.Label29.Text = "text"
+        '
+        'Panel13
+        '
+        Me.Panel13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Panel13.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel13.Controls.Add(Me.Label30)
+        Me.Panel13.Controls.Add(Me.Label29)
+        Me.Panel13.Location = New System.Drawing.Point(287, 259)
+        Me.Panel13.Name = "Panel13"
+        Me.Panel13.Size = New System.Drawing.Size(194, 27)
+        Me.Panel13.TabIndex = 92
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Label30.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label30.Location = New System.Drawing.Point(59, 6)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(32, 13)
+        Me.Label30.TabIndex = 20
+        Me.Label30.Text = "PDV:"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Items.AddRange(New Object() {"Horizontalni", "Vertikalni"})
+        Me.ComboBox1.Location = New System.Drawing.Point(572, 4)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(80, 21)
+        Me.ComboBox1.TabIndex = 93
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Label25.Location = New System.Drawing.Point(502, 4)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(64, 18)
+        Me.Label25.TabIndex = 81
+        Me.Label25.Text = "PRIKAZ:"
         '
         'istorijaProdaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(771, 701)
+        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.Panel13)
         Me.Controls.Add(Me.Panel12)
-        Me.Controls.Add(Me.Label25)
-        Me.Controls.Add(Me.Label24)
         Me.Controls.Add(Me.Panel11)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Label25)
         Me.Controls.Add(Me.Label23)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
@@ -609,6 +672,8 @@ Partial Class istorijaProdaje
         Me.Panel11.PerformLayout()
         Me.Panel12.ResumeLayout(False)
         Me.Panel12.PerformLayout()
+        Me.Panel13.ResumeLayout(False)
+        Me.Panel13.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -653,8 +718,13 @@ Partial Class istorijaProdaje
     Friend WithEvents Panel8 As Panel
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Panel11 As Panel
-    Friend WithEvents Label24 As Label
-    Friend WithEvents Label25 As Label
     Friend WithEvents Panel12 As Panel
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label24 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents Panel13 As Panel
+    Friend WithEvents Label30 As Label
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents Label25 As Label
 End Class

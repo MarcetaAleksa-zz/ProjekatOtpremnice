@@ -228,5 +228,8 @@
   <ItemGroup>
     <None Include="Resources\favicon1.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VSVS siroki.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

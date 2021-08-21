@@ -27,6 +27,11 @@ otpremniceProjekat
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:otpremniceProjekat.My.Resources.Resources.BANNER_EXTENDED">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:otpremniceProjekat.My.Resources.Resources.favicon">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
