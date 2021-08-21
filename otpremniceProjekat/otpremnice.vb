@@ -5,7 +5,7 @@ Imports iTextSharp.text
 Imports System.IO
 Imports System.Drawing
 
-Public Class test
+Public Class otpremnice
     Dim ukupno = 0
     Dim saPdv = 0
     Dim bezPdv = 0
@@ -19,8 +19,8 @@ Public Class test
     Public Shared reklamacijeOTP
     Public Shared PDVOTP
     Public Shared IBKupca
-     Public Shared adresaFirme
-     Public Shared adresaKupca
+    Public Shared adresaFirme
+    Public Shared adresaKupca
     Public Shared regBrOTP
     Dim novoI As Integer = 0 'KORISTIMO ZA DINAMICKO DODAVANJE OBJEKATA I VEOMA JE VAZNO!
     Dim brojDodanih As String = 0 'jos nije utvrdjeno cemu sluzi..

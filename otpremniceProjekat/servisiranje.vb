@@ -29,7 +29,7 @@ Public Class servisiranje
         Dim tabelaBO As New DataTable()
         adapterBO.Fill(tabelaBO)
 
-        BrojServisaTB.Text = tabelaBO.Rows(0)(0) + 1
+        ' BrojServisaTB.Text = tabelaBO.Rows(0)(0) + 1
 
         Dim datum As Date
         datum = DateTime.Now.ToString("yyyy/MM/dd")

@@ -10,7 +10,7 @@ Public Class istorijaProdaje
     Dim bezPdv = 0
     Public Shared comboIzabrani = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs)
-        test.Enabled = True
+        otpremnice.Enabled = True
         Me.Dispose()
     End Sub
 
@@ -157,7 +157,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-        test.Enabled = True
+        otpremnice.Enabled = True
         Me.Dispose()
     End Sub
 

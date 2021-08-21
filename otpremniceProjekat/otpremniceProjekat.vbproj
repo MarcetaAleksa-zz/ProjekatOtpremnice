@@ -145,16 +145,16 @@
     <Compile Include="servisiranje.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="test.Designer.vb">
-      <DependentUpon>test.vb</DependentUpon>
+    <Compile Include="otpremnice.Designer.vb">
+      <DependentUpon>otpremnice.vb</DependentUpon>
     </Compile>
-    <Compile Include="test.vb">
+    <Compile Include="otpremnice.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="test1.Designer.vb">
+    <Compile Include="otpremnice1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>test.resx</DependentUpon>
+      <DependentUpon>otpremnice.resx</DependentUpon>
     </Compile>
     <Compile Include="ucitavanje.Designer.vb">
       <DependentUpon>ucitavanje.vb</DependentUpon>
@@ -185,10 +185,10 @@
     <EmbeddedResource Include="servisiranje.resx">
       <DependentUpon>servisiranje.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="test.resx">
-      <DependentUpon>test.vb</DependentUpon>
+    <EmbeddedResource Include="otpremnice.resx">
+      <DependentUpon>otpremnice.vb</DependentUpon>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>test1.Designer.vb</LastGenOutput>
+      <LastGenOutput>otpremnice1.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="ucitavanje.resx">

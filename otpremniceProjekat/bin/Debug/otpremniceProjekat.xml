@@ -52,53 +52,53 @@ otpremniceProjekat
   Looks up a localized string similar to .
 </summary>
 </member>
-<member name="T:otpremniceProjekat.My.Resources.test">
+<member name="T:otpremniceProjekat.My.Resources.otpremnice">
 <summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.ResourceManager">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.ResourceManager">
 <summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.Culture">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.Culture">
 <summary>
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.BackgroundWorker1_TrayLocation">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.BackgroundWorker1_TrayLocation">
 <summary>
   Looks up a localized resource of type System.Drawing.Point similar to {X=104,Y=21}.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.Button2_Image">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.Button2_Image">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.PictureBox2_Image">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.PictureBox2_Image">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.Timer1_TrayLocation">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.Timer1_TrayLocation">
 <summary>
   Looks up a localized resource of type System.Drawing.Point similar to {X=15,Y=21}.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.Timer2_TrayLocation">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.Timer2_TrayLocation">
 <summary>
   Looks up a localized resource of type System.Drawing.Point similar to {X=267,Y=21}.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.Timer3_TrayLocation">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.Timer3_TrayLocation">
 <summary>
   Looks up a localized resource of type System.Drawing.Point similar to {X=356,Y=21}.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.test.ToolTip1_TrayLocation">
+<member name="P:otpremniceProjekat.My.Resources.otpremnice.ToolTip1_TrayLocation">
 <summary>
   Looks up a localized resource of type System.Drawing.Point similar to {X=445,Y=21}.
 </summary>
