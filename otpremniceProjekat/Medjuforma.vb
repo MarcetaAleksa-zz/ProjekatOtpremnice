@@ -24,6 +24,8 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         prijava.Show()
+        prijava.TextBox1.Text = "Unesi korisničko ime ovde"
+        prijava.TextBox2.Text = "Unesi lozinku ovde"
         Me.Dispose()
     End Sub
 End Class
