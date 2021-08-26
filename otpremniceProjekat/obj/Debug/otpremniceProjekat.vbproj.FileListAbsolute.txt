@@ -145,3 +145,5 @@ C:\Users\user\Downloads\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremni
 C:\Users\user\Downloads\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pdb
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.servisiranje.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.otpremnice.resources
+C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.isporuka.resources
+C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.serv.resources

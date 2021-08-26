@@ -22,6 +22,7 @@ Partial Class servisiranje
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(servisiranje))
         Me.OpisTB = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -42,6 +43,7 @@ Partial Class servisiranje
         Me.Nazad = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -53,7 +55,7 @@ Partial Class servisiranje
         'OpisTB
         '
         Me.OpisTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.OpisTB.ForeColor = System.Drawing.SystemColors.Control
+        Me.OpisTB.ForeColor = System.Drawing.Color.Gray
         Me.OpisTB.Location = New System.Drawing.Point(280, 12)
         Me.OpisTB.Multiline = True
         Me.OpisTB.Name = "OpisTB"
@@ -99,7 +101,7 @@ Partial Class servisiranje
         Me.StanjeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.StanjeCB.ForeColor = System.Drawing.SystemColors.Control
         Me.StanjeCB.FormattingEnabled = True
-        Me.StanjeCB.Items.AddRange(New Object() {"Prijem", "Isporuka"})
+        Me.StanjeCB.Items.AddRange(New Object() {"Prijem"})
         Me.StanjeCB.Location = New System.Drawing.Point(60, 4)
         Me.StanjeCB.Name = "StanjeCB"
         Me.StanjeCB.Size = New System.Drawing.Size(113, 21)
@@ -132,7 +134,7 @@ Partial Class servisiranje
         Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Button1.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(656, 12)
+        Me.Button1.Location = New System.Drawing.Point(656, 3)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(45, 39)
         Me.Button1.TabIndex = 6
@@ -162,13 +164,13 @@ Partial Class servisiranje
         '
         Me.OtpremaTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.OtpremaTB.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.OtpremaTB.ForeColor = System.Drawing.SystemColors.Control
-        Me.OtpremaTB.Location = New System.Drawing.Point(97, 7)
+        Me.OtpremaTB.ForeColor = System.Drawing.Color.Gray
+        Me.OtpremaTB.Location = New System.Drawing.Point(100, 7)
         Me.OtpremaTB.Multiline = True
         Me.OtpremaTB.Name = "OtpremaTB"
-        Me.OtpremaTB.Size = New System.Drawing.Size(144, 24)
+        Me.OtpremaTB.Size = New System.Drawing.Size(150, 24)
         Me.OtpremaTB.TabIndex = 1
-        Me.OtpremaTB.Text = "Ime i Prezime"
+        Me.OtpremaTB.Text = "Unesite ime i prezime musterije"
         '
         'ServiserCB
         '
@@ -230,7 +232,7 @@ Partial Class servisiranje
         Me.Nazad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Nazad.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Nazad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Nazad.Location = New System.Drawing.Point(656, 205)
+        Me.Nazad.Location = New System.Drawing.Point(656, 212)
         Me.Nazad.Name = "Nazad"
         Me.Nazad.Size = New System.Drawing.Size(45, 39)
         Me.Nazad.TabIndex = 0
@@ -259,8 +261,12 @@ Partial Class servisiranje
         Me.Panel4.Controls.Add(Me.Panel2)
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(704, 257)
+        Me.Panel4.Size = New System.Drawing.Size(707, 259)
         Me.Panel4.TabIndex = 6
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1
         '
         'servisiranje
         '
@@ -309,4 +315,5 @@ Partial Class servisiranje
     Friend WithEvents Nazad As Button
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
+    Friend WithEvents Timer1 As Timer
 End Class

@@ -8,7 +8,7 @@
     End Sub
 
     Private Sub Servis_Click(sender As Object, e As EventArgs) Handles Servis.Click
-        servisiranje.Show()
+        serv.Show()
 
         Me.Hide()
     End Sub

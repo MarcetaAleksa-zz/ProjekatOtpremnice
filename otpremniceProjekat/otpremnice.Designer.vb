@@ -841,7 +841,7 @@ Partial Class otpremnice
         Me.Label25.TabIndex = 94
         Me.Label25.Text = "PRIKAZ:"
         '
-        'test
+        'otpremnice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -891,7 +891,7 @@ Partial Class otpremnice
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel6)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "test"
+        Me.Name = "otpremnice"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "test"
         Me.WindowState = System.Windows.Forms.FormWindowState.Minimized

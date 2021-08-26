@@ -126,6 +126,14 @@ Public Class prijava
         Dim odogovor = MsgBox("Da li zelite da izadjete iz programa?", vbYesNo)
         If odogovor = vbYes Then
             Me.Close()
+            dodajArtikal.Close()
+            isporuka.Close()
+            istorijaProdaje.Close()
+            Medjuforma.Close()
+            otpremnice.Close()
+            serv.Close()
+            servisiranje.Close()
+            ucitavanje.Close()
         End If
     End Sub
 End Class

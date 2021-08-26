@@ -105,6 +105,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hash.vb" />
+    <Compile Include="isporuka.Designer.vb">
+      <DependentUpon>isporuka.vb</DependentUpon>
+    </Compile>
+    <Compile Include="isporuka.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Medjuforma.Designer.vb">
       <DependentUpon>Medjuforma.vb</DependentUpon>
     </Compile>
@@ -139,6 +145,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="serv.Designer.vb">
+      <DependentUpon>serv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="serv.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="servisiranje.Designer.vb">
       <DependentUpon>servisiranje.vb</DependentUpon>
     </Compile>
@@ -167,6 +179,9 @@
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="isporuka.resx">
+      <DependentUpon>isporuka.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Medjuforma.resx">
       <DependentUpon>Medjuforma.vb</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +196,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="serv.resx">
+      <DependentUpon>serv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="servisiranje.resx">
       <DependentUpon>servisiranje.vb</DependentUpon>
