@@ -1291,7 +1291,7 @@ end", baza.konekcija)
 
 
         If OtpremaTB.SelectedIndex = 1 Then
-            Dim kom As New SqlCommand("select distinct sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex & "", baza.konekcija)
+            Dim kom As New SqlCommand("select  sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex + 1 & "", baza.konekcija)
             Dim ad As New SqlDataAdapter(kom)
             Dim ds As New DataSet()
             ad.Fill(ds)
@@ -1328,7 +1328,7 @@ end", baza.konekcija)
 
     End Sub
     Public Sub Combobox1_SelecedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        Dim kom As New SqlCommand("select distinct sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex & "", baza.konekcija)
+        Dim kom As New SqlCommand("select  sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex + 1 & "", baza.konekcija)
         Dim ad As New SqlDataAdapter(kom)
         Dim ds As New DataSet()
         ad.Fill(ds)

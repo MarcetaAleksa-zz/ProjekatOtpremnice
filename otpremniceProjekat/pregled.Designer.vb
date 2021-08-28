@@ -62,11 +62,11 @@ Partial Class pregled
         '
         Me.uslugaTB.BackColor = System.Drawing.Color.Gray
         Me.uslugaTB.ForeColor = System.Drawing.Color.White
-        Me.uslugaTB.Location = New System.Drawing.Point(131, 151)
+        Me.uslugaTB.Location = New System.Drawing.Point(20, 223)
         Me.uslugaTB.Multiline = True
         Me.uslugaTB.Name = "uslugaTB"
         Me.uslugaTB.ReadOnly = True
-        Me.uslugaTB.Size = New System.Drawing.Size(204, 197)
+        Me.uslugaTB.Size = New System.Drawing.Size(211, 131)
         Me.uslugaTB.TabIndex = 2
         '
         'stanjeServisaTB
@@ -83,7 +83,7 @@ Partial Class pregled
         '
         Me.musterijaTB.BackColor = System.Drawing.Color.Gray
         Me.musterijaTB.ForeColor = System.Drawing.Color.White
-        Me.musterijaTB.Location = New System.Drawing.Point(574, 80)
+        Me.musterijaTB.Location = New System.Drawing.Point(270, 151)
         Me.musterijaTB.Name = "musterijaTB"
         Me.musterijaTB.ReadOnly = True
         Me.musterijaTB.Size = New System.Drawing.Size(100, 20)
@@ -103,7 +103,7 @@ Partial Class pregled
         '
         Me.datumITB.BackColor = System.Drawing.Color.Gray
         Me.datumITB.ForeColor = System.Drawing.Color.White
-        Me.datumITB.Location = New System.Drawing.Point(352, 80)
+        Me.datumITB.Location = New System.Drawing.Point(266, 80)
         Me.datumITB.Name = "datumITB"
         Me.datumITB.ReadOnly = True
         Me.datumITB.Size = New System.Drawing.Size(100, 20)
@@ -113,18 +113,18 @@ Partial Class pregled
         '
         Me.emailTB.BackColor = System.Drawing.Color.Gray
         Me.emailTB.ForeColor = System.Drawing.Color.White
-        Me.emailTB.Location = New System.Drawing.Point(558, 217)
+        Me.emailTB.Location = New System.Drawing.Point(417, 151)
         Me.emailTB.Multiline = True
         Me.emailTB.Name = "emailTB"
         Me.emailTB.ReadOnly = True
-        Me.emailTB.Size = New System.Drawing.Size(116, 50)
+        Me.emailTB.Size = New System.Drawing.Size(205, 23)
         Me.emailTB.TabIndex = 7
         '
         'telefonTB
         '
         Me.telefonTB.BackColor = System.Drawing.Color.Gray
         Me.telefonTB.ForeColor = System.Drawing.Color.White
-        Me.telefonTB.Location = New System.Drawing.Point(574, 147)
+        Me.telefonTB.Location = New System.Drawing.Point(405, 80)
         Me.telefonTB.Name = "telefonTB"
         Me.telefonTB.ReadOnly = True
         Me.telefonTB.Size = New System.Drawing.Size(100, 20)
@@ -134,11 +134,11 @@ Partial Class pregled
         '
         Me.opisServisaTB.BackColor = System.Drawing.Color.Gray
         Me.opisServisaTB.ForeColor = System.Drawing.Color.White
-        Me.opisServisaTB.Location = New System.Drawing.Point(348, 151)
+        Me.opisServisaTB.Location = New System.Drawing.Point(256, 223)
         Me.opisServisaTB.Multiline = True
         Me.opisServisaTB.Name = "opisServisaTB"
         Me.opisServisaTB.ReadOnly = True
-        Me.opisServisaTB.Size = New System.Drawing.Size(204, 197)
+        Me.opisServisaTB.Size = New System.Drawing.Size(204, 131)
         Me.opisServisaTB.TabIndex = 9
         '
         'Label1
@@ -165,7 +165,7 @@ Partial Class pregled
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(128, 120)
+        Me.Label3.Location = New System.Drawing.Point(17, 187)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(54, 13)
         Me.Label3.TabIndex = 12
@@ -175,7 +175,7 @@ Partial Class pregled
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(571, 57)
+        Me.Label4.Location = New System.Drawing.Point(263, 120)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(71, 13)
         Me.Label4.TabIndex = 13
@@ -205,7 +205,7 @@ Partial Class pregled
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(349, 57)
+        Me.Label7.Location = New System.Drawing.Point(263, 57)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(107, 13)
         Me.Label7.TabIndex = 16
@@ -215,7 +215,7 @@ Partial Class pregled
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(571, 184)
+        Me.Label8.Location = New System.Drawing.Point(431, 120)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(42, 13)
         Me.Label8.TabIndex = 17
@@ -225,7 +225,7 @@ Partial Class pregled
         '
         Me.Label9.AutoSize = True
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(571, 120)
+        Me.Label9.Location = New System.Drawing.Point(414, 57)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(59, 13)
         Me.Label9.TabIndex = 18
@@ -235,7 +235,7 @@ Partial Class pregled
         '
         Me.Label10.AutoSize = True
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(349, 120)
+        Me.Label10.Location = New System.Drawing.Point(253, 187)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(165, 13)
         Me.Label10.TabIndex = 19
@@ -263,7 +263,7 @@ Partial Class pregled
         Me.Nazad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Nazad.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Nazad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Nazad.Location = New System.Drawing.Point(12, 315)
+        Me.Nazad.Location = New System.Drawing.Point(629, 7)
         Me.Nazad.Name = "Nazad"
         Me.Nazad.Size = New System.Drawing.Size(45, 39)
         Me.Nazad.TabIndex = 21

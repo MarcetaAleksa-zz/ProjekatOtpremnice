@@ -41,7 +41,7 @@ Public Class prijava
                     email.To.Add(emailZ)
                     email.Subject = "Racunari d.o.o 2FA"
                     email.IsBodyHtml = False
-                    email.Body = tempo
+                    email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
                     Dim SMTP As New SmtpClient("smtp.gmail.com")
                     SMTP.Port = 587S
                     SMTP.EnableSsl = True

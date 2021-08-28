@@ -62,8 +62,7 @@ SET stanje_servisa = 1, isporuka = '" & DatumDTB.Text & "', opis_servisa ='" & S
             komanda.Connection.Open()
             komanda.ExecuteNonQuery()
             komanda.Connection.Close()
-            serv.Show()
-            Me.Close()
+
         Catch ex As Exception
             MessageBox.Show(ex.ToString)
         End Try
@@ -93,6 +92,9 @@ LP"
             SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
             SMTP.Send(email)
             MsgBox("Email obavjestelja je poslat musteriji.")
+            Me.Controls.Clear() 'removes all the controls on the form
+            InitializeComponent() 'load all the controls again
+            isporuka_Load(e, e)
         Catch error_t As Exception
             MessageBox.Show(error_t.ToString)
         End Try

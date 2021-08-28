@@ -302,7 +302,7 @@ Partial Class servisiranje
         Me.EmailTB.Location = New System.Drawing.Point(47, 7)
         Me.EmailTB.Multiline = True
         Me.EmailTB.Name = "EmailTB"
-        Me.EmailTB.Size = New System.Drawing.Size(150, 19)
+        Me.EmailTB.Size = New System.Drawing.Size(192, 19)
         Me.EmailTB.TabIndex = 1
         Me.EmailTB.Text = "Unesite broj email musterije"
         '

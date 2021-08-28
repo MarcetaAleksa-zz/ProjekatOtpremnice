@@ -28,6 +28,7 @@
         prijava.Show()
         prijava.TextBox1.Text = "Unesi korisničko ime ovde"
         prijava.TextBox2.Text = "Unesi lozinku ovde"
+        prijava.TextBox2.UseSystemPasswordChar = False
         Me.Dispose()
     End Sub
 

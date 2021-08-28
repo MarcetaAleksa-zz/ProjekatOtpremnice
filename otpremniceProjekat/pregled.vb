@@ -51,6 +51,6 @@ Public Class pregled
 
     Private Sub Nazad_Click(sender As Object, e As EventArgs) Handles Nazad.Click
         serv.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 End Class

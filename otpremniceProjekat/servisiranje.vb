@@ -10,7 +10,7 @@ Imports System.Text.StringBuilder
 Public Class servisiranje
     Private Sub Nazad_Click(sender As Object, e As EventArgs) Handles Nazad.Click
         serv.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
     Public brojac As Integer
 
@@ -166,4 +166,5 @@ LP"
             TelefonTB.ForeColor = Color.Gray
         End If
     End Sub
+
 End Class
