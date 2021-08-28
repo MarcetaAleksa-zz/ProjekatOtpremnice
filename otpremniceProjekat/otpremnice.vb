@@ -622,7 +622,7 @@ end", baza.konekcija)
         Next
         ComboBox1.TabStop = True
         reklamacijatb.SelectedIndex = 0
-        OtpremaTB.SelectedIndex = 0
+        OtpremaTB.SelectedIndex = -1
         ComboBox10.SelectedIndex = 1
         Me.WindowState = FormWindowState.Normal
     End Sub
@@ -1033,6 +1033,30 @@ end", baza.konekcija)
         Catch
         End Try
 
+        'Izvlacimo podatke o vozilu kupca
+        Dim kom As New SqlCommand("select distinct reg_br_vozila_sluzbenog from Osnovne where nacin_otpreme = 2 and otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
+        Dim ad As New SqlDataAdapter(kom)
+        Dim ds As New DataSet()
+        ad.Fill(ds)
+        If ds.Tables(0).Rows.Count > 0 Then
+            vozilotb.DataSource = ds.Tables(0)
+            vozilotb.ValueMember = "reg_br_vozila_sluzbenog"
+            vozilotb.DisplayMember = "reg_br_vozila_sluzbenog"
+            vozilotb.SelectedIndex = -1
+        Else
+            With vozilotb
+                .Text = ""
+                .DataSource = Nothing
+                .ValueMember = ""
+                .DisplayMember = ""
+                .SelectedIndex = -1
+                .DropDownStyle = ComboBoxStyle.DropDown
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+            End With
+        End If
+
+
     End Sub
     Private Sub iBKupcaComboBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles iBKupcaComboBox.KeyPress
 
@@ -1263,32 +1287,67 @@ end", baza.konekcija)
         Me.Dispose()
     End Sub
     Private Sub OtpremaTB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles OtpremaTB.SelectedIndexChanged
-        Dim commandBrojOtpremnice As New SqlCommand("select reg_br_vozila_sluzbenog from Osnovne", baza.konekcija)
-        Dim adapterBO As New SqlDataAdapter(commandBrojOtpremnice)
-        Dim tabelaBO As New DataSet()
-        adapterBO.Fill(tabelaBO)
+
+
 
         If OtpremaTB.SelectedIndex = 1 Then
-
-            vozilotb.DataSource = tabelaBO.Tables(0)
-            vozilotb.ValueMember = "reg_br_vozila_sluzbenog"
-            vozilotb.DisplayMember = "reg_br_vozila_sluzbenog"
+            Dim kom As New SqlCommand("select distinct sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex & "", baza.konekcija)
+            Dim ad As New SqlDataAdapter(kom)
+            Dim ds As New DataSet()
+            ad.Fill(ds)
+            vozilotb.DataSource = ds.Tables(0)
+            vozilotb.ValueMember = "sluz_voz"
+            vozilotb.DisplayMember = "sluz_voz"
             vozilotb.SelectedIndex = -1
-        ElseIf OtpremaTB.SelectedIndex = 0 Then
 
-            vozilotb.DataSource = Nothing
-            vozilotb.Items.Add("")
-            vozilotb.Items.Clear()
+        ElseIf OtpremaTB.SelectedIndex = 0 Then
+            Dim kom As New SqlCommand("select distinct reg_br_vozila_sluzbenog  as posta from Osnovne where nacin_otpreme = 3", baza.konekcija)
+            Dim ad As New SqlDataAdapter(kom)
+            Dim ds As New DataSet()
+            ad.Fill(ds)
+            vozilotb.DataSource = ds.Tables(0)
+            vozilotb.ValueMember = "posta"
+            vozilotb.DisplayMember = "posta"
+            vozilotb.SelectedIndex = -1
 
 
         ElseIf OtpremaTB.SelectedIndex = 2 Then
-            vozilotb.DataSource = Nothing
-            vozilotb.Items.Add("")
-            vozilotb.Items.Clear()
+            Dim kom As New SqlCommand("select distinct reg_br_vozila_sluzbenog from Osnovne where nacin_otpreme = 2 and otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
+            Dim ad As New SqlDataAdapter(kom)
+            Dim ds As New DataSet()
+            ad.Fill(ds)
+            vozilotb.DataSource = ds.Tables(0)
+            vozilotb.ValueMember = "reg_br_vozila_sluzbenog"
+            vozilotb.DisplayMember = "reg_br_vozila_sluzbenog"
+            vozilotb.SelectedIndex = -1
         Else
             vozilotb.DataSource = Nothing
             vozilotb.Items.Add("")
             vozilotb.Items.Clear()
+        End If
+
+    End Sub
+    Public Sub Combobox1_SelecedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        Dim kom As New SqlCommand("select distinct sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex & "", baza.konekcija)
+        Dim ad As New SqlDataAdapter(kom)
+        Dim ds As New DataSet()
+        ad.Fill(ds)
+        If ds.Tables(0).Rows.Count > 0 Then
+            vozilotb.DataSource = ds.Tables(0)
+            vozilotb.ValueMember = "sluz_voz"
+            vozilotb.DisplayMember = "sluz_voz"
+            vozilotb.SelectedIndex = -1
+        Else
+            With vozilotb
+                .Text = ""
+                .DataSource = Nothing
+                .ValueMember = ""
+                .DisplayMember = ""
+                .SelectedIndex = -1
+                .DropDownStyle = ComboBoxStyle.DropDown
+                .AutoCompleteMode = AutoCompleteMode.Suggest
+                .AutoCompleteSource = AutoCompleteSource.ListItems
+            End With
         End If
 
     End Sub
@@ -1310,7 +1369,7 @@ end", baza.konekcija)
             kupacAdresaComboBox.DataSource = Nothing
             kupacAdresaComboBox.Items.Add("")
             kupacAdresaComboBox.Items.Clear()
-            OtpremaTB.SelectedIndex = 0
+            OtpremaTB.SelectedIndex = -1
             reklamacijatb.SelectedIndex = 0
             ComboBox10.SelectedIndex = 1
             ComboBox1.SelectedIndex = -1 'u slucaju da zelimo i prodavaca resetovati
