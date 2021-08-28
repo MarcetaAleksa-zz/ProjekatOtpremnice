@@ -43,6 +43,12 @@ Partial Class servisiranje
         Me.Nazad = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.EmailTB = New System.Windows.Forms.TextBox()
+        Me.Panel7 = New System.Windows.Forms.Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TelefonTB = New System.Windows.Forms.TextBox()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel5.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -50,6 +56,8 @@ Partial Class servisiranje
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.Panel8.SuspendLayout()
+        Me.Panel7.SuspendLayout()
         Me.SuspendLayout()
         '
         'OpisTB
@@ -59,7 +67,7 @@ Partial Class servisiranje
         Me.OpisTB.Location = New System.Drawing.Point(280, 12)
         Me.OpisTB.Multiline = True
         Me.OpisTB.Name = "OpisTB"
-        Me.OpisTB.Size = New System.Drawing.Size(370, 232)
+        Me.OpisTB.Size = New System.Drawing.Size(370, 309)
         Me.OpisTB.TabIndex = 5
         Me.OpisTB.Text = "OPIS PROBLEMA"
         '
@@ -165,7 +173,7 @@ Partial Class servisiranje
         Me.OtpremaTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.OtpremaTB.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.OtpremaTB.ForeColor = System.Drawing.Color.Gray
-        Me.OtpremaTB.Location = New System.Drawing.Point(100, 7)
+        Me.OtpremaTB.Location = New System.Drawing.Point(106, 7)
         Me.OtpremaTB.Multiline = True
         Me.OtpremaTB.Name = "OtpremaTB"
         Me.OtpremaTB.Size = New System.Drawing.Size(150, 24)
@@ -232,7 +240,7 @@ Partial Class servisiranje
         Me.Nazad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Nazad.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.Nazad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Nazad.Location = New System.Drawing.Point(656, 212)
+        Me.Nazad.Location = New System.Drawing.Point(656, 282)
         Me.Nazad.Name = "Nazad"
         Me.Nazad.Size = New System.Drawing.Size(45, 39)
         Me.Nazad.TabIndex = 0
@@ -251,6 +259,8 @@ Partial Class servisiranje
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.Panel8)
+        Me.Panel4.Controls.Add(Me.Panel7)
         Me.Panel4.Controls.Add(Me.Panel6)
         Me.Panel4.Controls.Add(Me.Panel5)
         Me.Panel4.Controls.Add(Me.Button1)
@@ -261,8 +271,72 @@ Partial Class servisiranje
         Me.Panel4.Controls.Add(Me.Panel2)
         Me.Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(707, 259)
+        Me.Panel4.Size = New System.Drawing.Size(706, 335)
         Me.Panel4.TabIndex = 6
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel8.Controls.Add(Me.Label7)
+        Me.Panel8.Controls.Add(Me.EmailTB)
+        Me.Panel8.Location = New System.Drawing.Point(12, 282)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(256, 29)
+        Me.Panel8.TabIndex = 6
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label7.Location = New System.Drawing.Point(3, 7)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(38, 13)
+        Me.Label7.TabIndex = 2
+        Me.Label7.Text = "Email: "
+        '
+        'EmailTB
+        '
+        Me.EmailTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.EmailTB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.EmailTB.ForeColor = System.Drawing.Color.Gray
+        Me.EmailTB.Location = New System.Drawing.Point(47, 7)
+        Me.EmailTB.Multiline = True
+        Me.EmailTB.Name = "EmailTB"
+        Me.EmailTB.Size = New System.Drawing.Size(150, 19)
+        Me.EmailTB.TabIndex = 1
+        Me.EmailTB.Text = "Unesite broj email musterije"
+        '
+        'Panel7
+        '
+        Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel7.Controls.Add(Me.Label6)
+        Me.Panel7.Controls.Add(Me.TelefonTB)
+        Me.Panel7.Location = New System.Drawing.Point(12, 238)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(256, 29)
+        Me.Panel7.TabIndex = 5
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label6.Location = New System.Drawing.Point(3, 7)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(49, 13)
+        Me.Label6.TabIndex = 2
+        Me.Label6.Text = "Telefon: "
+        '
+        'TelefonTB
+        '
+        Me.TelefonTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.TelefonTB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TelefonTB.ForeColor = System.Drawing.Color.Gray
+        Me.TelefonTB.Location = New System.Drawing.Point(58, 7)
+        Me.TelefonTB.Multiline = True
+        Me.TelefonTB.Name = "TelefonTB"
+        Me.TelefonTB.Size = New System.Drawing.Size(150, 19)
+        Me.TelefonTB.TabIndex = 1
+        Me.TelefonTB.Text = "Unesite broj telefona musterije"
         '
         'Timer1
         '
@@ -273,7 +347,7 @@ Partial Class servisiranje
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange
-        Me.ClientSize = New System.Drawing.Size(703, 257)
+        Me.ClientSize = New System.Drawing.Size(703, 333)
         Me.Controls.Add(Me.Panel4)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "servisiranje"
@@ -292,6 +366,10 @@ Partial Class servisiranje
         Me.Panel3.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel8.PerformLayout()
+        Me.Panel7.ResumeLayout(False)
+        Me.Panel7.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -316,4 +394,10 @@ Partial Class servisiranje
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Panel4 As Panel
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Panel7 As Panel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TelefonTB As TextBox
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents EmailTB As TextBox
 End Class

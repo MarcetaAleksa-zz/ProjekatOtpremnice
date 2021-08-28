@@ -117,6 +117,12 @@
     <Compile Include="Medjuforma.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="pregled.Designer.vb">
+      <DependentUpon>pregled.vb</DependentUpon>
+    </Compile>
+    <Compile Include="pregled.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="prijava.Designer.vb">
       <DependentUpon>prijava.vb</DependentUpon>
     </Compile>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Medjuforma.resx">
       <DependentUpon>Medjuforma.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pregled.resx">
+      <DependentUpon>pregled.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="prijava.resx">
       <DependentUpon>prijava.vb</DependentUpon>

@@ -134,6 +134,7 @@ Public Class prijava
             serv.Close()
             servisiranje.Close()
             ucitavanje.Close()
+            isporuka.Close()
         End If
     End Sub
 End Class

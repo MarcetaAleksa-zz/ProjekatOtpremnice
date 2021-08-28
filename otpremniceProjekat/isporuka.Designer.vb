@@ -44,6 +44,13 @@ Partial Class isporuka
         Me.SpasiIzmjeneBT = New System.Windows.Forms.Button()
         Me.OpisTB = New System.Windows.Forms.TextBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel8 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.EmailTB = New System.Windows.Forms.TextBox()
+        Me.Panel9 = New System.Windows.Forms.Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TelefonTB = New System.Windows.Forms.TextBox()
+        Me.StatusServisaTB = New System.Windows.Forms.TextBox()
         Me.Panel7 = New System.Windows.Forms.Panel()
         Me.DatumDanasLB = New System.Windows.Forms.Label()
         Me.DatumDTB = New System.Windows.Forms.TextBox()
@@ -53,6 +60,8 @@ Partial Class isporuka
         Me.Panel6.SuspendLayout()
         Me.Panel5.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        Me.Panel8.SuspendLayout()
+        Me.Panel9.SuspendLayout()
         Me.Panel7.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -67,7 +76,7 @@ Partial Class isporuka
         Me.NazadBT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.NazadBT.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.NazadBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.NazadBT.Location = New System.Drawing.Point(656, 260)
+        Me.NazadBT.Location = New System.Drawing.Point(829, 463)
         Me.NazadBT.Name = "NazadBT"
         Me.NazadBT.Size = New System.Drawing.Size(45, 39)
         Me.NazadBT.TabIndex = 0
@@ -87,7 +96,7 @@ Partial Class isporuka
         '
         Me.ServiserTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.ServiserTB.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ServiserTB.ForeColor = System.Drawing.Color.Gray
+        Me.ServiserTB.ForeColor = System.Drawing.Color.White
         Me.ServiserTB.Location = New System.Drawing.Point(53, 7)
         Me.ServiserTB.Multiline = True
         Me.ServiserTB.Name = "ServiserTB"
@@ -161,7 +170,7 @@ Partial Class isporuka
         '
         Me.OtpremaTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.OtpremaTB.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.OtpremaTB.ForeColor = System.Drawing.Color.Gray
+        Me.OtpremaTB.ForeColor = System.Drawing.Color.White
         Me.OtpremaTB.Location = New System.Drawing.Point(100, 7)
         Me.OtpremaTB.Multiline = True
         Me.OtpremaTB.Name = "OtpremaTB"
@@ -174,7 +183,7 @@ Partial Class isporuka
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel6.Controls.Add(Me.StanjeCB)
         Me.Panel6.Controls.Add(Me.Label5)
-        Me.Panel6.Location = New System.Drawing.Point(12, 205)
+        Me.Panel6.Location = New System.Drawing.Point(8, 419)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(262, 27)
         Me.Panel6.TabIndex = 5
@@ -240,7 +249,7 @@ Partial Class isporuka
         Me.SpasiIzmjeneBT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.SpasiIzmjeneBT.Cursor = System.Windows.Forms.Cursors.Arrow
         Me.SpasiIzmjeneBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SpasiIzmjeneBT.Location = New System.Drawing.Point(656, 6)
+        Me.SpasiIzmjeneBT.Location = New System.Drawing.Point(829, 9)
         Me.SpasiIzmjeneBT.Name = "SpasiIzmjeneBT"
         Me.SpasiIzmjeneBT.Size = New System.Drawing.Size(45, 39)
         Me.SpasiIzmjeneBT.TabIndex = 6
@@ -249,18 +258,21 @@ Partial Class isporuka
         'OpisTB
         '
         Me.OpisTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.OpisTB.ForeColor = System.Drawing.Color.Gray
+        Me.OpisTB.ForeColor = System.Drawing.Color.White
         Me.OpisTB.Location = New System.Drawing.Point(280, 12)
         Me.OpisTB.Multiline = True
         Me.OpisTB.Name = "OpisTB"
         Me.OpisTB.ReadOnly = True
-        Me.OpisTB.Size = New System.Drawing.Size(370, 275)
+        Me.OpisTB.Size = New System.Drawing.Size(370, 182)
         Me.OpisTB.TabIndex = 5
         Me.OpisTB.Text = "OPIS PROBLEMA"
         '
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.Panel8)
+        Me.Panel4.Controls.Add(Me.Panel9)
+        Me.Panel4.Controls.Add(Me.StatusServisaTB)
         Me.Panel4.Controls.Add(Me.Panel7)
         Me.Panel4.Controls.Add(Me.Panel6)
         Me.Panel4.Controls.Add(Me.Panel5)
@@ -272,15 +284,90 @@ Partial Class isporuka
         Me.Panel4.Controls.Add(Me.Panel2)
         Me.Panel4.Location = New System.Drawing.Point(4, 13)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(707, 310)
+        Me.Panel4.Size = New System.Drawing.Size(888, 515)
         Me.Panel4.TabIndex = 7
+        '
+        'Panel8
+        '
+        Me.Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel8.Controls.Add(Me.Label7)
+        Me.Panel8.Controls.Add(Me.EmailTB)
+        Me.Panel8.Location = New System.Drawing.Point(18, 296)
+        Me.Panel8.Name = "Panel8"
+        Me.Panel8.Size = New System.Drawing.Size(256, 29)
+        Me.Panel8.TabIndex = 9
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label7.Location = New System.Drawing.Point(3, 7)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(38, 13)
+        Me.Label7.TabIndex = 2
+        Me.Label7.Text = "Email: "
+        '
+        'EmailTB
+        '
+        Me.EmailTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.EmailTB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.EmailTB.ForeColor = System.Drawing.Color.White
+        Me.EmailTB.Location = New System.Drawing.Point(47, 7)
+        Me.EmailTB.Multiline = True
+        Me.EmailTB.Name = "EmailTB"
+        Me.EmailTB.Size = New System.Drawing.Size(150, 19)
+        Me.EmailTB.TabIndex = 1
+        Me.EmailTB.Text = "Unesite broj email musterije"
+        '
+        'Panel9
+        '
+        Me.Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.Panel9.Controls.Add(Me.Label6)
+        Me.Panel9.Controls.Add(Me.TelefonTB)
+        Me.Panel9.Location = New System.Drawing.Point(18, 252)
+        Me.Panel9.Name = "Panel9"
+        Me.Panel9.Size = New System.Drawing.Size(256, 29)
+        Me.Panel9.TabIndex = 8
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label6.Location = New System.Drawing.Point(3, 7)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(49, 13)
+        Me.Label6.TabIndex = 2
+        Me.Label6.Text = "Telefon: "
+        '
+        'TelefonTB
+        '
+        Me.TelefonTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.TelefonTB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TelefonTB.ForeColor = System.Drawing.Color.White
+        Me.TelefonTB.Location = New System.Drawing.Point(58, 7)
+        Me.TelefonTB.Multiline = True
+        Me.TelefonTB.Name = "TelefonTB"
+        Me.TelefonTB.Size = New System.Drawing.Size(150, 19)
+        Me.TelefonTB.TabIndex = 1
+        Me.TelefonTB.Text = "Unesite broj telefona musterije"
+        '
+        'StatusServisaTB
+        '
+        Me.StatusServisaTB.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
+        Me.StatusServisaTB.ForeColor = System.Drawing.Color.Gray
+        Me.StatusServisaTB.Location = New System.Drawing.Point(280, 252)
+        Me.StatusServisaTB.Multiline = True
+        Me.StatusServisaTB.Name = "StatusServisaTB"
+        Me.StatusServisaTB.Size = New System.Drawing.Size(370, 250)
+        Me.StatusServisaTB.TabIndex = 7
+        Me.StatusServisaTB.Text = "OPIS ODRADJENOG POSLA (STANJA)"
         '
         'Panel7
         '
         Me.Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
         Me.Panel7.Controls.Add(Me.DatumDanasLB)
         Me.Panel7.Controls.Add(Me.DatumDTB)
-        Me.Panel7.Location = New System.Drawing.Point(12, 260)
+        Me.Panel7.Location = New System.Drawing.Point(8, 463)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(262, 27)
         Me.Panel7.TabIndex = 5
@@ -313,7 +400,7 @@ Partial Class isporuka
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(720, 335)
+        Me.ClientSize = New System.Drawing.Size(904, 540)
         Me.Controls.Add(Me.Panel4)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "isporuka"
@@ -331,6 +418,10 @@ Partial Class isporuka
         Me.Panel5.PerformLayout()
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
+        Me.Panel8.ResumeLayout(False)
+        Me.Panel8.PerformLayout()
+        Me.Panel9.ResumeLayout(False)
+        Me.Panel9.PerformLayout()
         Me.Panel7.ResumeLayout(False)
         Me.Panel7.PerformLayout()
         Me.ResumeLayout(False)
@@ -360,4 +451,11 @@ Partial Class isporuka
     Friend WithEvents DatumDanasLB As Label
     Friend WithEvents DatumDTB As TextBox
     Friend WithEvents BrojServisaCB As ComboBox
+    Friend WithEvents StatusServisaTB As TextBox
+    Friend WithEvents Panel8 As Panel
+    Friend WithEvents Label7 As Label
+    Friend WithEvents EmailTB As TextBox
+    Friend WithEvents Panel9 As Panel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TelefonTB As TextBox
 End Class
