@@ -37,19 +37,9 @@ otpremniceProjekat
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.saveeeeeeee">
-<summary>
-  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-</summary>
-</member>
 <member name="P:otpremniceProjekat.My.Resources.Resources.saveeeeeeee1">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:otpremniceProjekat.My.Resources.Resources.saveSlika">
-<summary>
-  Looks up a localized string similar to .
 </summary>
 </member>
 <member name="T:otpremniceProjekat.My.Resources.otpremnice">

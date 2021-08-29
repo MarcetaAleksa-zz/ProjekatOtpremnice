@@ -524,7 +524,7 @@ end", baza.konekcija)
 
                         sveOkej = 1
                     End If
-                    MsgBox("Uspjesno ste izdali otpremnicu!")
+                    MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
                 Else
 
                 End If
@@ -538,10 +538,10 @@ end", baza.konekcija)
                 ucitavanje.Show()
                 Me.Dispose()
             Else
-                MsgBox("Desila se greska sa bazom!")
+                MsgBox("Desila se greska sa bazom!", vbOKOnly, "Otpremnice")
             End If
         Else
-            MsgBox("Popunite sva polja!")
+            MsgBox("Popunite sva polja!", vbOKOnly, "Otpremnice")
         End If
 
     End Sub

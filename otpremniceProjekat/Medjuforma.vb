@@ -26,8 +26,11 @@
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         prijava.Show()
+        prijava.reload(e, e)
         prijava.TextBox1.Text = "Unesi korisničko ime ovde"
         prijava.TextBox2.Text = "Unesi lozinku ovde"
+        prijava.TextBox2.ForeColor = Color.Gray
+        prijava.TextBox1.ForeColor = Color.Gray
         prijava.TextBox2.UseSystemPasswordChar = False
         Me.Dispose()
     End Sub

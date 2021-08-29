@@ -180,7 +180,7 @@ Partial Class otpremnice
         Me.adresaTB.Name = "adresaTB"
         Me.adresaTB.ReadOnly = True
         Me.adresaTB.Size = New System.Drawing.Size(220, 20)
-        Me.adresaTB.TabIndex = 6
+        Me.adresaTB.TabIndex = 19
         Me.adresaTB.Text = "Vatrenih Jahaca BB"
         Me.adresaTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -196,7 +196,7 @@ Partial Class otpremnice
         Me.ibTB.Name = "ibTB"
         Me.ibTB.ReadOnly = True
         Me.ibTB.Size = New System.Drawing.Size(133, 20)
-        Me.ibTB.TabIndex = 7
+        Me.ibTB.TabIndex = 26
         Me.ibTB.Text = "4428006942051"
         Me.ibTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -220,7 +220,7 @@ Partial Class otpremnice
         Me.nacinOtpreme.Location = New System.Drawing.Point(654, 176)
         Me.nacinOtpreme.Name = "nacinOtpreme"
         Me.nacinOtpreme.Size = New System.Drawing.Size(91, 15)
-        Me.nacinOtpreme.TabIndex = 10
+        Me.nacinOtpreme.TabIndex = 20
         Me.nacinOtpreme.Text = "Nacin otpreme:"
         '
         'reklamacije
@@ -304,7 +304,7 @@ Partial Class otpremnice
         Me.ComboBox1.Location = New System.Drawing.Point(542, 96)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(208, 23)
-        Me.ComboBox1.TabIndex = 0
+        Me.ComboBox1.TabIndex = 1
         '
         'OtpremaTB
         '
@@ -319,7 +319,7 @@ Partial Class otpremnice
         Me.OtpremaTB.Location = New System.Drawing.Point(751, 173)
         Me.OtpremaTB.Name = "OtpremaTB"
         Me.OtpremaTB.Size = New System.Drawing.Size(118, 23)
-        Me.OtpremaTB.TabIndex = 5
+        Me.OtpremaTB.TabIndex = 6
         '
         'reklamacijatb
         '
@@ -334,7 +334,7 @@ Partial Class otpremnice
         Me.reklamacijatb.Location = New System.Drawing.Point(1080, 174)
         Me.reklamacijatb.Name = "reklamacijatb"
         Me.reklamacijatb.Size = New System.Drawing.Size(55, 23)
-        Me.reklamacijatb.TabIndex = 7
+        Me.reklamacijatb.TabIndex = 8
         '
         'Label1
         '
@@ -449,7 +449,7 @@ Partial Class otpremnice
         Me.NaslovTB.Location = New System.Drawing.Point(542, 134)
         Me.NaslovTB.Name = "NaslovTB"
         Me.NaslovTB.Size = New System.Drawing.Size(208, 23)
-        Me.NaslovTB.TabIndex = 1
+        Me.NaslovTB.TabIndex = 2
         '
         'iBKupcaComboBox
         '
@@ -459,7 +459,7 @@ Partial Class otpremnice
         Me.iBKupcaComboBox.Location = New System.Drawing.Point(781, 134)
         Me.iBKupcaComboBox.Name = "iBKupcaComboBox"
         Me.iBKupcaComboBox.Size = New System.Drawing.Size(133, 23)
-        Me.iBKupcaComboBox.TabIndex = 2
+        Me.iBKupcaComboBox.TabIndex = 3
         '
         'vozilotb
         '
@@ -472,7 +472,7 @@ Partial Class otpremnice
         Me.vozilotb.Location = New System.Drawing.Point(751, 206)
         Me.vozilotb.Name = "vozilotb"
         Me.vozilotb.Size = New System.Drawing.Size(118, 23)
-        Me.vozilotb.TabIndex = 6
+        Me.vozilotb.TabIndex = 7
         '
         'kupacAdresaComboBox
         '
@@ -482,7 +482,7 @@ Partial Class otpremnice
         Me.kupacAdresaComboBox.Location = New System.Drawing.Point(981, 134)
         Me.kupacAdresaComboBox.Name = "kupacAdresaComboBox"
         Me.kupacAdresaComboBox.Size = New System.Drawing.Size(220, 23)
-        Me.kupacAdresaComboBox.TabIndex = 3
+        Me.kupacAdresaComboBox.TabIndex = 4
         '
         'ComboBox10
         '
@@ -497,7 +497,7 @@ Partial Class otpremnice
         Me.ComboBox10.Location = New System.Drawing.Point(508, 173)
         Me.ComboBox10.Name = "ComboBox10"
         Me.ComboBox10.Size = New System.Drawing.Size(118, 23)
-        Me.ComboBox10.TabIndex = 4
+        Me.ComboBox10.TabIndex = 5
         '
         'TableLayoutPanel1
         '
@@ -533,7 +533,7 @@ Partial Class otpremnice
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(812, 385)
-        Me.TableLayoutPanel1.TabIndex = 62
+        Me.TableLayoutPanel1.TabIndex = 11
         '
         'dodajRedButton
         '
@@ -553,7 +553,7 @@ Partial Class otpremnice
         Me.Button1.Location = New System.Drawing.Point(1220, 29)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(94, 25)
-        Me.Button1.TabIndex = 64
+        Me.Button1.TabIndex = 1
         Me.Button1.Text = "Odjavi se"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -703,7 +703,7 @@ Partial Class otpremnice
         Me.Panel6.Location = New System.Drawing.Point(381, 125)
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(842, 41)
-        Me.Panel6.TabIndex = 76
+        Me.Panel6.TabIndex = 2
         '
         'Panel7
         '
@@ -716,7 +716,7 @@ Partial Class otpremnice
         Me.Panel7.Location = New System.Drawing.Point(-132, -2)
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(1340, 81)
-        Me.Panel7.TabIndex = 77
+        Me.Panel7.TabIndex = 18
         '
         'PictureBox2
         '
@@ -748,7 +748,7 @@ Partial Class otpremnice
         Me.Label14.Location = New System.Drawing.Point(1121, 31)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(84, 21)
-        Me.Label14.TabIndex = 65
+        Me.Label14.TabIndex = 0
         Me.Label14.Text = "KORISNIK"
         '
         'TableLayoutPanel2
@@ -828,7 +828,7 @@ Partial Class otpremnice
         Me.ComboBox2.Location = New System.Drawing.Point(1045, 208)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(80, 23)
-        Me.ComboBox2.TabIndex = 95
+        Me.ComboBox2.TabIndex = 9
         '
         'Label25
         '

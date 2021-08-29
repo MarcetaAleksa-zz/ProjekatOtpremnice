@@ -18,26 +18,26 @@ Public Class servisiranje
         brojac = 0
         Try
             If ServiserCB.SelectedIndex = -1 Then
-                MessageBox.Show("Molimo izaberite servisera")
+                MsgBox("Molimo izaberite servisera", vbOKOnly, "SERVIS")
 
             Else
                 brojac += 1
                 If OpisTB.Text = Nothing Or OpisTB.Text = "OPIS PROBLEMA" Then
                     brojac = 0
-                    MessageBox.Show("Molimo da popunite polje za opisom.")
+                    MsgBox("Molimo da popunite polje za opisom.", vbOKOnly, "SERVIS")
                 Else
                     brojac += 1
                     If OtpremaTB.Text = Nothing Or OtpremaTB.Text = "Unesite ime i prezime musterije" Then
                         brojac = 0
-                        MessageBox.Show("Molimo unesite ime musterije.")
+                        MsgBox("Molimo unesite ime musterije.", vbOKOnly, "SERVIS")
                     Else
                         brojac += 1
                         If EmailTB.Text = Nothing Or EmailTB.Text = "Unesite broj email musterije" Then
-                            MessageBox.Show("Molimo unesite email adresu")
+                            MsgBox("Molimo unesite email adresu", vbOKOnly, "SERVIS")
                         Else
                             brojac += 1
                             If TelefonTB.Text = Nothing Or TelefonTB.Text = "Unesite broj telefona musterije" Then
-                                MessageBox.Show("Molimo unesite broj telefona")
+                                MsgBox("Molimo unesite broj telefona", vbOKOnly, "SERVIS")
                             Else
                                 brojac += 1
                                 If brojac = 5 Then
@@ -69,7 +69,7 @@ LP"
                                         SMTP.EnableSsl = True
                                         SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
                                         SMTP.Send(email)
-                                        MsgBox("Email obavjestelja je poslat musteriji.")
+                                        MsgBox("Email obavjestenja je poslat musteriji.", vbOKOnly, "SERVIS")
                                     Catch error_t As Exception
 
                                     End Try
@@ -118,7 +118,7 @@ LP"
     Private Sub TextBox1_Enter(sender As Object, e As EventArgs) Handles OtpremaTB.Enter
         If (OtpremaTB.Text = "Unesite ime i prezime musterije") Then
             OtpremaTB.Text = ""
-            OtpremaTB.ForeColor = Color.White
+            OtpremaTB.ForeColor = Color.Black
         End If
     End Sub
     Private Sub TextBox1_Leave(sender As Object, e As EventArgs) Handles OtpremaTB.Leave
@@ -130,7 +130,7 @@ LP"
     Private Sub OpisTB_Enter(sender As Object, e As EventArgs) Handles OpisTB.Enter
         If (OpisTB.Text = "OPIS PROBLEMA") Then
             OpisTB.Text = ""
-            OpisTB.ForeColor = Color.White
+            OpisTB.ForeColor = Color.Black
 
         End If
     End Sub
@@ -143,7 +143,7 @@ LP"
     Private Sub EmailTB_Enter(sender As Object, e As EventArgs) Handles EmailTB.Enter
         If (EmailTB.Text = "Unesite broj email musterije") Then
             EmailTB.Text = ""
-            EmailTB.ForeColor = Color.White
+            EmailTB.ForeColor = Color.Black
 
         End If
     End Sub
@@ -156,7 +156,7 @@ LP"
     Private Sub TelefonTB_Enter(sender As Object, e As EventArgs) Handles TelefonTB.Enter
         If (TelefonTB.Text = "Unesite broj telefona musterije") Then
             TelefonTB.Text = ""
-            TelefonTB.ForeColor = Color.White
+            TelefonTB.ForeColor = Color.Black
 
         End If
     End Sub
@@ -167,4 +167,7 @@ LP"
         End If
     End Sub
 
+    Private Sub Panel4_Paint(sender As Object, e As PaintEventArgs) Handles Panel4.Paint
+
+    End Sub
 End Class

@@ -16,7 +16,6 @@ C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremnice
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\otpremniceProjekat.exe
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\otpremniceProjekat.pdb
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\bin\Debug\otpremniceProjekat.xml
-C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.AssemblyReference.cache
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.dodajArtikal.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.Resources.resources
 C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.GenerateResource.cache
@@ -138,7 +137,6 @@ C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnic
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.exe
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.xml
 C:\Users\Panzo\Desktop\backup\pull\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pdb
-C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.test.resources
 C:\Users\user\Downloads\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.vbproj.AssemblyReference.cache
 C:\Users\user\Downloads\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.exe
 C:\Users\user\Downloads\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.xml
@@ -148,3 +146,8 @@ C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\o
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.isporuka.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.serv.resources
 C:\Users\user\Documents\GitHub\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pregled.resources
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.isporuka.resources
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.pregled.resources
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.serv.resources
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.servisiranje.resources
+C:\Users\Panzo\Desktop\S0ftverskoInzenjerstvoRdbms\ProjekatOtpremnice\otpremniceProjekat\obj\Debug\otpremniceProjekat.otpremnice.resources

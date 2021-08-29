@@ -29,16 +29,16 @@ Partial Class prijava
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel8 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Label15 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel6.SuspendLayout()
-        Me.Panel8.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel8.SuspendLayout()
         Me.SuspendLayout()
         '
         'dugmePrijava
@@ -50,7 +50,7 @@ Partial Class prijava
         Me.dugmePrijava.Location = New System.Drawing.Point(274, 283)
         Me.dugmePrijava.Name = "dugmePrijava"
         Me.dugmePrijava.Size = New System.Drawing.Size(247, 54)
-        Me.dugmePrijava.TabIndex = 0
+        Me.dugmePrijava.TabIndex = 3
         Me.dugmePrijava.Text = "PRIJAVI SE"
         Me.dugmePrijava.UseVisualStyleBackColor = False
         '
@@ -62,7 +62,7 @@ Partial Class prijava
         Me.TextBox1.Location = New System.Drawing.Point(6, 6)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(236, 22)
-        Me.TextBox1.TabIndex = 1
+        Me.TextBox1.TabIndex = 0
         Me.TextBox1.Text = "Unesi korisničko ime ovde"
         '
         'TextBox2
@@ -73,7 +73,7 @@ Partial Class prijava
         Me.TextBox2.Location = New System.Drawing.Point(4, 6)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(236, 22)
-        Me.TextBox2.TabIndex = 2
+        Me.TextBox2.TabIndex = 0
         Me.TextBox2.Text = "Unesi lozinku ovde"
         '
         'Panel1
@@ -83,7 +83,7 @@ Partial Class prijava
         Me.Panel1.Location = New System.Drawing.Point(274, 189)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(247, 35)
-        Me.Panel1.TabIndex = 3
+        Me.Panel1.TabIndex = 1
         '
         'Panel2
         '
@@ -92,7 +92,7 @@ Partial Class prijava
         Me.Panel2.Location = New System.Drawing.Point(274, 231)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(247, 35)
-        Me.Panel2.TabIndex = 4
+        Me.Panel2.TabIndex = 2
         '
         'Panel6
         '
@@ -103,6 +103,27 @@ Partial Class prijava
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(811, 107)
         Me.Panel6.TabIndex = 5
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(1, 3)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(112, 104)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 69
+        Me.PictureBox2.TabStop = False
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Microsoft PhagsPa", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label15.Location = New System.Drawing.Point(128, 46)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(203, 21)
+        Me.Label15.TabIndex = 0
+        Me.Label15.Text = "SERVIS RAČUNARA D.O.O"
         '
         'Panel8
         '
@@ -134,31 +155,10 @@ Partial Class prijava
         Me.Button5.Location = New System.Drawing.Point(274, 343)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(247, 54)
-        Me.Button5.TabIndex = 87
+        Me.Button5.TabIndex = 0
         Me.Button5.Text = "IZADJI"
         Me.Button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
         Me.Button5.UseVisualStyleBackColor = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(1, 3)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(112, 104)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 69
-        Me.PictureBox2.TabStop = False
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Microsoft PhagsPa", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label15.Location = New System.Drawing.Point(128, 46)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(203, 21)
-        Me.Label15.TabIndex = 68
-        Me.Label15.Text = "SERVIS RAČUNARA D.O.O"
         '
         'prijava
         '
@@ -183,9 +183,9 @@ Partial Class prijava
         Me.Panel2.PerformLayout()
         Me.Panel6.ResumeLayout(False)
         Me.Panel6.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel8.ResumeLayout(False)
         Me.Panel8.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

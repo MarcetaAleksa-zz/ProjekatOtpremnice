@@ -1,15 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.IO
 Public Class dodajArtikal
-    Private Sub Button4_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-
-
-    End Sub
-
     Private Sub dodajArtikal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -83,7 +74,7 @@ Public Class dodajArtikal
 
     Private Sub Button4_Click_1(sender As Object, e As EventArgs) Handles Button4.Click   'dodavanje
         If (TextBox1.Text <> "" And TextBox2.Text <> "" And TextBox3.Text <> "" And TextBox4.Text <> "" And ComboBox1.SelectedIndex <> -1) Then
-            Dim odgovor = MsgBox("Da li zelite da unesete navedeni artikal?", vbYesNo)
+            Dim odgovor = MsgBox("Da li zelite da unesete navedeni artikal?", vbYesNo, "Artikli")
             Select Case odgovor
                 Case vbYes
                     Dim jedMjere
@@ -103,7 +94,7 @@ Public Class dodajArtikal
                 Case vbNo
             End Select
         Else
-            MsgBox("Popunite sva polja!")
+            MsgBox("Popunite sva polja!", vbOKOnly, "Artikli")
         End If
 
     End Sub
@@ -145,7 +136,7 @@ Public Class dodajArtikal
                 Case vbNo
             End Select
         Else
-            MsgBox("Popunite sva polja!")
+            MsgBox("Popunite sva polja!", vbOKOnly, "Artikli")
         End If
 
     End Sub

@@ -237,37 +237,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\saveSlika1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\saveeeeeeee.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\saveeeeeeee.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\backpng.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\back.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\back.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ssssssss.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sasa.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\xaxa.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\VSVS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\favicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\favicon1.ico" />

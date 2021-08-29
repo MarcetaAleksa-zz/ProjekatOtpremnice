@@ -91,7 +91,7 @@ LP"
             SMTP.EnableSsl = True
             SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
             SMTP.Send(email)
-            MsgBox("Email obavjestelja je poslat musteriji.")
+            MsgBox("Email obavjestenja je poslat musteriji.", vbOKOnly, "SERVIS")
             Me.Controls.Clear() 'removes all the controls on the form
             InitializeComponent() 'load all the controls again
             isporuka_Load(e, e)
@@ -112,6 +112,10 @@ LP"
             StatusServisaTB.Text = "OPIS ODRADJENOG POSLA (STANJA)"
             StatusServisaTB.ForeColor = Color.Gray
         End If
+
+    End Sub
+
+    Private Sub Panel4_Paint(sender As Object, e As PaintEventArgs) Handles Panel4.Paint
 
     End Sub
 End Class

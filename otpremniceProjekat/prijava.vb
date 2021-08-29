@@ -8,79 +8,93 @@ Public Class prijava
     Public Shared Hashed As String
     Public Shared pw As String
     Private Sub dugmePrijava_Click(sender As Object, e As EventArgs) Handles dugmePrijava.Click
-        Dim AuthKey As String
-        Dim tempo As String
-        Dim r As New Random
-        Dim emailZ As String
-        Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
-        Dim adapter As New SqlDataAdapter(komanda)
-        Dim tabela As New DataTable
-        Dim email As New MailMessage()
-        Dim UN As String
-        Dim pz As Integer
 
-        Try
-            adapter.Fill(tabela)
-            emailZ = tabela.Rows(0)(0)
-            UN = tabela.Rows(0)(1)
-            pw = tabela.Rows(0)(2)
-            Salt = tabela.Rows(0)(3)
-            tempo = RandomString(r)
-        Catch
 
-        End Try
+        If TextBox1.Text = "Unesi korisničko ime ovde" Or TextBox2.Text = "Unesi lozinku ovde" Then
+            MsgBox("Unesite podatke za prijavu!", vbOKOnly, "Prijava")
+        Else
 
-        Hash.Hashing()
-        Try
-            If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
-                Try
 
+
+            Dim AuthKey As String
+            Dim tempo As String
+            Dim r As New Random
+            Dim emailZ As String
+            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
+            Dim adapter As New SqlDataAdapter(komanda)
+            Dim tabela As New DataTable
+            Dim email As New MailMessage()
+            Dim UN As String
+            Dim pz As Integer
+
+            Try
+                adapter.Fill(tabela)
+                emailZ = tabela.Rows(0)(0)
+                UN = tabela.Rows(0)(1)
+                pw = tabela.Rows(0)(2)
+                Salt = tabela.Rows(0)(3)
+                tempo = RandomString(r)
+            Catch
+                MsgBox("Netacni podaci!", vbOKOnly, "GRESKA")
+            End Try
+
+            Hash.Hashing()
+            Try
+                If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
+                    Try
+
+                        Hash.HashStore = Nothing
+                        Hash.HashStorePrijava = Nothing
+                        email.From = New MailAddress("servisracunaradoo@gmail.com")
+                        email.To.Add(emailZ)
+                        email.Subject = "Racunari d.o.o 2FA"
+                        email.IsBodyHtml = False
+                        email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
+                        Dim SMTP As New SmtpClient("smtp.gmail.com")
+                        SMTP.Port = 587S
+                        SMTP.EnableSsl = True
+                        SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
+                        SMTP.Send(email)
+                        MsgBox("Poslali smo Vam autentikacioni kljuc na Vasu email adresu.", vbOKOnly, "Dvostruka provjera identiteta")
+                    Catch error_t As Exception
+
+                    End Try
+                    AuthKey = InputBox("Unesite autentikacioni kljuc:")
+                    If AuthKey = tempo Then 'tempo
+                        MsgBox("Dobrodosli", vbOK, "Prijava")
+                        Medjuforma.Show()
+                        Me.Hide()
+                    Else
+                        MsgBox("Pogresan kod. Molimo zatrazite novi kod kako bi ste se prijavili.", vbOKOnly, "GRESKA")
+                        TextBox1.Text = "Unesi korisničko ime ovde"
+                        TextBox1.ForeColor = Color.Gray
+                        TextBox2.Text = "Unesi lozinku ovde"
+                        TextBox2.UseSystemPasswordChar = False
+                        TextBox2.ForeColor = Color.Gray
+                    End If
+
+                Else
+                    MsgBox("Pogresna lozinka, molimo unesite ispravnu.")
                     Hash.HashStore = Nothing
                     Hash.HashStorePrijava = Nothing
-                    email.From = New MailAddress("servisracunaradoo@gmail.com")
-                    email.To.Add(emailZ)
-                    email.Subject = "Racunari d.o.o 2FA"
-                    email.IsBodyHtml = False
-                    email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
-                    Dim SMTP As New SmtpClient("smtp.gmail.com")
-                    SMTP.Port = 587S
-                    SMTP.EnableSsl = True
-                    SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
-                    SMTP.Send(email)
-                    MsgBox("Poslali smo Vam autentikacioni kljuc na Vasu email adresu.")
-                Catch error_t As Exception
-
-                End Try
-                AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                If AuthKey = tempo Then 'tempo
-                    MessageBox.Show("Dobrodosli")
-                    Medjuforma.Show()
-                    Me.Hide()
-                Else
-                    MessageBox.Show("Pogresan kod. Molimo zatrazite novi kod kako bi ste se prijavili.")
-                    TextBox1.Text = "Unesi korisničko ime ovde"
-                    TextBox1.ForeColor = Color.Gray
                     TextBox2.Text = "Unesi lozinku ovde"
                     TextBox2.UseSystemPasswordChar = False
                     TextBox2.ForeColor = Color.Gray
                 End If
+            Catch
+            End Try
 
-            Else
-                MessageBox.Show("Pogresna lozinka, molimo unesite ispravnu.")
-                Hash.HashStore = Nothing
-                Hash.HashStorePrijava = Nothing
-                TextBox2.Text = "Unesi lozinku ovde"
-                TextBox2.UseSystemPasswordChar = False
-                TextBox2.ForeColor = Color.Gray
-            End If
-        Catch
-        End Try
-
-
+        End If
 
 
 
     End Sub
+    Public Sub reload(sender As Object, e As EventArgs)
+        Me.Controls.Clear() 'removes all the controls on the form
+        InitializeComponent() 'load all the controls again
+        prijava_Load(e, e)
+    End Sub
+
     Function RandomString(r As Random)
         Dim s As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         Dim sb As New System.Text.StringBuilder
@@ -123,7 +137,7 @@ Public Class prijava
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        Dim odogovor = MsgBox("Da li zelite da izadjete iz programa?", vbYesNo)
+        Dim odogovor = MsgBox("Da li zelite da izadjete iz programa?", vbYesNo, "SERVIS RACUNARA D.O.O")
         If odogovor = vbYes Then
             Me.Close()
             dodajArtikal.Close()

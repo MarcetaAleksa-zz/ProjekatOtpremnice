@@ -358,7 +358,7 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     Next
                     pdfDoc.Add(ptabela3)
                     pdfDoc.Close()
-                    MsgBox("Uspjesno ste izdali otpremnicu!")
+                    MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
                 Else
                     Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
                     Dim pdfWriter As PdfWriter = PdfWriter.GetInstance(pdfDoc, New FileStream(sfd.FileName, FileMode.Create)) 'snimanje .pdf-a
@@ -540,12 +540,12 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
                     Next
                     pdfDoc.Add(ptabela3)
                     pdfDoc.Close()
-                    MsgBox("Uspjesno ste izdali otpremnicu!")
+                    MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
                 End If
 
             End If
         Catch ex As Exception
-            MsgBox(ex.Message, vbCritical)
+            MsgBox(ex.Message, vbCritical, "GRESKA")
         End Try
     End Sub
     Public Class itsEvents
