@@ -127,19 +127,6 @@ LP"
             OtpremaTB.ForeColor = Color.Gray
         End If
     End Sub
-    Private Sub OpisTB_Enter(sender As Object, e As EventArgs) Handles OpisTB.Enter
-        If (OpisTB.Text = "OPIS PROBLEMA") Then
-            OpisTB.Text = ""
-            OpisTB.ForeColor = Color.Black
-
-        End If
-    End Sub
-    Private Sub OpisTB_leave(sender As Object, e As EventArgs) Handles OtpremaTB.Leave
-        If (OpisTB.Text = "") Then
-            OpisTB.Text = "OPIS PROBLEMA"
-            OpisTB.ForeColor = Color.Gray
-        End If
-    End Sub
     Private Sub EmailTB_Enter(sender As Object, e As EventArgs) Handles EmailTB.Enter
         If (EmailTB.Text = "Unesite broj email musterije") Then
             EmailTB.Text = ""

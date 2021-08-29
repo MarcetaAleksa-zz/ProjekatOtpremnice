@@ -151,7 +151,6 @@ select DISTINCT zaposleni.ime + ' ' + zaposleni.prezime as lice, os.datum, os.ID
         Catch
 
         End Try
-        ' DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
         DataGridView1.AutoResizeColumns()
         DataGridView1.Refresh()
     End Sub

@@ -144,7 +144,7 @@ Partial Class prijava
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(46, 20)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "V1.0"
+        Me.Label1.Text = "V1.1"
         '
         'Button5
         '

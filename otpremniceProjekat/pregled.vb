@@ -37,12 +37,10 @@ Public Class pregled
                 datumPTB.Text = tb.Rows(0)(4)
                 If tb.Rows(0)(5) = True Then
                     stanjeServisaTB.Text = "Isporuceno"
-                    'opisServisaTB.Text = "NA SERVISU"
-                    'datumITB.Text = ""
+
                 ElseIf tb.Rows(0)(5) = False Then
                     stanjeServisaTB.Text = "Zaprimljeno"
-                    'datumITB.Text = tb.Rows(0)(6)
-                    'opisServisaTB.Text = tb.Rows(0)(9)
+
                 End If
                 emailTB.Text = tb.Rows(0)(7)
                 telefonTB.Text = tb.Rows(0)(8)
@@ -56,31 +54,6 @@ Public Class pregled
                     opisServisaTB.Text = tb.Rows(0)(9)
                 End If
 
-                ' MsgBox(tb.Rows(0)(9))
-                'If tb.Rows(0)(9) Is Nothing Then
-                '    opisServisaTB.Text = ""
-
-                'ElseIf tb.Rows(0)(9) IsNot Nothing Then
-                '    opisServisaTB.Text = tb.Rows(0)(9)
-                'End If
-
-                'If tb.Rows(0)(6) Is Nothing Then
-                '    datumITB.Text = ""
-
-                'ElseIf tb.Rows(0)(6) IsNot Nothing Then
-                '    datumITB.Text = tb.Rows(0)(9)
-                'End If
-                '' datumITB.Text = tb.Rows(0)(6)
-
-                ''  MsgBox(tb.Rows(0).ItemArray.Length)
-                'If tb.Rows(0)(9) Is Nothing Then
-                '    opisServisaTB.Text = ""
-
-                'ElseIf tb.Rows(0)(9) IsNot Nothing Then
-                '    opisServisaTB.Text = tb.Rows(0)(9)
-                'End If
-
-                '    MsgBox("Prosao")
             End If
 
         Catch ex As Exception

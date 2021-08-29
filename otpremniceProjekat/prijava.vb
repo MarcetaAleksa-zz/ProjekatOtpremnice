@@ -61,7 +61,7 @@ Public Class prijava
                     End Try
                     AuthKey = InputBox("Unesite autentikacioni kljuc:")
                     If AuthKey = tempo Then 'tempo
-                        MsgBox("Dobrodosli", vbOK, "Prijava")
+                        MsgBox("Dobrodosli", vbOKOnly, "Prijava")
                         Medjuforma.Show()
                         Me.Hide()
                     Else

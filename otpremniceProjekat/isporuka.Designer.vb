@@ -363,6 +363,7 @@ Partial Class isporuka
         Me.EmailTB.Location = New System.Drawing.Point(6, 7)
         Me.EmailTB.Multiline = True
         Me.EmailTB.Name = "EmailTB"
+        Me.EmailTB.ReadOnly = True
         Me.EmailTB.Size = New System.Drawing.Size(316, 24)
         Me.EmailTB.TabIndex = 1
         Me.EmailTB.Text = "Unesite broj email musterije"

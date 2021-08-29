@@ -58,13 +58,6 @@ Public Class dodajArtikal
         Medjuforma.Show()
         Me.Dispose()
     End Sub
-
-    'Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox22.KeyPress
-
-    '    If Not (Char.IsDigit(e.KeyChar) Or e.KeyChar = ".") And Not Char.IsControl(e.KeyChar) Then
-    '        e.Handled = True
-    '    End If
-    'End Sub
     Private Sub TextBox2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress, TextBox2.KeyPress
 
         If Not (Char.IsDigit(e.KeyChar)) And Not Char.IsControl(e.KeyChar) Then
@@ -138,16 +131,6 @@ Public Class dodajArtikal
         Else
             MsgBox("Popunite sva polja!", vbOKOnly, "Artikli")
         End If
-
-    End Sub
-
-    Private Sub TextBox3_TextChanged(sender As Object, e As EventArgs)
-        'Dim broj = TextBox22.Text
-        'Try
-        '    TextBox22.Text = broj.ToString("0.00")
-        'Catch
-        'End Try
-
 
     End Sub
 End Class

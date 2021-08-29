@@ -23,7 +23,7 @@ Public Class otpremnice
     Public Shared adresaKupca
     Public Shared regBrOTP
     Dim novoI As Integer = 0 'KORISTIMO ZA DINAMICKO DODAVANJE OBJEKATA I VEOMA JE VAZNO!
-    Dim brojDodanih As String = 0 'jos nije utvrdjeno cemu sluzi..
+    Dim brojDodanih As String = 0
     Dim sveOkej As Integer = 0 'KORISTIMO ZA PROVJERU DA LI JE USPJESNO UNIJELO U BAZU I IZRADILO PDF, AKO JE SVE OKEJ OVA VARIABLA CE NATJERATI PROGRAM DA SE PONOVO UCITA
     Dim brojacSvihPolja As Integer = 0 'KORISTIMO ZA PROVJERU PRIJE OBRADE PODATAKA DA LI JE SVE UNESENO
 
@@ -561,9 +561,6 @@ end", baza.konekcija)
 
         Catch
         End Try
-        'If ukupanIznos.Text = "0" Then
-        '    ukupanIznos.Text = "00.00"
-        'End If
     End Sub
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -571,11 +568,6 @@ end", baza.konekcija)
         ComboBox2.SelectedIndex = 0
         Focus()
         TableLayoutPanel1.HorizontalScroll.Enabled = True
-        'For Each row As RowStyle In Me.TableLayoutPanel2.RowStyles
-        '    row.SizeType = SizeType.Absolute
-        '    row.Height = 30.0!
-        'Next
-
         Dim command As New SqlCommand("select zaposleni.ime + ' ' + zaposleni.prezime as name from zaposleni", baza.konekcija)
         Dim adapter As New SqlDataAdapter(command)
         Dim tabela As New DataTable()
@@ -627,7 +619,6 @@ end", baza.konekcija)
         Me.WindowState = FormWindowState.Normal
     End Sub
     Private Sub dodavanjeRedaOtpremnica()
-        'TableLayoutPanel2.GetControlFromPosition(0, 0).BackColor = Color.control
 
         Dim label1 As New TextBox                                          'SIFRA
         With label1
@@ -755,22 +746,6 @@ end", baza.konekcija)
                     TableLayoutPanel2.Controls.Add(btn1, 3, smg + 1)
                 End With
                 tt.SetToolTip(btn1, "Otvori otpremnicu")
-                'Dim btn2 As New Button                                           'DUGME IZMIJENI OTPREMNICU
-                'With btn2
-
-                '    .Name = "btn2" + smg.ToString
-                '    .FlatStyle = FlatStyle.Flat
-                '    .Dock = DockStyle.Fill
-                '    .Size = New Size(28, 24)
-                '    .BackgroundImageLayout = ImageLayout.Stretch
-                '    .Image = My.Resources.saveeeeeeee1
-                '    .Size = New Size(28, 24)
-                '    .ForeColor = SystemColors.Control
-                '    .BackColor = System.Drawing.ColorTranslator.FromHtml("#333333")
-                '    .Tag = bRds.Rows(smg)(0) 'TAG JE SIFRA OTPREMNICE TKD KADA KLIKNEMO NA DUGME ODMAH OTVARA NOVU FORMU U KOJOJ UZ DUGME STIZE KOJU SIFRU OTPREMNNICE TO DUGME NOSI UZ SEBE, TAKO DA ODMAH U NOVOJ FORMI MOZEMO IZ BTN.TAG IZVUCI SVE VEZANO ZA TU SIFRU OTPREMNICE
-                '    '    AddHandler dodajButton.Click, AddressOf brisiDugme_Click
-                '    TableLayoutPanel2.Controls.Add(btn2, 4, smg + 1)
-                'End With
             Next
         Catch
         End Try
@@ -921,9 +896,6 @@ end", baza.konekcija)
             TableLayoutPanel1.RowCount += 1
 
         End If
-        'If novoI > 14 Then
-        '    TableLayoutPanel1.RowCount += 1
-        'End If
         novoI += 1
 
     End Sub
@@ -1498,10 +1470,6 @@ end", baza.konekcija)
                 document.Add(headerTabela)
 
             End If
-
-
-
-
         End Sub
     End Class
 
