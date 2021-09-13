@@ -20,12 +20,13 @@ Public Class prijava
             Dim tempo As String
             Dim r As New Random
             Dim emailZ As String
-            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
+            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt, auth  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
             Dim adapter As New SqlDataAdapter(komanda)
             Dim tabela As New DataTable
             Dim email As New MailMessage()
             Dim UN As String
             Dim pz As Integer
+            Dim auth As Boolean
 
             Try
                 adapter.Fill(tabela)
@@ -33,44 +34,54 @@ Public Class prijava
                 UN = tabela.Rows(0)(1)
                 pw = tabela.Rows(0)(2)
                 Salt = tabela.Rows(0)(3)
+                auth = tabela.Rows(0)(4)
                 tempo = RandomString(r)
             Catch
                 MsgBox("Netacni podaci!", vbOKOnly, "GRESKA")
             End Try
 
             Hash.Hashing()
+            MessageBox.Show(auth.ToString)
             Try
                 If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
-                    Try
-
-                        Hash.HashStore = Nothing
-                        Hash.HashStorePrijava = Nothing
-                        email.From = New MailAddress("servisracunaradoo@gmail.com")
-                        email.To.Add(emailZ)
-                        email.Subject = "Racunari d.o.o 2FA"
-                        email.IsBodyHtml = False
-                        email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
-                        Dim SMTP As New SmtpClient("smtp.gmail.com")
-                        SMTP.Port = 587S
-                        SMTP.EnableSsl = True
-                        SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
-                        SMTP.Send(email)
-                        MsgBox("Poslali smo Vam autentikacioni kljuc na Vasu email adresu.", vbOKOnly, "Dvostruka provjera identiteta")
-                    Catch error_t As Exception
-
-                    End Try
-                    AuthKey = InputBox("Unesite autentikacioni kljuc:")
-                    If AuthKey = tempo Then 'tempo
+                    If auth = True Then
                         MsgBox("Dobrodosli", vbOKOnly, "Prijava")
                         Medjuforma.Show()
                         Me.Hide()
+
                     Else
-                        MsgBox("Pogresan kod. Molimo zatrazite novi kod kako bi ste se prijavili.", vbOKOnly, "GRESKA")
-                        TextBox1.Text = "Unesi korisničko ime ovde"
-                        TextBox1.ForeColor = Color.Gray
-                        TextBox2.Text = "Unesi lozinku ovde"
-                        TextBox2.UseSystemPasswordChar = False
-                        TextBox2.ForeColor = Color.Gray
+
+                        Try
+
+                            Hash.HashStore = Nothing
+                            Hash.HashStorePrijava = Nothing
+                            email.From = New MailAddress("servisracunaradoo@gmail.com")
+                            email.To.Add(emailZ)
+                            email.Subject = "Racunari d.o.o 2FA"
+                            email.IsBodyHtml = False
+                            email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
+                            Dim SMTP As New SmtpClient("smtp.gmail.com")
+                            SMTP.Port = 587S
+                            SMTP.EnableSsl = True
+                            SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
+                            SMTP.Send(email)
+                            MsgBox("Poslali smo Vam autentikacioni kljuc na Vasu email adresu.", vbOKOnly, "Dvostruka provjera identiteta")
+                        Catch error_t As Exception
+
+                        End Try
+                        AuthKey = InputBox("Unesite autentikacioni kljuc:")
+                        If AuthKey = tempo Then 'tempo
+                            MsgBox("Dobrodosli", vbOKOnly, "Prijava")
+                            Medjuforma.Show()
+                            Me.Hide()
+                        Else
+                            MsgBox("Pogresan kod. Molimo zatrazite novi kod kako bi ste se prijavili.", vbOKOnly, "GRESKA")
+                            TextBox1.Text = "Unesi korisničko ime ovde"
+                            TextBox1.ForeColor = Color.Gray
+                            TextBox2.Text = "Unesi lozinku ovde"
+                            TextBox2.UseSystemPasswordChar = False
+                            TextBox2.ForeColor = Color.Gray
+                        End If
                     End If
 
                 Else
