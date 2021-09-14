@@ -9,6 +9,7 @@ Public Class otpremnice
     Dim ukupno = 0
     Dim saPdv = 0
     Dim bezPdv = 0
+    Public Shared pdfPreviewOdgovor = 0
     Public Shared comboIzabrani = 0
     Public Shared nazivPL '
     Public Shared brojOtp '
@@ -524,7 +525,7 @@ end", baza.konekcija)
 
                         sveOkej = 1
                     End If
-                    MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
+                    ' MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
                 Else
 
                 End If
@@ -563,7 +564,7 @@ end", baza.konekcija)
         End Try
     End Sub
     Public Sub test_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        pdfPreviewOdgovor = 0
         ComboBox10.SelectedIndex = 1
         ComboBox2.SelectedIndex = 0
         Focus()
@@ -1475,6 +1476,11 @@ end", baza.konekcija)
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
         comboIzabrani = ComboBox2.SelectedIndex
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs)
+        Dim appPath As String = My.Application.Info.DirectoryPath
+        MsgBox(appPath.ToString)
     End Sub
 End Class
 
