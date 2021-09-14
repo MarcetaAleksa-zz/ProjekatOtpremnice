@@ -18,10 +18,6 @@
         Me.Hide()
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        dodajArtikal.Show()
-        Me.Hide()
-    End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         prijava.Show()
@@ -31,10 +27,26 @@
         prijava.TextBox2.ForeColor = Color.Gray
         prijava.TextBox1.ForeColor = Color.Gray
         prijava.TextBox2.UseSystemPasswordChar = False
+        prijava.pozicija = Nothing
+        Hash.HashStorePrijava = Nothing
         Me.Dispose()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        MsgBox("WORK IN PROGRESS!")
+        AdminIzbor.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Medjuforma_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If prijava.pozicija <> 1 Then
+            Button3.Hide()
+        Else
+            Button3.Show()
+        End If
+    End Sub
+
+    Private Sub DodajRobu_Click(sender As Object, e As EventArgs) Handles DodajRobu.Click
+        dodajArtikal.Show()
+        Me.Hide()
     End Sub
 End Class
