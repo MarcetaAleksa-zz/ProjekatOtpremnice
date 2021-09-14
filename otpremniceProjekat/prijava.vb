@@ -4,25 +4,30 @@ Imports System.Net.Mail
 'U = otpremnicepdf@mail.com
 'P = RDBMSiSoftverskoInzinjerstvo
 Public Class prijava
-    Public Shared pozicija As Integer
     Public Shared Salt As String
     Public Shared Hashed As String
     Public Shared pw As String
     Private Sub dugmePrijava_Click(sender As Object, e As EventArgs) Handles dugmePrijava.Click
+
+
         If TextBox1.Text = "Unesi korisničko ime ovde" Or TextBox2.Text = "Unesi lozinku ovde" Then
             MsgBox("Unesite podatke za prijavu!", vbOKOnly, "Prijava")
         Else
+
+
+
             Dim AuthKey As String
             Dim tempo As String
             Dim r As New Random
             Dim emailZ As String
-            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt, auth, pozicija  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
+            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt, auth  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
             Dim adapter As New SqlDataAdapter(komanda)
             Dim tabela As New DataTable
             Dim email As New MailMessage()
             Dim UN As String
             Dim pz As Integer
             Dim auth As Boolean
+
             Try
                 adapter.Fill(tabela)
                 emailZ = tabela.Rows(0)(0)
@@ -31,19 +36,23 @@ Public Class prijava
                 Salt = tabela.Rows(0)(3)
                 auth = tabela.Rows(0)(4)
                 tempo = RandomString(r)
-                pozicija = tabela.Rows(0)(5)
             Catch
                 MsgBox("Netacni podaci!", vbOKOnly, "GRESKA")
             End Try
+
             Hash.Hashing()
+            MessageBox.Show(auth.ToString)
             Try
                 If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
                     If auth = True Then
                         MsgBox("Dobrodosli", vbOKOnly, "Prijava")
                         Medjuforma.Show()
                         Me.Hide()
+
                     Else
+
                         Try
+
                             Hash.HashStore = Nothing
                             Hash.HashStorePrijava = Nothing
                             email.From = New MailAddress("servisracunaradoo@gmail.com")
@@ -74,6 +83,7 @@ Public Class prijava
                             TextBox2.ForeColor = Color.Gray
                         End If
                     End If
+
                 Else
                     MsgBox("Pogresna lozinka, molimo unesite ispravnu.")
                     Hash.HashStore = Nothing
@@ -81,17 +91,21 @@ Public Class prijava
                     TextBox2.Text = "Unesi lozinku ovde"
                     TextBox2.UseSystemPasswordChar = False
                     TextBox2.ForeColor = Color.Gray
-                    pozicija = Nothing
                 End If
             Catch
             End Try
+
         End If
+
+
+
     End Sub
     Public Sub reload(sender As Object, e As EventArgs)
         Me.Controls.Clear() 'removes all the controls on the form
         InitializeComponent() 'load all the controls again
         prijava_Load(e, e)
     End Sub
+
     Function RandomString(r As Random)
         Dim s As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         Dim sb As New System.Text.StringBuilder
@@ -114,18 +128,6 @@ Public Class prijava
             TextBox1.ForeColor = Color.Gray
         End If
     End Sub
-    Private Sub TextBox1_MouseEnter(Sender As Object, e As EventArgs) Handles TextBox1.MouseEnter
-        If (TextBox1.Text = "Unesi korisničko ime ovde") Then
-            TextBox1.Text = ""
-            TextBox1.ForeColor = Color.Black
-        End If
-    End Sub
-    Private Sub TextBox1_MouserLeave(sender As Object, e As EventArgs) Handles TextBox1.MouseLeave
-        If (TextBox1.Text = "") Then
-            TextBox1.Text = "Unesi korisničko ime ovde"
-            TextBox1.ForeColor = Color.Gray
-        End If
-    End Sub
     Private Sub TextBox2_Enter(sender As Object, e As EventArgs) Handles TextBox2.Enter
         If (TextBox2.Text = "Unesi lozinku ovde") Then
             TextBox2.Text = ""
@@ -133,30 +135,18 @@ Public Class prijava
             TextBox2.ForeColor = Color.Black
         End If
     End Sub
-    Private Sub TextBix2_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
+    Private Sub Password_Form_Box_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
         If (TextBox2.Text = "") Then
             TextBox2.Text = "Unesi lozinku ovde"
             TextBox2.UseSystemPasswordChar = False
             TextBox2.ForeColor = Color.Gray
         End If
     End Sub
-    Private Sub TextBox2_MouseEnter(sender As Object, e As EventArgs) Handles TextBox2.MouseEnter
-        If (TextBox2.Text = "Unesi lozinku ovde") Then
-            TextBox2.Text = ""
-            TextBox2.UseSystemPasswordChar = True
-            TextBox2.ForeColor = Color.Black
-        End If
-    End Sub
-    Private Sub TextBix2_MouseLeave(sender As Object, e As EventArgs) Handles TextBox2.MouseLeave
-        If (TextBox2.Text = "") Then
-            TextBox2.Text = "Unesi lozinku ovde"
-            TextBox2.UseSystemPasswordChar = False
-            TextBox2.ForeColor = Color.Gray
-        End If
-    End Sub
+
     Private Sub prijava_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TextBox1.Focus()
     End Sub
+
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Dim odogovor = MsgBox("Da li zelite da izadjete iz programa?", vbYesNo, "SERVIS RACUNARA D.O.O")
         If odogovor = vbYes Then
@@ -170,9 +160,6 @@ Public Class prijava
             servisiranje.Close()
             ucitavanje.Close()
             isporuka.Close()
-            AdminIzbor.Close()
-            DodajRadnika.Close()
-            IzmjeniIzbrisiRadnika.Close()
         End If
     End Sub
 End Class

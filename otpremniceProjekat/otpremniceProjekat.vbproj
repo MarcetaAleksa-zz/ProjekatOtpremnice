@@ -97,12 +97,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminIzbor.Designer.vb">
-      <DependentUpon>AdminIzbor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="AdminIzbor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="baza.vb" />
     <Compile Include="dodajArtikal.Designer.vb">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
@@ -110,23 +104,11 @@
     <Compile Include="dodajArtikal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DodajRadnika.Designer.vb">
-      <DependentUpon>DodajRadnika.vb</DependentUpon>
-    </Compile>
-    <Compile Include="DodajRadnika.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Hash.vb" />
     <Compile Include="isporuka.Designer.vb">
       <DependentUpon>isporuka.vb</DependentUpon>
     </Compile>
     <Compile Include="isporuka.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IzmjeniIzbrisiRadnika.Designer.vb">
-      <DependentUpon>IzmjeniIzbrisiRadnika.vb</DependentUpon>
-    </Compile>
-    <Compile Include="IzmjeniIzbrisiRadnika.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Medjuforma.Designer.vb">
@@ -206,9 +188,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AdminIzbor.resx">
-      <DependentUpon>AdminIzbor.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </EmbeddedResource>
