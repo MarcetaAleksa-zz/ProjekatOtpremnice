@@ -1,13 +1,24 @@
-﻿Public Class pdfPreView
-    Private Sub pdfPreView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim appPath As String = My.Application.Info.DirectoryPath + "\15.pdfs"
-        ucitavanjaPDFa(appPath)
-    End Sub
 
+Imports System.IO
+Imports System.Data.SqlClient
+Public Class pdfPreView
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        otpremnice.pdfPreviewOdgovor = 0
-        otpremnice.Enabled = True
-        Me.Dispose()
+        Dim com As New SqlCommand("", baza.konekcija)
+
+        Dim odg
+        odg = MsgBox("Da li ste sigurni da ne zelite sacuvati otpremnicu?", vbYesNo, "Pregled otpremnice")
+        If odg = vbYes Then
+            com.Connection.Open()
+            com.CommandText = "DELETE from Osnovne where id = " + otpremnice.brojOtpremniceZaPdfPreView.ToString() + ";
+            DELETE from Usluge where otpremnica_br = " + otpremnice.brojOtpremniceZaPdfPreView.ToString() + ";"
+            com.ExecuteNonQuery()
+            com.Connection.Close()
+            otpremnice.Enabled = True
+            Me.Dispose()
+        ElseIf odg = vbNo Then
+
+
+        End If
     End Sub
 
     Public Sub ucitavanjaPDFa(putanja As String)
@@ -15,6 +26,13 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Pregled otpremince")
+        otpremnice.Enabled = True
+        otpremnice.reset()
+        Me.Dispose()
+
         otpremnice.pdfPreviewOdgovor = 1
+
     End Sub
 End Class
