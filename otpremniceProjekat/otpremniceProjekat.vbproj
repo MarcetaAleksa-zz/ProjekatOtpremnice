@@ -212,8 +212,14 @@
     <EmbeddedResource Include="dodajArtikal.resx">
       <DependentUpon>dodajArtikal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DodajRadnika.resx">
+      <DependentUpon>DodajRadnika.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="isporuka.resx">
       <DependentUpon>isporuka.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IzmjeniIzbrisiRadnika.resx">
+      <DependentUpon>IzmjeniIzbrisiRadnika.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Medjuforma.resx">
       <DependentUpon>Medjuforma.vb</DependentUpon>
