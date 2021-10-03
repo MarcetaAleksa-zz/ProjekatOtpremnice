@@ -6,11 +6,12 @@ Imports System.IO
 Imports System.Drawing
 
 Public Class otpremnice
-    Dim ukupno = 0
+    Public Shared ukupno = 0
     Dim saPdv = 0
     Dim bezPdv = 0
 
     Public Shared brojOtpremniceZaPdfPreView
+
 
     Public Shared pdfPreviewOdgovor = 0
     Public Shared comboIzabrani = 0

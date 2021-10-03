@@ -8,6 +8,8 @@ Public Class pdfPreView
         Dim odg
         odg = MsgBox("Da li ste sigurni da ne zelite sacuvati otpremnicu?", vbYesNo, "Pregled otpremnice")
         If odg = vbYes Then
+            otpremnice.ukupanIznos.Text = 0
+            otpremnice.ukupno = 0
             com.Connection.Open()
             com.CommandText = "DELETE from Osnovne where id = " + otpremnice.brojOtpremniceZaPdfPreView.ToString() + ";
             DELETE from Usluge where otpremnica_br = " + otpremnice.brojOtpremniceZaPdfPreView.ToString() + ";"
