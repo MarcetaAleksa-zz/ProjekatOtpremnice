@@ -38,7 +38,7 @@ Public Class otpremnice
             brojacSvihPolja += 1
             If NaslovTB.Text <> "" Then ' kupac
                 brojacSvihPolja += 1
-                If iBKupcaComboBox.Text <> "" Then 'IB KUPCA
+                If iBKupcaComboBox.Text <> "" And iBKupcaComboBox.Text.Length = 13 Then 'IB KUPCA
                     brojacSvihPolja += 1
                     If kupacAdresaComboBox.Text <> "" Then
                         brojacSvihPolja += 1
@@ -47,27 +47,27 @@ Public Class otpremnice
                             If ukupanIznos.Text <> "00.00" Then
                                 brojacSvihPolja += 1
                             Else
-                                ' MsgBox("Nema izabranih artikala!")
+                                MsgBox("Nema izabranih artikala!")
                                 brojacSvihPolja = 0
                             End If
                         Else
-                            '      MsgBox("Izaberite naziv pravnog lica!")
+                            MsgBox("Izaberite naziv pravnog lica!")
                             brojacSvihPolja = 0
                         End If
                     Else
-                        '     MsgBox("Unesite adresu kupca!")
+                        MsgBox("Unesite adresu kupca!")
                         brojacSvihPolja = 0
                     End If
                 Else
-                    '   MsgBox("Unesite IB kupca!")
                     brojacSvihPolja = 0
+                    MsgBox("IB mora da sadrzi 13 cifara!")
                 End If
             Else
-                '   MsgBox("Unesite kupca!")
+                MsgBox("Unesite kupca!")
                 brojacSvihPolja = 0
             End If
         Else
-            '    MsgBox("Izaberite naziv pravnog lica!")
+            MsgBox("Izaberite naziv pravnog lica!")
             brojacSvihPolja = 0
         End If
 
@@ -515,6 +515,7 @@ INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, 
 
             Catch ex As Exception
                 MsgBox(ex.Message, vbCritical)
+
 
             End Try
         Else
