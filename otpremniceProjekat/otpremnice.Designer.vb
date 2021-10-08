@@ -315,7 +315,7 @@ Partial Class otpremnice
         Me.OtpremaTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OtpremaTB.ForeColor = System.Drawing.SystemColors.Control
         Me.OtpremaTB.FormattingEnabled = True
-        Me.OtpremaTB.Items.AddRange(New Object() {"Posta", "Sluzbeno vozilo", "Kupac preuzima"})
+        Me.OtpremaTB.Items.AddRange(New Object() {"Sluzbeno vozilo", "Kupac preuzima", "Posta"})
         Me.OtpremaTB.Location = New System.Drawing.Point(751, 173)
         Me.OtpremaTB.Name = "OtpremaTB"
         Me.OtpremaTB.Size = New System.Drawing.Size(118, 23)

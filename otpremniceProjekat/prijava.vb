@@ -1,7 +1,7 @@
 ﻿Imports System.Text.StringBuilder
 Imports System.Data.SqlClient
 Imports System.Net.Mail
-'U = otpremnicepdf@mail.com
+'U = servisracunaradoo@gmail.com
 'P = RDBMSiSoftverskoInzinjerstvo
 Public Class prijava
     Public Shared pozicija As Integer
@@ -16,13 +16,14 @@ Public Class prijava
             Dim tempo As String
             Dim r As New Random
             Dim emailZ As String
-            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt, auth, pozicija  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
+            Dim komanda As New SqlCommand("SELECT email, korisnicko_ime, lozinka, salt, auth, pozicija, id  from zaposleni where korisnicko_ime ='" & TextBox1.Text & "'", baza.konekcija)
             Dim adapter As New SqlDataAdapter(komanda)
             Dim tabela As New DataTable
             Dim email As New MailMessage()
             Dim UN As String
             Dim pz As Integer
             Dim auth As Boolean
+            Dim id As Integer
             Try
                 adapter.Fill(tabela)
                 emailZ = tabela.Rows(0)(0)
@@ -32,37 +33,45 @@ Public Class prijava
                 auth = tabela.Rows(0)(4)
                 tempo = RandomString(r)
                 pozicija = tabela.Rows(0)(5)
+                id = tabela.Rows(0)(6)
+
             Catch
                 MsgBox("Netacni podaci!", vbOKOnly, "GRESKA")
             End Try
             Hash.Hashing()
             Try
-                If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = Hash.HashStore Then
+                If TextBox1.Text.ToLower = tabela.Rows(0)(1) And Hash.HashStorePrijava = pw Then
                     If auth = True Then
                         MsgBox("Dobrodosli", vbOKOnly, "Prijava")
                         Medjuforma.Show()
                         Me.Hide()
                     Else
                         Try
-                            Hash.HashStore = Nothing
                             Hash.HashStorePrijava = Nothing
                             email.From = New MailAddress("servisracunaradoo@gmail.com")
                             email.To.Add(emailZ)
                             email.Subject = "Racunari d.o.o 2FA"
                             email.IsBodyHtml = False
-                            email.Body = "Vas autentikacioni kod za Servis Racunara DOO je: " + tempo
+                            email.Body = "Vas verifikacioni kod za Servis Racunara DOO je: " + tempo
                             Dim SMTP As New SmtpClient("smtp.gmail.com")
                             SMTP.Port = 587S
                             SMTP.EnableSsl = True
                             SMTP.Credentials = New System.Net.NetworkCredential("servisracunaradoo@gmail.com", "RDBMSiSoftverskoInzinjerstvo")
                             SMTP.Send(email)
-                            MsgBox("Poslali smo Vam autentikacioni kljuc na Vasu email adresu.", vbOKOnly, "Dvostruka provjera identiteta")
+                            MsgBox("Poslali smo Vam verifikacioni kljuc na Vasu email adresu.", vbOKOnly, "Dvostruka provjera identiteta")
+
                         Catch error_t As Exception
 
                         End Try
                         AuthKey = InputBox("Unesite autentikacioni kljuc:")
                         If AuthKey = tempo Then 'tempo
                             MsgBox("Dobrodosli", vbOKOnly, "Prijava")
+                            Dim k As New SqlCommand("", baza.konekcija)
+                            k.CommandText = "UPDATE zaposleni
+set auth = 1 where id = " & id.ToString & ""
+                            k.Connection.Open()
+                            k.ExecuteNonQuery()
+                            k.Connection.Close()
                             Medjuforma.Show()
                             Me.Hide()
                         Else
@@ -76,7 +85,6 @@ Public Class prijava
                     End If
                 Else
                     MsgBox("Pogresna lozinka, molimo unesite ispravnu.")
-                    Hash.HashStore = Nothing
                     Hash.HashStorePrijava = Nothing
                     TextBox2.Text = "Unesi lozinku ovde"
                     TextBox2.UseSystemPasswordChar = False
@@ -120,7 +128,7 @@ Public Class prijava
             TextBox1.ForeColor = Color.Black
         End If
     End Sub
-    Private Sub TextBox1_MouserLeave(sender As Object, e As EventArgs) Handles TextBox1.MouseLeave
+    Private Sub TextBox1_MouseLeave(sender As Object, e As EventArgs) Handles TextBox1.MouseLeave
         If (TextBox1.Text = "") Then
             TextBox1.Text = "Unesi korisničko ime ovde"
             TextBox1.ForeColor = Color.Gray
@@ -133,7 +141,7 @@ Public Class prijava
             TextBox2.ForeColor = Color.Black
         End If
     End Sub
-    Private Sub TextBix2_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
+    Private Sub TextBox2_Leave(sender As Object, e As EventArgs) Handles TextBox2.Leave
         If (TextBox2.Text = "") Then
             TextBox2.Text = "Unesi lozinku ovde"
             TextBox2.UseSystemPasswordChar = False
@@ -147,7 +155,7 @@ Public Class prijava
             TextBox2.ForeColor = Color.Black
         End If
     End Sub
-    Private Sub TextBix2_MouseLeave(sender As Object, e As EventArgs) Handles TextBox2.MouseLeave
+    Private Sub TextBox2_MouseLeave(sender As Object, e As EventArgs) Handles TextBox2.MouseLeave
         If (TextBox2.Text = "") Then
             TextBox2.Text = "Unesi lozinku ovde"
             TextBox2.UseSystemPasswordChar = False

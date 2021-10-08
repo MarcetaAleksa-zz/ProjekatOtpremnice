@@ -50,7 +50,7 @@ Partial Class AdminIzbor
         Me.IzbrisiIzmjeniRadnikaTB.Name = "IzbrisiIzmjeniRadnikaTB"
         Me.IzbrisiIzmjeniRadnikaTB.Size = New System.Drawing.Size(134, 191)
         Me.IzbrisiIzmjeniRadnikaTB.TabIndex = 1
-        Me.IzbrisiIzmjeniRadnikaTB.Text = "IZMJENI/IZBRISI RADNIKA"
+        Me.IzbrisiIzmjeniRadnikaTB.Text = "IZMJENI / IZBRISI RADNIKA"
         Me.IzbrisiIzmjeniRadnikaTB.UseVisualStyleBackColor = False
         '
         'NazadBT

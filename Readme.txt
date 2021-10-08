@@ -7,7 +7,7 @@
 
 ***********Login details for cooresponding accounts:***********
 //\\//\\//\\aleksa - P@$$w0rd//\\//\\//\\
-//\\//\\//\\aleksandar - 9ede6477AA//\\//\\//\\
+//\\//\\//\\aleksandar - P@$$w0rd//\\//\\//\\
 //\\//\\//\\dragomir - Drag0m1r//\\//\\//\\
 //\\//\\//\\radenko - R4denk0//\\//\\//\\
 //\\//\\//\\mirko - m1rk0//\\//\\//\\
@@ -18,6 +18,8 @@
 //\\//\\//\\bisenija - B1sen1j4//\\//\\//\\
 //\\//\\//\\persida - Pers1d4//\\//\\//\\
 //\\//\\//\\uzahije - Uz4h1je//\\//\\//\\
-
+//\\//\\//\\natasa-m3d1c1n4//\\//\\//\\
+//\\//\\//\\jovo-programiranje//\\//\\//\\
 
 ***********MORE***********
+

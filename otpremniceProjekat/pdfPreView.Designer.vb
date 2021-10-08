@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class pdfPreView
+Partial Class servispdf
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,20 +22,29 @@ Partial Class pdfPreView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.servisbrowser = New System.Windows.Forms.WebBrowser()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'WebBrowser1
+        'servisbrowser
         '
-        Me.WebBrowser1.Location = New System.Drawing.Point(23, 4)
-        Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.WebBrowser1.Name = "WebBrowser1"
-        Me.WebBrowser1.ScrollBarsEnabled = False
-        Me.WebBrowser1.Size = New System.Drawing.Size(768, 1100)
-        Me.WebBrowser1.TabIndex = 0
-        Me.WebBrowser1.WebBrowserShortcutsEnabled = False
+        Me.servisbrowser.Location = New System.Drawing.Point(23, 4)
+        Me.servisbrowser.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.servisbrowser.Name = "servisbrowser"
+        Me.servisbrowser.ScrollBarsEnabled = False
+        Me.servisbrowser.Size = New System.Drawing.Size(768, 1100)
+        Me.servisbrowser.TabIndex = 0
+        Me.servisbrowser.WebBrowserShortcutsEnabled = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(810, 179)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(184, 56)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = "NAZAD"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -49,16 +58,7 @@ Partial Class pdfPreView
         Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(810, 179)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(184, 56)
-        Me.Button2.TabIndex = 2
-        Me.Button2.Text = "NAZAD"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'pdfPreView
+        'servispdf
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -66,16 +66,16 @@ Partial Class pdfPreView
         Me.ClientSize = New System.Drawing.Size(1009, 1100)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.WebBrowser1)
+        Me.Controls.Add(Me.servisbrowser)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "pdfPreView"
+        Me.Name = "servispdf"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "pdfPreView"
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents WebBrowser1 As WebBrowser
+    Friend WithEvents servisbrowser As WebBrowser
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
 End Class

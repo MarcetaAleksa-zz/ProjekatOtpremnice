@@ -12,7 +12,6 @@ Public Class otpremnice
 
     Public Shared brojOtpremniceZaPdfPreView
 
-
     Public Shared pdfPreviewOdgovor = 0
     Public Shared comboIzabrani = 0
     Public Shared nazivPL '
@@ -33,7 +32,7 @@ Public Class otpremnice
     Dim brojacSvihPolja As Integer = 0 'KORISTIMO ZA PROVJERU PRIJE OBRADE PODATAKA DA LI JE SVE UNESENO
 
     Private Sub Button_Click(sender As Object, e As EventArgs) Handles snimi.Click
-
+        servispdf.biraj = False
         brojacSvihPolja = 0
         If ComboBox1.SelectedIndex <> -1 Then 'naziv pravnog lica
             brojacSvihPolja += 1
@@ -98,13 +97,7 @@ Public Class otpremnice
                 adresaKupca = kupacAdresaComboBox.Text
                 regBrOTP = vozilotb.Text
 
-                ' Dim sfd As New SaveFileDialog With {.Filter = "PDF Files (*.pdf | *.pdfs"}   'Samo mozemo praviti file tipa .pdf, SaveFileDialog nam sluzi za poziv da sacuvamo file
-                ' Dim appPath As String = My.Application.Info.DirectoryPath  ' dobijamo default lokaciju gdje se .exe projekta nalazi
-                '   sfd.FileName = (tabela.Rows(0)(0) + 1).ToString + " " + NaslovTB.Text 'dodjela naziva za .pdf file
 
-
-
-                ' If sfd.ShowDialog = 1 Then
                 sveOkej = 0
                 If comboIzabrani = 0 Then
                     Dim pdfDoc As New Document(PageSize.A4.Rotate, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
@@ -248,18 +241,7 @@ Public Class otpremnice
 declare @y smallint
 set @y = (Select id_robe from Inventar where naziv_robe = '" & cmbxx.Text & "')
 INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
-                            Values(" & redniBroj.ToString & ", @y, '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");
-                            declare @x as bit
-set @x = (select jed_mjere from Inventar where naziv_robe = '" & cmbxx.Text & "')
-if @x = 1
-begin
-
-                            declare @jeste int
-set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & cmbxx.Text & "')
-UPDATE Panleksa.dbo.Inventar 
-SET kolicina = (@jeste - " & kolicinaKontrol.Text & ")
-Where naziv_robe = '" & cmbxx.Text & "'
-end", baza.konekcija)
+                            Values(" & redniBroj.ToString & ", @y, '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");", baza.konekcija)
                                 kommanden.Connection.Open()
                                 kommanden.ExecuteNonQuery()
                                 kommanden.Connection.Close()
@@ -275,7 +257,7 @@ end", baza.konekcija)
                     command.ExecuteNonQuery()
                     command.Connection.Close()
                     pdfDoc.Add(ptabela)
-                    Dim ptabela3 As New PdfPTable(2) With { ' generisanje tabele (7) kolona
+                    Dim ptabela3 As New PdfPTable(2) With { ' generisanje tabele (7) kolonas
                     .WidthPercentage = 13, '
                     .SpacingAfter = 10,
                     .SpacingBefore = 10
@@ -317,12 +299,8 @@ end", baza.konekcija)
                     Next
                     pdfDoc.Add(ptabela3)
                     pdfDoc.Close()
-                    'Dim writer As New StreamWriter(My.Application.Info.DirectoryPath + "\11115.pdfs")
-                    'writer.Write(pdfDoc)
-                    'writer.Close()
-                    '   sveOkej = 1
-                    pdfPreView.Show()
-                    pdfPreView.ucitavanjaPDFa(filename)
+                    servispdf.Show()
+                    servispdf.ucitavanjaPDFa(filename)
                     Me.Enabled = False
                 Else
                     Dim pdfDoc As New Document(PageSize.A4, 40, 40, 80, 20) 'postavljamo dimenzije naseg .pdf dokumenta
@@ -449,7 +427,6 @@ end", baza.konekcija)
 
 
 
-                                'ukupanIznos.Text  'ovo uglaviti na pdf kako bi osoba imala na pdfu koliko je sve kada se sumira
                                 '-------------------------------------------------- KRAJ PDF-A -------------------------------------------------------------------------------------------
 
 
@@ -464,21 +441,10 @@ end", baza.konekcija)
 
 
                                 Dim kommanden As New SqlCommand("
-declare @y smallint
-set @y = (Select id_robe from Inventar where naziv_robe = '" & cmbxx.Text & "')
-INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
-                            Values(" & redniBroj.ToString & ", @y, '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");
-                            declare @x as bit
-set @x = (select jed_mjere from Inventar where naziv_robe = '" & cmbxx.Text & "')
-if @x = 1
-begin
-
-                            declare @jeste int
-set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & cmbxx.Text & "')
-UPDATE Panleksa.dbo.Inventar 
-SET kolicina = (@jeste - " & kolicinaKontrol.Text & ")
-Where naziv_robe = '" & cmbxx.Text & "'
-end", baza.konekcija)
+                                declare @y smallint
+                                set @y = (Select id_robe from Inventar where naziv_robe = '" & cmbxx.Text & "')
+                                INSERT INTO Usluge (redni_broj, naziv_robe, jed_mjere, kolicina, cijena, rabat, pdv, otpremnica_br)
+                                                            Values(" & redniBroj.ToString & ", @y, '" & jedm & "'," & kolicinaKontrol.Text & ", " & cijenaKontrol.Text & ", " & rabatKontrol.Text & "," & ComboBox10.SelectedIndex & ", " & brotpremniceTxt.Text & ");", baza.konekcija)
                                 kommanden.Connection.Open()
                                 kommanden.ExecuteNonQuery()
                                 kommanden.Connection.Close()
@@ -538,38 +504,19 @@ end", baza.konekcija)
                     Next
                     pdfDoc.Add(ptabela3)
                     pdfDoc.Close()
-                    'Dim writer As New StreamWriter(My.Application.Info.DirectoryPath + "\11115.pdfs")
-                    'writer.Write(pdfDoc)
-                    'writer.Close()
-                    ' sveOkej = 1
-                    pdfPreView.Show()
-                    pdfPreView.ucitavanjaPDFa(filename)
+                    servispdf.Show()
+                    servispdf.ucitavanjaPDFa(filename)
                     Me.Enabled = False
 
 
                     sveOkej = 1
-                    End If
-                ' MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
-                '  Else
+                End If
 
-
-                'End If
-                ' MsgBox("Uspjesno ste izdali otpremnicu!", vbOKOnly, "Otpremnice")
-                '  Else           vratiititititit
-
-                'End If   istoooooo
 
             Catch ex As Exception
                 MsgBox(ex.Message, vbCritical)
 
             End Try
-            'If sveOkej = 1 Then
-            '    novoI = 0
-            '    ucitavanje.Show()
-            '    Me.Dispose()
-            'Else
-            '    MsgBox("Desila se greska sa bazom!", vbOKOnly, "Otpremnice")
-            'End If
         Else
             MsgBox("Popunite sva polja!", vbOKOnly, "Otpremnice")
         End If
@@ -1297,8 +1244,8 @@ end", baza.konekcija)
 
 
 
-        If OtpremaTB.SelectedIndex = 1 Then
-            Dim kom As New SqlCommand("select  sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex + 1 & "", baza.konekcija)
+        If OtpremaTB.SelectedIndex = 0 Then
+            Dim kom As New SqlCommand("select sluz_voz from zaposleni where id = " & ComboBox1.SelectedIndex + 1 & "", baza.konekcija)
             Dim ad As New SqlDataAdapter(kom)
             Dim ds As New DataSet()
             ad.Fill(ds)
@@ -1307,7 +1254,7 @@ end", baza.konekcija)
             vozilotb.DisplayMember = "sluz_voz"
             vozilotb.SelectedIndex = -1
 
-        ElseIf OtpremaTB.SelectedIndex = 0 Then
+        ElseIf OtpremaTB.SelectedIndex = 2 Then
             Dim kom As New SqlCommand("select distinct reg_br_vozila_sluzbenog  as posta from Osnovne where nacin_otpreme = 3", baza.konekcija)
             Dim ad As New SqlDataAdapter(kom)
             Dim ds As New DataSet()
@@ -1318,7 +1265,7 @@ end", baza.konekcija)
             vozilotb.SelectedIndex = -1
 
 
-        ElseIf OtpremaTB.SelectedIndex = 2 Then
+        ElseIf OtpremaTB.SelectedIndex = 1 Then
             Dim kom As New SqlCommand("select distinct reg_br_vozila_sluzbenog from Osnovne where nacin_otpreme = 2 and otpremi_na_naslov = '" & NaslovTB.Text & "' ", baza.konekcija)
             Dim ad As New SqlDataAdapter(kom)
             Dim ds As New DataSet()
@@ -1511,5 +1458,42 @@ end", baza.konekcija)
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
         comboIzabrani = ComboBox2.SelectedIndex
     End Sub
+    Public Function skiniStanje()
+        Try
+            Dim noviBr = 0
+            For noviBr = 0 To TableLayoutPanel1.RowCount - 1
+                Dim kaDesno = 1
+                Dim naziv As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBr)
+                kaDesno += 1
+                If naziv Is Nothing Then
+                ElseIf naziv.Text <> "" Then
+                    Dim jedm As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBr)
+                    kaDesno += 1
+                    Dim kolicina As Control = TableLayoutPanel1.GetControlFromPosition(kaDesno, noviBr)
+
+
+                    '-----------------------------------------------------------------------
+                    Dim k As New SqlCommand("", baza.konekcija)
+                    k.CommandText = "declare @x as bit
+                                set @x = (select jed_mjere from Inventar where naziv_robe = '" & naziv.Text & "')
+                                if @x = 1
+                                begin
+
+                                                            declare @jeste int
+                                set @jeste = (SELECT kolicina from Panleksa.dbo.Inventar where naziv_robe = '" & naziv.Text & "')
+                                UPDATE Panleksa.dbo.Inventar 
+                                SET kolicina = (@jeste - " & kolicina.Text & ")
+                                Where naziv_robe = '" & naziv.Text & "'
+                                end"
+                    k.Connection.Open()
+                    k.ExecuteNonQuery()
+                    k.Connection.Close()
+                    '-----------------------------------------------------------------------
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString, vbInformation)
+        End Try
+    End Function
 End Class
 
