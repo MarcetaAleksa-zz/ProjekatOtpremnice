@@ -197,12 +197,19 @@ Public Class servisiranje
     End Sub
     Public Function salji()
         If brojac = 5 Then
-            Dim komanda As New SqlCommand("Insert into Panleksa.dbo.servis (id_servisa, serviser, usluga, otprema_na_naslov, prijem, stanje_servisa, email, telefon)
-Values (" & BrojServisaTB.Text & "," & ServiserCB.SelectedIndex + 1 & ", '" & OpisTB.Text & "', '" & OtpremaTB.Text & "', '" & datumtb.Text & "', 0, '" & EmailTB.Text & "', '" & TelefonTB.Text & "')", baza.konekcija)
-            komanda.Connection.Open()
-            komanda.ExecuteNonQuery()
-            komanda.Connection.Close()
-            brojac = 0
+            Dim komanda As New SqlCommand("", baza.konekcija)
+            Try
+
+                komanda.CommandText = "Insert into Panleksa.dbo.servis (id_servisa, serviser, usluga, otprema_na_naslov, prijem, stanje_servisa, email, telefon)
+Values (" & BrojServisaTB.Text & "," & ServiserCB.SelectedIndex + 1 & ", '" & OpisTB.Text & "', '" & OtpremaTB.Text & "', '" & datumtb.Text & "', 0, '" & EmailTB.Text & "', '" & TelefonTB.Text & "')"
+                komanda.Connection.Open()
+                komanda.ExecuteNonQuery()
+                komanda.Connection.Close()
+                brojac = 0
+            Catch ex As Exception
+                MsgBox(ex.ToString)
+                komanda.Connection.Close()
+            End Try
             Try
                 Dim email As New MailMessage()
 
@@ -227,7 +234,6 @@ LP"
                 SMTP.Send(email)
                 MsgBox("Email obavjestenja je poslat musteriji.", vbOKOnly, "SERVIS")
             Catch error_t As Exception
-
             End Try
 
             serv.Show()
@@ -236,13 +242,7 @@ LP"
         End If
     End Function
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        ServiserCB.SelectedIndex = 1
-        OtpremaTB.Text = "Aleksandar Panzalovic"
-        EmailTB.Text = "aleksandar.panzalovic@gmail.com"
-        TelefonTB.Text = "+38765552558"
-        OpisTB.Text = "Text"
-    End Sub
+
 End Class
 Public Class events
     Inherits PdfPageEventHelper

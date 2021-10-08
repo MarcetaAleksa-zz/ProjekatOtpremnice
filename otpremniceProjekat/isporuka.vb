@@ -251,7 +251,7 @@ Public Class header
 
         Dim nazivi As New List(Of String)({"Broj servisa:", "Serviser :", "Otprema na naslov:", "Datum prijema:", "Datum isporuke:", "Telefon:", "Email:"})
 
-        Dim podaciHeader As New List(Of String)({isporuka.StanjeCB.Text, isporuka.ServiserTB.Text, isporuka.OpisTB.Text, isporuka.datumtb.Text, isporuka.DatumDTB.Text, isporuka.TelefonTB.Text, isporuka.EmailTB.Text})
+        Dim podaciHeader As New List(Of String)({isporuka.StanjeCB.Text, isporuka.ServiserTB.Text, isporuka.OtpremaTB.Text, isporuka.datumtb.Text, isporuka.DatumDTB.Text, isporuka.TelefonTB.Text, isporuka.EmailTB.Text})
 
         For i = 0 To 6
             Dim CellOneHdr As New PdfPCell(New Phrase(nazivi(i), fntTableFontHdr)) With {

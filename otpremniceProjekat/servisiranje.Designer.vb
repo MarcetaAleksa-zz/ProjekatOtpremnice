@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class servisiranje
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class servisiranje
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(servisiranje))
@@ -49,7 +49,6 @@ Partial Class servisiranje
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel4.SuspendLayout()
         Me.Panel15.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -164,7 +163,6 @@ Partial Class servisiranje
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(51, Byte), Integer))
-        Me.Panel4.Controls.Add(Me.Button2)
         Me.Panel4.Controls.Add(Me.StanjeCB)
         Me.Panel4.Controls.Add(Me.ServiserCB)
         Me.Panel4.Controls.Add(Me.Panel15)
@@ -358,15 +356,6 @@ Partial Class servisiranje
         '
         Me.Timer1.Interval = 1
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(463, 442)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 97
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'servisiranje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -420,5 +409,4 @@ Partial Class servisiranje
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Panel12 As Panel
     Friend WithEvents Panel13 As Panel
-    Friend WithEvents Button2 As Button
 End Class
